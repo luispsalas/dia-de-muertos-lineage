@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Linaje del Día de Muertos</title>
+<meta name="description" content="De dónde viene cada uno de diez símbolos del Día de Muertos en la Ciudad de México, con el grado de evidencia de cada afirmación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital@1&display=swap">
+<style>
+/* Layout: a horizontal timeline, one lane per symbol, papel-picado banners hung at the right end (today); details open in a side card. */
+:root {
+  --bg: #fbf6f9;        /* papel de china, pale */
+  --panel: #ffffff;
+  --ink: #23142b;
+  --muted: #6c5a72;
+  --line: #ddcfdc;
+  --rosa: #c8006a;      /* rosa mexicano */
+  --naranja: #d9650a;   /* cempasúchil */
+  --morado: #6a3d9e;
+  --verde: #0f7a63;
+  --azul: #1f5fae;
+  --ambar: #a86a00;   /* Hollywood */
+  --cielo: #0f7c99;   /* city institutions */
+  --trigo: #8f5b1e;   /* pan de muerto */
+  --lima: #4f7a0c;    /* crafts and fairs */
+  --tinta: #46536a;   /* calaveritas literarias */
+  --gris: #9a8ca0;
+  --font-display: "Alfa Slab One", "Rockwell", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-quote: "IBM Plex Serif", Georgia, serif;
+  --font-data: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #150e1d; --panel: #211730; --ink: #f2e9f3; --muted: #b6a6bb; --line: #3b2e47;
+    --rosa: #ff5aab; --naranja: #ff9d42; --morado: #b391ff; --verde: #3fcca8; --azul: #6aa8ff; --ambar: #ffc04d; --cielo: #4fd0f0; --trigo: #e3ad6b; --lima: #b5d65a; --tinta: #a9b8cf; --gris: #7d6f86;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #150e1d; --panel: #211730; --ink: #f2e9f3; --muted: #b6a6bb; --line: #3b2e47;
+  --rosa: #ff5aab; --naranja: #ff9d42; --morado: #b391ff; --verde: #3fcca8; --azul: #6aa8ff; --ambar: #ffc04d; --cielo: #4fd0f0; --trigo: #e3ad6b; --lima: #b5d65a; --tinta: #a9b8cf; --gris: #7d6f86;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 28px; }
+header { display: grid; gap: 12px; }
+.topline { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.eyebrow { font-family: var(--font-data); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px, 6vw, 56px); line-height: 1.02; margin: 0; letter-spacing: .01em; text-wrap: balance; }
+h1 .acc { color: var(--rosa); }
+.intro { max-width: 64ch; margin: 0; color: var(--ink); }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--panel); }
+.lang button { font: 500 13px var(--font-data); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; border-radius: 999px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.lang button:focus-visible, .node:focus-visible, .edgehit:focus-visible, a:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; font-size: 13px; color: var(--muted); }
+.legend .group { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.legend .gl { font-family: var(--font-data); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.legend .item { display: inline-flex; gap: 6px; align-items: center; }
+.legend svg { flex: none; }
+.swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+.main { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1600px) { .wrap { max-width: 1600px; } .main { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
+.diagram { position: relative; overflow-x: auto; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); -webkit-overflow-scrolling: touch; }
+.diagram svg { display: block; }
+.hint { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+@media (min-width: 940px) { .hint { display: none; } }
+
+/* SVG */
+.lane-label { font-family: var(--font-display); font-size: 17px; fill: var(--ink); }
+.axis text { font-family: var(--font-data); font-size: 11px; fill: var(--muted); }
+.axis line { stroke: var(--line); }
+.lane-rule { stroke: var(--line); stroke-width: 1; }
+.yr { font-family: var(--font-data); font-size: 10.5px; fill: var(--muted); }
+.nlabel { font-family: var(--font-body); font-size: 12px; fill: var(--ink); }
+.nlabel, .yr { paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; }
+.nlabel.myth { fill: var(--muted); font-style: italic; }
+.edge { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+.edge.doc { stroke-dasharray: none; }
+.edge.stu { stroke-dasharray: 7 5; }
+.edge.pop { stroke-dasharray: 1.5 5; }
+.edge.disp { stroke-dasharray: 1.5 5; opacity: .45; }
+.edge.pend { stroke: var(--gris); stroke-dasharray: 2 6; stroke-width: 1.5; opacity: .8; }
+.edgehit { fill: none; stroke: transparent; stroke-width: 16; cursor: pointer; }
+.node { cursor: pointer; }
+.node .halo { fill: var(--bg); }
+.node.sel .ring { stroke: var(--ink); stroke-width: 2; fill: none; }
+.node:hover .core, .node:focus .core { filter: brightness(1.1); }
+.xmark { stroke-width: 2; stroke-linecap: round; }
+.banner-cap { font-family: var(--font-data); font-size: 10px; fill: var(--muted); letter-spacing: .06em; }
+.today { cursor: pointer; }
+.today .bframe { fill: none; stroke: transparent; stroke-width: 2; }
+.today:hover .bframe, .today:focus .bframe { stroke: var(--line); }
+.today.sel .bframe { stroke: var(--ink); }
+.today:focus-visible { outline: none; }
+.today:focus-visible .bframe { stroke: var(--rosa); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.steps button { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 18px 76px minmax(0, 1fr); gap: 6px; align-items: baseline; padding: 5px 6px; border-radius: 5px; cursor: pointer; font-size: 13.5px; }
+.steps button:hover, .steps button:focus-visible { background: color-mix(in srgb, var(--line) 45%, transparent); }
+.steps button:focus-visible { outline: 2px solid var(--rosa); outline-offset: 1px; }
+.steps .y { font-family: var(--font-data); font-size: 11.5px; color: var(--muted); }
+.card h3 { font-family: var(--font-data); font-weight: 500; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.legendnote { font-size: 12.5px; color: var(--muted); }
+
+/* tooltip */
+.tip { position: absolute; z-index: 5; max-width: 260px; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; font-size: 13px; line-height: 1.45; box-shadow: 0 6px 24px rgba(20, 8, 30, .18); pointer-events: none; }
+.tip b { display: block; font-weight: 600; margin-bottom: 2px; }
+.tip .r { font-family: var(--font-data); font-size: 11px; color: var(--muted); }
+
+/* side card */
+aside.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px 18px 20px; display: grid; gap: 14px; min-width: 0; }
+@media (min-width: 1600px) { aside.card { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); max-height: calc(100vh - 32px); overflow: auto; } }
+.card .kicker { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-family: var(--font-data); font-size: 12px; color: var(--muted); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-body); font-size: 12px; padding: 2px 8px; border-radius: 999px; border: 1px solid currentColor; }
+.card h2 { font-family: var(--font-display); font-weight: 400; font-size: 22px; line-height: 1.15; margin: 0; text-wrap: balance; }
+.card p { margin: 0; }
+.claims { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.claims li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 4px 8px; border-top: 1px solid var(--line); padding-top: 12px; }
+.claims .mark { font-size: 15px; line-height: 1.4; }
+.claims .body { display: grid; gap: 6px; min-width: 0; }
+blockquote { margin: 0; font-family: var(--font-quote); font-style: italic; font-size: 15px; line-height: 1.45; border-left: 3px solid var(--line); padding-left: 10px; }
+.tr { font-size: 13px; color: var(--muted); }
+.tr .lab { font-family: var(--font-data); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; margin-right: 4px; }
+.note { font-size: 13px; color: var(--muted); }
+.src { font-size: 12.5px; color: var(--muted); }
+.src a { color: var(--azul); text-underline-offset: 2px; }
+.whyd { font-size: 13px; background: color-mix(in srgb, var(--rosa) 9%, transparent); border-radius: 6px; padding: 8px 10px; }
+
+footer { display: grid; gap: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
+footer h3 { font-family: var(--font-display); font-weight: 400; font-size: 18px; margin: 0; }
+.bib { display: grid; gap: 14px 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); font-size: 13px; }
+.bib h4 { margin: 0 0 4px; font-size: 13px; font-weight: 600; }
+.bib ul { margin: 0; padding-left: 18px; color: var(--muted); }
+.bib li { margin-bottom: 3px; }
+.bib a { color: var(--azul); }
+.fine { font-size: 12.5px; color: var(--muted); max-width: 80ch; margin: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .banner { transform-box: fill-box; transform-origin: 50% 0; animation: sway 6s ease-in-out infinite; }
+  .banner:nth-of-type(2n) { animation-delay: -2s; }
+  @keyframes sway { 0%, 100% { transform: rotate(-1.2deg); } 50% { transform: rotate(1.2deg); } }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="topline">
+      <span class="eyebrow" data-i18n="eyebrow"></span>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" id="btn-es" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" id="btn-en" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+    <h1 data-i18n-html="title"></h1>
+    <p class="intro" data-i18n="intro"></p>
+  </header>
+
+  <div class="legend" id="legend"></div>
+
+  <div class="main">
+    <div>
+      <div class="diagram" id="diagram"></div>
+      <p class="hint" data-i18n="hint"></p>
+    </div>
+    <aside class="card" id="card" aria-live="polite"></aside>
+  </div>
+
+  <footer>
+    <h3 data-i18n="bibTitle"></h3>
+    <div class="bib" id="bib"></div>
+    <p class="fine" data-i18n="fine"></p>
+  </footer>
+</div>
+
+<script>
+(() => {
+// ---------- strings ----------
+const T = {
+  es: {
+    eyebrow: "Prototipo · 10 símbolos · fuentes revisadas al 8 nov 2026",
+    title: 'Linaje del <span class="acc">Día de Muertos</span>',
+    intro: "De dónde viene cada símbolo de la celebración de hoy en la Ciudad de México, y qué tan bien está documentado cada paso. Pasa el cursor por un punto para un resumen; tócalo o haz clic para ver las fuentes.",
+    hint: "Desliza el diagrama hacia los lados →",
+    ranks: "Fuentes", infl: "Influencias",
+    doc: "Documentado", stu: "Estudiado", pop: "Popular", disp: "Disputado", pend: "Sin fuentes todavía",
+    docL: "Hay una fuente primaria", stuL: "Lo sostienen historiadores", popL: "Se repite, pero sin buena fuente", dispL: "Se repite y las fuentes lo contradicen", pendL: "Pendiente de investigar",
+    translation: "Traducción", why: "Por qué está en duda",
+    source: "Fuente", today: "Hoy · CDMX",
+    bibTitle: "Fuentes por símbolo",
+    fine: "Las citas están en su idioma original y se verificaron palabra por palabra contra la fuente (las de periódicos del siglo XIX, a ojo sobre el escaneo). Las fechas «c. 1500» marcan prácticas mexicas descritas por cronistas del siglo XVI. Los huecos sin fuentes se dibujan con línea punteada y se explican al hacer clic.",
+    lanes: { ofrenda: "Ofrenda", cempa: "Cempasúchil", pan: "Pan de muerto", azucar: "Calaverita de azúcar", xolo: "Xoloitzcuintle", catrina: "Catrina", calav: "Calaveritas literarias", papel: "Papel picado", alebrije: "Alebrijes", desfile: "Gran Desfile" },
+    pendTitle: "Hoy en la CDMX",
+    lineage: "Lo que dice el linaje", clash: "Donde el significado y la historia no coinciden",
+    meaningNote: "En esta tarjeta, ● quiere decir que en 2026 alguien lo afirma así, no que el origen esté probado.",
+    cap: "hoy · 2026", seeToday: "Clic o toque para ver qué significa hoy.",
+  },
+  en: {
+    eyebrow: "Prototype · 10 symbols · sources checked to 8 Nov 2026",
+    title: 'Day of the Dead <span class="acc">Lineage</span>',
+    intro: "Where each symbol of today's Mexico City celebration comes from, and how well each step is documented. Hover a point for a summary; tap or click it to see the sources.",
+    hint: "Swipe the diagram sideways →",
+    ranks: "Sources", infl: "Influences",
+    doc: "Documented", stu: "Studied", pop: "Popular", disp: "Disputed", pend: "Not sourced yet",
+    docL: "A primary source exists", stuL: "Supported by historians", popL: "Repeated, weakly sourced", dispL: "Repeated, and the sources contradict it", pendL: "Still to research",
+    translation: "Translation", why: "Why it's disputed",
+    source: "Source", today: "Today · CDMX",
+    bibTitle: "Sources by symbol",
+    fine: "Quotations stay in their original language and were checked word for word against the source (19th-century newspapers by eye on the scan). Dates marked “c. 1500” are Mexica practices described by 16th-century chroniclers. Gaps with no sources are drawn dotted and explained when clicked.",
+    lanes: { ofrenda: "Ofrenda", cempa: "Marigold", pan: "Pan de muerto", azucar: "Sugar skull", xolo: "Xoloitzcuintle", catrina: "Catrina", calav: "Calavera verses", papel: "Papel picado", alebrije: "Alebrijes", desfile: "Parade" },
+    pendTitle: "Today in Mexico City",
+    lineage: "What the lineage shows", clash: "Where meaning and history disagree",
+    meaningNote: "On this card, ● means someone says this in 2026, not that the origin is proven.",
+    cap: "today · 2026", seeToday: "Click or tap to see what it means today.",
+  }
+};
+const RANK_MARK = { doc: "●", stu: "◐", pop: "○", disp: "✕", pend: "·" };
+
+const INFL = {
+  mexica: { es: "Mexica / nahua", en: "Mexica / Nahua", c: "--verde" },
+  espana: { es: "España católica", en: "Catholic Spain", c: "--morado" },
+  europa: { es: "Moda europea", en: "European fashion", c: "--azul" },
+  prensa: { es: "Prensa y arte mexicanos", en: "Mexican press & art", c: "--rosa" },
+  cine: { es: "Hollywood", en: "Hollywood", c: "--ambar" },
+  ciudad: { es: "Instituciones de la CDMX", en: "Mexico City institutions", c: "--cielo" },
+  oficios: { es: "Oficios y ferias", en: "Crafts and fairs", c: "--lima" },
+};
+
+// ---------- sources ----------
+const S = {
+  sah1: { label: "Sahagún, Historia general de las cosas de Nueva España, t. 1 (ed. Bustamante, 1829)", url: "https://archive.org/details/historiagenerald01saha" },
+  sah3: { label: "Sahagún, Historia general de las cosas de Nueva España, t. 3 (ed. Bustamante, 1829)", url: "https://archive.org/details/historiagenerald03saha" },
+  duran: { label: "Durán, Historia de las Indias de Nueva España, t. 2 (ed. Ramírez, 1880), Calendario, mes noveno, pp. 288–289", url: "https://archive.org/details/historiadelasind02dur" },
+  hern: { label: "Hernández, Historia de las plantas de Nueva España, t. 2 (UNAM, 1942), cap. CLXXIX", url: "https://archive.org/details/historiadelaspliihern" },
+  album: { label: "El Álbum mexicano, 6 ene 1849, p. 135 (Hemeroteca Nacional Digital)", url: "https://hndm.iib.unam.mx/consulta/pagina/visualizar/68dc245f8ab7c103ac7590e6" },
+  hogar: { label: "El Diario del Hogar (CDMX), 20 nov 1886, «Carta de Puebla», pp. 1–2 (Hemeroteca Nacional Digital)", url: "https://hndm.iib.unam.mx/consulta/pagina/visualizar/558a36ff7d1ed64f16d1715a" },
+  patria: { label: "La Patria (CDMX), 1 nov 1891, p. 2 (Hemeroteca Nacional Digital)", url: "https://hndm.iib.unam.mx/consulta/pagina/visualizar/558a34fd7d1ed64f16af2392" },
+  serrato: { label: "Serrato-Cruz et al., «Las ofrendas de “Flor de Muerto”…», Delpinoa 45 (2003): 43–48", url: "https://www.ortobotaniconapoli.it/images/Delpinoa/Delpinoa_n_s_45_2003_%5B2004%5D/Delpinoa_n_s_45_2003_%5B2004%5D_043-048.pdf" },
+  colgate: { label: "Registro del grabado «La Calavera Catrina», Colgate University (c. 1910–1913)", url: "https://emuseum.colgate.edu/objects/9565/la-calavera-catrina" },
+  sanchez: { label: "Yanet Aguilar, «El mito nacionalista que inventó a La Catrina», El Universal, 27 oct 2021 (entrevista a Agustín Sánchez González)", url: "https://www.eluniversal.com.mx/cultura/el-mito-nacionalista-que-invento-la-catrina/" },
+  mono: { label: "Monografía: las obras de José Guadalupe Posada (Mexican Folkways, 1930), facsímil, p. 212", url: "https://archive.org/details/monografialasobr0000posa/page/212/mode/1up?q=catrina" },
+  met: { label: "Metropolitan Museum, registro del libro de 1930", url: "https://www.metmuseum.org/art/collection/search/355620" },
+  inbal: { label: "INBAL, boletín sobre «Sueño de una tarde dominical en la Alameda Central» (2022)", url: "https://inba.gob.mx/multimedia/prensa/galerias/16667/16667-bol._629_con_reflexiones_sobre_sueno_de_una_tarde_dominical_en_la_alameda_central_cierra_el_ciclo_hablemos_de_muralismos.pdf" },
+  univ2020: { label: "«¿Quién inventó la Catrina?», El Universal, 1 nov 2020 (ejemplo de la versión popular)", url: "https://www.eluniversal.com.mx/cultura/artes-visuales/quien-invento-la-catrina/" },
+  hndm: { label: "Hemeroteca Nacional Digital de México, búsqueda de la frase exacta «calavera catrina»", url: "https://hndm.iib.unam.mx/" },
+  wilson: { label: "AP, «James Bond producer confirms incentives from Mexico, denies changing script», 19 mar 2015 (vía Fox News)", url: "https://www.foxnews.com/entertainment/james-bond-producer-confirms-incentives-from-mexico-denies-changing-script" },
+  ap16: { label: "AP, desfile del 29 oct 2016 (vía CBS San Francisco)", url: "https://www.cbsnews.com/sanfrancisco/news/mexico-parade-day-dead-james-bond-spectre" },
+  rnz: { label: "RNZ, «Bond inspires Mexico City Day of the Dead parade», 30 oct 2016", url: "https://www.rnz.co.nz/news/world/316857/bond-inspires-mexico-city-day-of-the-dead-parade" },
+  quadratin: { label: "Quadratín, «Establece Cejur festividad de Día de Muertos para preservar tradición», 10 nov 2016", url: "https://mexico.quadratin.com.mx/establece-cejur-festividad-de-dia-de-muertos-para-preservar-tradicion/" },
+  wlin: { label: "Wikipedia, «Pedro Linares»", url: "https://en.wikipedia.org/wiki/Pedro_Linares" },
+  wale: { label: "Wikipedia, «Alebrije»", url: "https://en.wikipedia.org/wiki/Alebrije" },
+  afana: { label: "Filmografía de Judith Bronowski (afana.org)", url: "https://afana.org/bronowski.htm" },
+  exc19: { label: "Lilian Hernández, «Alebrijes, patrimonio cultural de la CDMX», Excélsior, 20 oct 2019", url: "https://www.excelsior.com.mx/comunidad/alebrijes-patrimonio-cultural-de-la-cdmx-en-exhibicion-hasta-el-17-de-noviembre/1342938" },
+  exc25: { label: "Juan Carlos Talavera, «Exigen salvaguarda de alebrijes originales», Excélsior, 3 nov 2025", url: "https://www.excelsior.com.mx/expresiones/exigen-salvaguarda-de-alebrijes-originales-patrimonio-cultural/1749341" },
+  sep: { label: "SEP, Nueva Escuela Mexicana, «Florecitas del sol: Cempasúchil» (material escolar marcado «Generado por IA»)", url: "https://nuevaescuelamexicana.sep.gob.mx/contenido/recurso/florecitas-del-sol-cempasuchil/" },
+  nmas26: { label: "N+, «Día de Muertos 2026: ¿Por qué se pone un camino de cempasúchil en los altares?», 30 oct 2026", url: "https://www.nmas.com.mx/sociedad/dia-de-muertos-2026-por-que-se-pone-un-camino-de-cempasuchil-en-los-altares/" },
+  univ26: { label: "El Universal, «Crece nueve veces producción de cempasúchil en CDMX», 12 oct 2026 (cifras de Sedema)", url: "https://www.eluniversal.com.mx/metropoli/crece-nueve-veces-produccion-de-cempasuchil-en-cdmx-alistan-casi-10-millones-de-plantas-para-dia-de-muertos/" },
+  infojun: { label: "Infobae, «Día de Muertos en pleno Mundial 2026: CDMX coloca flores de cempasúchil en Paseo de la Reforma», 3 jun 2026", url: "https://www.infobae.com/mexico/2026/06/03/dia-de-muertos-en-pleno-mundial-2026-cdmx-coloca-flores-de-cempasuchil-en-paseo-de-la-reforma/" },
+  cron26: { label: "Crónica, «CDMX celebra por primera vez el Día de la Flor de Cempasúchil», 30 oct 2026", url: "https://www.cronica.com.mx/metropoli/2026/10/30/cdmx-celebra-por-primera-vez-el-dia-de-la-flor-de-cempasuchil/" },
+  cronofr: { label: "Mariana Isabel Mendoza Valdez, «Día de Muertos 2026: ¿Qué significa cada elemento de la ofrenda?», Crónica, 28 oct 2026", url: "https://www.cronica.com.mx/nacional/2026/10/28/dia-de-muertos-2026-que-significa-cada-elemento-de-la-ofrenda/" },
+  unocat: { label: "Oscar Gómez Cruz, «CDMX rompe Récord Guinness con la catrina más alta del mundo», UnoTV, 29 oct 2026", url: "https://www.unotv.com/cultura/cdmx-rompe-record-guinness-con-la-catrina-mas-alta-del-mundo-esta-rodeada-con-70-mil-flores-de-cempasuchil/" },
+  milcat: { label: "«La Catrina más grande del mundo en el Zócalo», Milenio, 30 oct 2026", url: "https://www.milenio.com/cultura/catrina-mas-grande-del-mundo-zocalo-cdmx-ofrenda-monumental-fechas" },
+  cronxolo: { label: "Gerardo Mayoral, «Declaran patrimonio cultural inmaterial los saberes asociados al xoloitzcuintle en CDMX», Crónica, 27 oct 2026", url: "https://www.cronica.com.mx/metropoli/2026/10/27/declaran-patrimonio-cultural-inmaterial-los-saberes-asociados-al-xoloitzcuintle-en-cdmx/" },
+  infoxolo: { label: "Nadia Virgilio, «Gobierno de CDMX declara al xoloitzcuintle patrimonio cultural inmaterial», Infobae, 28 oct 2026", url: "https://www.infobae.com/mexico/2026/10/28/gobierno-de-cdmx-declara-al-xoloitzcuintle-patrimonio-cultural-inmaterial-que-implica-esta-nueva-designacion/" },
+  infoact: { label: "«CDMX tendrá 5 mil actividades gratuitas para el Día de Muertos 2026», Infobae, 21 oct 2026", url: "https://www.infobae.com/mexico/2026/10/21/gobierno-de-cdmx-anuncia-5-mil-actividades-gratuitas-para-el-dia-de-muertos-2026-festivales-conciertos-drones-y-record-guiness/" },
+  univofr: { label: "«Megaofrenda Día de Muertos 2026», El Universal, 22 oct 2026", url: "https://www.eluniversal.com.mx/tendencias/megaofrenda-dia-de-muertos-en-cdmx-fecha-de-apertura-tematica-y-todo-lo-que-debes-saber-sobre-el-evento-en-el-zocalo/" },
+  sepale: { label: "SEP, Nueva Escuela Mexicana, «¿Sabías que los alebrijes también acompañan a los muertos?» (material escolar marcado «Generado por IA»)", url: "https://nuevaescuelamexicana.sep.gob.mx/contenido/recurso/sabias-que-los-alebrijes-tambien-acompanan-a-los-muertos/" },
+  infoale: { label: "«Desfile de Alebrijes Monumentales 2026», Infobae, 27 sep 2026 (actualizado 17 oct)", url: "https://www.infobae.com/mexico/2026/09/27/alebrijes-monumentales-regresan-a-paseo-de-la-reforma-cuando-sera-el-desfile-y-hasta-que-fecha-podras-visitar-las-figuras-gigantes/" },
+  infodes: { label: "«Desfile de Día de Muertos 2026 en CDMX: ruta oficial…», Infobae, 21 oct 2026", url: "https://www.infobae.com/mexico/2026/10/21/desfile-de-dia-de-muertos-2026-en-cdmx-ruta-oficial-fecha-horario-y-mejores-puntos-para-verlo-sin-tumultos/" },
+  crondes: { label: "«Gran Desfile de Día de Muertos 2026 en CDMX: horario, ruta y calles cerradas», Crónica, 30 oct 2026", url: "https://www.cronica.com.mx/metropoli/2026/10/30/gran-desfile-de-dia-de-muertos-2026-en-cdmx-horario-ruta-y-calles-cerradas/" },
+  lorente: { label: "David Lorente Fernández, «Panes-hueso, panes-piedra, pan de Día de Muertos», Estudios de Cultura Náhuatl 60 (2020): 161–225", url: "https://nahuatl.historicas.unam.mx/index.php/ecn/article/download/78017/69045/229152" },
+  wkpan: { label: "Wikipedia, «Pan de muerto»", url: "https://en.wikipedia.org/wiki/Pan_de_muerto" },
+  siglo78: { label: "El Siglo Diez y Nueve (CDMX), 4 nov 1878, p. 3 (Hemeroteca Nacional Digital)", url: "https://hndm.iib.unam.mx/consulta/pagina/visualizar/558a3e417d1ed64f1717799e" },
+  patac: { label: "La Pata de Cabra (CDMX), 3 nov 1855, p. 1 (Hemeroteca Nacional Digital)", url: "https://hndm.iib.unam.mx/consulta/pagina/visualizar/558a33a17d1ed64f169879bf" },
+  imppan: { label: "«Pan de muerto: esto significan los famosos “huesitos”», El Imparcial, 12 oct 2026", url: "https://www.elimparcial.com/locurioso/2026/10/07/pan-de-muerto-esto-significan-los-famosos-huesitos/" },
+  nmaspan: { label: "Redacción N+, «¿Qué significa el pan de muerto en la ofrenda y cuándo se puede comer?», N+, 23 oct 2026", url: "https://www.nmas.com.mx/sociedad/que-significa-pan-muerto-en-ofrenda-cuando-se-puede-comer-dia-de-muertos-2026/" },
+  publipan: { label: "Alejandro Granados, «Día de Muertos 2026: pan de muerto y cempasúchil generarían mil 434 millones de pesos», Publimetro, 27 oct 2026", url: "https://www.publimetro.com.mx/noticias/2026/10/28/dia-de-muertos-2026-pan-de-muerto-y-cempasuchil-generarian-mil-434-millones-de-pesos/" },
+  wkalf: { label: "Wikipedia, «Alfeñique»", url: "https://es.wikipedia.org/wiki/Alfe%C3%B1ique" },
+  mdazu: { label: "«Calaveras de azúcar, significado y origen de esta tradición», México Desconocido, 26 oct 2017", url: "https://www.mexicodesconocido.com.mx/calaveras-de-azucar.html" },
+  wksugar: { label: "Wikipedia, «Sugar skull»", url: "https://en.wikipedia.org/wiki/Sugar_skull" },
+  unoalf: { label: "Carlos Vera, «Feria del Alfeñique preserva la tradición del Día de Muertos en Toluca», UnoTV, 17 oct 2026", url: "https://www.unotv.com/estados/estado-de-mexico/feria-alfenique-toluca-dia-muertos/" },
+  adnprof: { label: "«Día de Muertos 2026: la receta de Profeco para hacer calaveritas de azúcar en casa», adn40, 5 oct 2026", url: "https://www.adn40.mx/es-tendencia/2026-10-05/dia-de-muertos-2026-la-receta-de-profeco-para-hacer-calaveritas-de-azucar-en-casa-con-azucar-glass-y-clara-de-huevo/" },
+  bolanos: { label: "Joaquín Bolaños, La portentosa vida de la Muerte (México, Herederos de Jáuregui, 1792), Internet Archive", url: "https://archive.org/details/laportentosavida00bola" },
+  rppcal: { label: "«Día de Muertos en México: cuál es el origen de las calaveritas literarias», RPP, 26 oct 2022", url: "https://rpp.pe/capital/mundo/dia-de-muertos-en-mexico-cual-es-el-origen-de-las-calaveritas-literarias-noticias-1442244" },
+  croncal: { label: "Esteban Emiliano Pérez Navarro, «Calaveritas literarias: ¿por qué se hacen y cuáles son las reglas para escribir una?», Crónica, 29 oct 2026", url: "https://www.cronica.com.mx/tendencias/2026/10/29/calaveritas-literarias-por-que-se-hacen-y-cuales-son-las-reglas-para-escribir-una/" },
+  hndmsoc: { label: "Hemeroteca Nacional Digital, El Socialista (CDMX, 1871–1888), búsqueda de «calaveras»", url: "https://hndm.iib.unam.mx/" },
+  met08: { label: "Metropolitan Museum, hoja suelta de calavera con grabado de Posada, 1908 (46.46.371)", url: "https://www.metmuseum.org/art/collection/search/739074" },
+  mdcal: { label: "«Calaveritas literarias, una hermosa y casi desaparecida tradición», México Desconocido, 17 oct 2019", url: "https://www.mexicodesconocido.com.mx/calaveras-hermosa-y-casi-desaparecida-tradicion.html" },
+  nmaspp: { label: "Redacción N+, «San Salvador Huixcolotla: el pueblo donde nació el papel picado…», N+, 30 oct 2026", url: "https://www.nmas.com.mx/sociedad/san-salvador-huixcolotla-el-pueblo-donde-nacio-el-papel-picado-que-da-color-al-dia-de-muertos/" },
+  fagpp: { label: "Mexican Folk Art Guide, «Papel picado»", url: "https://www.mexican-folk-art-guide.com/papel-picado.html" },
+  wkpp: { label: "Wikipedia, «Papel picado»", url: "https://en.wikipedia.org/wiki/Papel_picado" },
+  mdpp: { label: "«Papel picado mexicano para Día de Muertos», México Desconocido, 5 nov 2016", url: "https://www.mexicodesconocido.com.mx/papel-picado-patrimonio-cultural-puebla.html" },
+  inahpp: { label: "INAH, Museo Casa de Carranza, cuadernillo «Papel picado, Día de Muertos» (2021)", url: "https://www.inah.gob.mx/images/interactivos/20211026_cuadernillo_papel_picado_d%C3%ADa_de_muertos.pdf" },
+  mej: { label: "Andrea Ramírez, «La CDMX reconoce los alebrijes de Pedro Linares López», Mundo Ejecutivo, 11 oct 2024", url: "https://mundoejecutivocdmx.com/turismo/la-cdmx-reconoce-los-alebrijes-de-pedro-linares-lopez-como-un-invaluable-legado-cultural/" },
+};
+
+// ---------- nodes ----------
+// lane, year, dy (vertical offset in lane), rank, infl, label, card (short), claims
+const N = [
+  // OFRENDA
+  { id: "o1", lane: "ofrenda", year: 1500, dy: -24, rank: "doc", infl: "mexica", yr: "c. 1500",
+    label: { es: "Ofrendas por cuatro años", en: "Offerings for four years" },
+    card: { es: "Entre los mexicas, las familias seguían haciendo ofrendas a sus muertos durante cuatro años.", en: "Mexica families kept making offerings to their dead for four years." },
+    claims: [{ rank: "doc", t: { es: "Sahagún escribe que las ofrendas por los difuntos llegaban ante el señor del Mictlán.", en: "Sahagún writes that offerings for the dead reached the lord of Mictlán." },
+      q: "todas las ofrendas que hacían por los difuntos en este mundo, iban delante del diablo que se decia Mictlantecutli",
+      qen: "all the offerings they made for the dead in this world went before the devil called Mictlantecutli",
+      n: { es: "«Diablo» es el marco cristiano del fraile para Mictlantecuhtli.", en: "“Devil” is the friar's Christian framing of Mictlantecuhtli." }, s: "sah1", where: { es: "libro III, apéndice", en: "book III, appendix" } }] },
+  { id: "o2", lane: "ofrenda", year: 1500, dy: 24, rank: "doc", infl: "mexica", yr: "c. 1500",
+    label: { es: "Fiestas de muertos, agosto", en: "Feasts of the dead, August" },
+    card: { es: "Durán registra dos meses mexicas: la fiesta de los muertecitos y, al mes siguiente, la fiesta grande de los muertos.", en: "Durán records two Mexica months: the feast of the little dead and, the next month, the great feast of the dead." },
+    claims: [
+      { rank: "doc", t: { es: "Miccailhuitontli, el noveno mes, hacia el 8 de agosto: una fiesta para los niños muertos.", en: "Miccailhuitontli, the ninth month, around 8 August: a feast for dead children." },
+        q: "fué ser fiesta de niños inocentes muertos", qen: "it was a feast of innocent dead children", s: "duran" },
+      { rank: "doc", t: { es: "Preparaba la del mes siguiente, para los adultos.", en: "It prepared for the next month's feast, for adults." },
+        q: "que la llamaban la fiesta grande de los muertos", qen: "which they called the great feast of the dead",
+        n: { es: "Durán se contradice: en otro capítulo dice que el nombre venía de los muchos esclavos sacrificados ese día.", en: "Durán contradicts himself: elsewhere he says the name came from the many slaves sacrificed that day." }, s: "duran" }] },
+  { id: "o3", lane: "ofrenda", year: 1579, dy: 0, rank: "doc", infl: "espana", yr: "c. 1579",
+    label: { es: "1 y 2 de noviembre", en: "1 and 2 November" },
+    card: { es: "Durán ve ofrendas el día de Todos Santos para los niños y el de Fieles Difuntos para los adultos. Le dicen que así se hacía antiguamente.", en: "Durán sees offerings on All Saints' Day for children and on All Souls' Day for adults. He is told it was done that way of old." },
+    claims: [{ rank: "doc", t: { es: "Testimonio directo. En las ofrendas ve dinero, cacao, cera, aves, fruta, semillas y comida.", en: "An eyewitness account. On the offerings he sees money, cacao, wax, birds, fruit, seeds and food." },
+      q: "respondiéronme que ofrecían aquello por los niños que así lo usaban antiguamente y habíase quedado aquella costumbre",
+      qen: "they answered that they offered it for the children, that this was their custom of old, and the custom had remained", s: "duran" }] },
+  { id: "o4", lane: "ofrenda", year: 1886, dy: 0, rank: "doc", infl: "prensa", yr: "1886",
+    label: { es: "Carta de Puebla", en: "Letter from Puebla" },
+    card: { es: "Un corresponsal describe las ofrendas de Puebla: mole, calabaza, pan, la ofrenda de los grandes y la de los chiquitos, y niños que piden de casa en casa.", en: "A correspondent describes Puebla's offerings: mole, squash, bread, one offering for adults and one for children, and boys asking from house to house." },
+    claims: [
+      { rank: "doc", t: { es: "La ofrenda de los chiquitos, la víspera de Todos Santos, es igual a la de los grandes, pero en miniatura.", en: "The children's offering, on the eve of All Saints, is like the adults' one, but in miniature." },
+        q: "que es igual, con la diferencia de que todo es en miniatura, los platillos, los dulces y el pan, agregando los juguetes del parvulillo",
+        qen: "which is the same, except that everything is in miniature: the dishes, the sweets and the bread, adding the little child's toys", s: "hogar" },
+      { rank: "doc", t: { es: "Niños de casa en casa, mucho antes del Halloween: rezan y reciben pan o fruta de la ofrenda.", en: "Children going door to door, long before Halloween reached Mexico: they pray and get bread or fruit from the offering." },
+        q: "En Chignahuapan los muchachos van de casa en casa el día de muertos, preguntando: ¿Hay que rezar?",
+        qen: "In Chignahuapan the boys go from house to house on the day of the dead, asking: Shall we pray?", s: "hogar" },
+      { rank: "doc", t: { es: "Galletas de salvado en forma de corazones, estrellas y calaveras, hechas solo en temporada de Todos Santos.", en: "Bran biscuits shaped like hearts, stars and skulls, made only in the All Saints season." },
+        q: "figurando corazones, estrellas, calaveras", qen: "shaped like hearts, stars, skulls",
+        n: { es: "Describe Puebla, no la CDMX, aunque la publicó un diario de la capital.", en: "This describes Puebla, not Mexico City, though a Mexico City paper printed it." }, s: "hogar" }] },
+
+  // CEMPASÚCHIL
+  { id: "c1", lane: "cempa", year: 1500, dy: -26, rank: "doc", infl: "mexica", yr: "c. 1500",
+    label: { es: "Flor de fiesta mexica", en: "A Mexica feast flower" },
+    card: { es: "Sahagún la describe en fiestas a la diosa de la sal y a Huitzilopochtli. No la asocia con los muertos.", en: "Sahagún describes it at feasts for the salt goddess and for Huitzilopochtli. He does not link it to the dead." },
+    claims: [
+      { rank: "doc", t: { es: "Una flor silvestre y de huerto, amarilla y olorosa.", en: "A wild and garden flower, yellow and fragrant." },
+        q: "Estas flores que se llaman cempoalxuchitl, son amarillas y de buen olor", qen: "These flowers called cempoalxuchitl are yellow and sweet-smelling", s: "sah3", where: { es: "libro XI", en: "book XI" } },
+      { rank: "doc", t: { es: "En la fiesta de Huixtocíhuatl, diosa de la sal, las mujeres llevaban guirnaldas de ella.", en: "At the feast of Huixtocihuatl, the salt goddess, the women wore garlands of it." },
+        q: "llevaban todas guirnaldas de flores amarillas, que se llaman cempoalxuchitl", qen: "they all wore garlands of yellow flowers called cempoalxuchitl", s: "sah1", where: { es: "libro II", en: "book II" } }] },
+  { id: "cm", lane: "cempa", year: 1500, dy: 30, rank: "disp", infl: "mexica", yr: "c. 1500", myth: true,
+    label: { es: "«La flor azteca de los muertos»", en: "“The Aztec flower of the dead”" },
+    card: { es: "Se repite mucho, pero ni Sahagún ni Durán la ligan con los muertos.", en: "Widely repeated, but neither Sahagún nor Durán ties it to the dead." },
+    why: { es: "Los artículos de agronomía que lo afirman lo dicen con cautela («probablemente») y citan a Sahagún y Durán. En sus textos en español no encontramos ese vínculo. Durán ni siquiera menciona la flor.", en: "The agronomy papers that claim it do so cautiously (“probably”) and cite Sahagún and Durán. We found no such link in their Spanish texts. Durán does not even mention the flower." },
+    claims: [{ rank: "stu", t: { es: "Serrato-Cruz y colegas: su uso «probablemente» estuvo ligado a un culto a la muerte.", en: "Serrato-Cruz and colleagues: its use was “probably” tied to a cult of the dead." }, s: "serrato" }] },
+  { id: "c2", lane: "cempa", year: 1575, dy: 26, rank: "doc", infl: "espana", yr: "c. 1575",
+    label: { es: "Medicina, y viaja a Europa", en: "Medicine, and off to Europe" },
+    card: { es: "Francisco Hernández, médico del rey, describe siete clases, todas medicinales, y anota que ya prosperan en España.", en: "Francisco Hernández, the king's physician, describes seven kinds, all medicinal, and notes they already thrive in Spain." },
+    claims: [{ rank: "doc", t: { es: "Nada de ritos ni de muertos: solo usos médicos. Y ya se había ido al extranjero.", en: "No rites and no dead: only medical uses. And it had already gone abroad." },
+      q: "han prosperado en España, sobre todo en lugares calientes, y también a las naciones extranjeras han dado sus alegres flores",
+      qen: "they have thrived in Spain, especially in warm places, and have also given their cheerful flowers to foreign nations",
+      n: { es: "Traducción de 1942 del original en latín.", en: "A 1942 Spanish translation of the Latin original." }, s: "hern" }] },
+  { id: "c3", lane: "cempa", year: 1849, dy: -26, rank: "doc", infl: "europa", yr: "1849",
+    label: { es: "«Flor de muerto» = pesar", en: "“Flower of the dead” = grief" },
+    card: { es: "En una tabla del «lenguaje de las flores», moda europea de salón, la flor de muerto significa pesar. Una nota la identifica con el cempoalxóchitl.", en: "In a “language of flowers” table, a European parlour fashion, the flower of the dead means grief. A footnote identifies it as cempoalxóchitl." },
+    claims: [{ rank: "doc", t: { es: "El primer vínculo entre la flor y la muerte que hemos encontrado.", en: "The earliest link between the flower and death that we have found." },
+      q: "Flor de Muerto ††† , Pesar. … ††† Cempoalxochil.", qen: "Flower of the Dead †††: Grief. … ††† Cempoalxochil.", s: "album" }] },
+  { id: "c4", lane: "cempa", year: 1886, dy: 26, rank: "doc", infl: "prensa", yr: "1886",
+    label: { es: "Pétalos en la puerta", en: "Petals at the door" },
+    card: { es: "En Huaquechula, Puebla, riegan pétalos en la entrada para avisar que hay primera ofrenda. En las ofrendas, el platillo del difunto va rodeado de flor de muerto.", en: "In Huaquechula, Puebla, petals are strewn at the entrance to show there is a first offering. On the offerings, the dead person's dish is surrounded with the flower." },
+    claims: [
+      { rank: "doc", t: { es: "Un camino de pétalos 131 años antes del puente de pétalos de Coco.", en: "A petal path 131 years before Coco's petal bridge." },
+        q: "regando la entrada con los pétalos de la flor de muerto, con el objeto de indicar á los transeuntes que hay primera ofrenda",
+        qen: "strewing the entrance with petals of the flower of the dead, to show passers-by that there is a first offering", s: "hogar" },
+      { rank: "doc", t: { es: "Alrededor del platillo favorito del difunto.", en: "Around the dead person's favourite dish." },
+        q: "lo rodean de gran cantidad de amarilla flor de muerto, perfumándolo con el copalli",
+        qen: "they surround it with a great quantity of yellow flower of the dead, perfuming it with copal", s: "hogar" }] },
+  { id: "c5", lane: "cempa", year: 1891, dy: -26, rank: "doc", infl: "prensa", yr: "1891",
+    label: { es: "La flor de noviembre", en: "November's flower" },
+    card: { es: "Un diario capitalino ya la trata como la flor de los muertos en noviembre.", en: "A Mexico City paper already treats it as November's flower of the dead." },
+    claims: [{ rank: "doc", t: { es: "En un texto literario titulado «¡Noviembre!».", en: "In a literary piece titled “¡Noviembre!”." },
+      q: "El Zempoaxochil (flor de muerto) viste las campiñas, se reproduce por todas partes",
+      qen: "The zempoaxochil (flower of the dead) clothes the fields and grows everywhere",
+      n: { es: "Otro diario reimprimió casi el mismo texto el 2 de noviembre de 1906.", en: "Another paper reprinted almost the same text on 2 November 1906." }, s: "patria" }] },
+
+  // XOLO
+  { id: "x1", lane: "xolo", year: 1500, dy: -24, rank: "doc", infl: "mexica", yr: "c. 1500",
+    label: { es: "Un perro rojizo cruza el río", en: "A reddish dog crosses the river" },
+    card: { es: "Para cruzar el río del inframundo, el muerto llevaba un perrito de pelo rojizo. Los blancos y los negros no podían cruzar.", en: "To cross the river of the underworld, the dead took a little reddish dog. White or black dogs could not cross." },
+    claims: [
+      { rank: "doc", t: { es: "El guía se describe por el color de su pelo.", en: "The guide is described by the colour of its coat." },
+        q: "Hacían asimismo al difunto llevar consigo un perrito de pelo vermejo", qen: "They also had the dead person take along a little dog with reddish hair", s: "sah1", where: { es: "libro III, apéndice", en: "book III, appendix" } },
+      { rank: "doc", t: { es: "Y no cualquier perro servía.", en: "And not just any dog would do." },
+        q: "los perros de pelo blanco y negro, no podían nadar y pasar el rio", qen: "dogs with white or black hair could not swim across the river", s: "sah1" }] },
+  { id: "x2", lane: "xolo", year: 1500, dy: 40, rank: "doc", infl: "mexica", yr: "c. 1500",
+    label: { es: "Xoloitzcuintli sin pelo", en: "Hairless Xoloitzcuintli" },
+    card: { es: "En otro libro, Sahagún describe los perros sin pelo, que se abrigaban de noche con mantas. No dice nada de los muertos.", en: "In another book, Sahagún describes the hairless dogs, wrapped in blankets at night. He says nothing about the dead." },
+    claims: [{ rank: "doc", t: { es: "Algunos los volvían lampiños untándolos con resina; otros decían que nacían así.", en: "Some made them hairless by rubbing them with resin; others said they were born that way." },
+      q: "que ningún pelo tenian, y de noche abrigábanlos con mantas", qen: "which had no hair at all, and at night they wrapped them in blankets", s: "sah3", where: { es: "libro XI", en: "book XI" } }] },
+  { id: "xm", lane: "xolo", year: 1800, dy: 0, rank: "disp", infl: "mexica", yr: "¿cuándo?", yrEn: "when?", myth: true,
+    label: { es: "«El xolo guía a las almas»", en: "“The Xolo guides souls”" },
+    card: { es: "En Sahagún son dos perros distintos. La fusión es posterior y aún no la fechamos.", en: "In Sahagún these are two different dogs. The merger came later, and we have not dated it yet." },
+    why: { es: "El perro guía se describe por su pelo rojizo. El xoloitzcuintli aparece en otro libro, sin relación con la muerte. Falta revisar la columna en náhuatl del Códice Florentino, que podría describir al guía como amarillo.", en: "The guide dog is described by its reddish coat. The Xoloitzcuintli appears in another book, with no link to death. The Nahuatl column of the Florentine Codex still needs checking; it may describe the guide as yellow." },
+    claims: [] },
+
+  // CATRINA
+  { id: "k1", lane: "catrina", year: 1913, dy: 26, rank: "doc", infl: "prensa", yr: "1913",
+    label: { es: "Calavera garbancera", en: "Calavera garbancera" },
+    card: { es: "Grabado de Posada: una calavera de busto con sombrero de plumas. Satiriza a quienes negaban su origen indígena.", en: "A Posada etching: a skull, shoulders up, in a feathered hat. It mocks people who denied their Indigenous roots." },
+    claims: [
+      { rank: "doc", t: { es: "El grabado está en colecciones de museo, fechado c. 1910–1913.", en: "The etching is in museum collections, dated c. 1910–1913." }, s: "colgate" },
+      { rank: "stu", t: { es: "Según el historiador Agustín Sánchez González, la placa se hizo hacia 1912 y la hoja salió en noviembre de 1913, después de la muerte de Posada.", en: "According to historian Agustín Sánchez González, the plate was made around 1912 and the broadsheet came out in November 1913, after Posada's death." }, s: "sanchez" }] },
+  { id: "k2", lane: "catrina", year: 1930, dy: -26, rank: "doc", infl: "prensa", yr: "1930",
+    label: { es: "Ya se llama «Calavera Catrina»", en: "Already “Calavera Catrina”" },
+    card: { es: "En la primera monografía de Posada, con introducción de Diego Rivera, el grabado ya se titula «Calavera Catrina».", en: "In the first Posada monograph, introduced by Diego Rivera, the print is already titled “Calavera Catrina”." },
+    claims: [
+      { rank: "doc", t: { es: "Entrada 305 de la lista de ilustraciones.", en: "Entry 305 in the list of illustrations." }, q: "305 Calavera Catrina … 160", qen: "305 Calavera Catrina … 160",
+        n: { es: "No sabemos quién eligió el título: los editores fueron Frances Toor, Pablo O'Higgins y Blas Vanegas Arroyo.", en: "We don't know who chose the title. The editors were Frances Toor, Pablo O'Higgins and Blas Vanegas Arroyo." }, s: "mono" },
+      { rank: "doc", t: { es: "El libro y su fecha, en el registro del Met.", en: "The book and its date, in the Met's record." }, s: "met" }] },
+  { id: "k3", lane: "catrina", year: 1947, dy: 26, rank: "doc", infl: "prensa", yr: "1947",
+    label: { es: "Rivera le da cuerpo", en: "Rivera gives her a body" },
+    card: { es: "En el mural «Sueño de una tarde dominical en la Alameda Central» la Catrina aparece de cuerpo entero, vestida, junto a Posada.", en: "In the mural “Sueño de una tarde dominical en la Alameda Central”, the Catrina appears full-length and dressed, beside Posada." },
+    claims: [{ rank: "doc", t: { es: "Pintado en 1947 para el Hotel del Prado; hoy está en el Museo Mural Diego Rivera.", en: "Painted in 1947 for the Hotel del Prado; now in the Museo Mural Diego Rivera." }, s: "inbal" }] },
+  { id: "km", lane: "catrina", year: 1947, dy: -58, rank: "disp", infl: "prensa", yr: "1947", myth: true,
+    label: { es: "«Rivera la bautizó»", en: "“Rivera named her”" },
+    card: { es: "Se repite mucho, pero el nombre ya estaba impreso en 1930, diecisiete años antes del mural.", en: "Widely repeated, but the name was already in print in 1930, seventeen years before the mural." },
+    why: { es: "La lista de ilustraciones de 1930 ya dice «Calavera Catrina». El vínculo de Rivera con el nombre existe, pero es anterior y menos directo: escribió la introducción de ese libro.", en: "The 1930 list of illustrations already says “Calavera Catrina”. Rivera's link to the name is real, but earlier and less direct: he wrote that book's introduction." },
+    claims: [{ rank: "pop", t: { es: "Un ejemplo de la versión popular.", en: "An example of the popular version." }, s: "univ2020" }] },
+  { id: "k4", lane: "catrina", year: 1948, dy: 60, rank: "stu", infl: "prensa", yr: "1948",
+    label: { es: "Primer uso en prensa hallado", en: "Earliest press use found" },
+    card: { es: "La frase «calavera catrina» aparece en la revista Mañana el 19 de junio de 1948, y varias veces en 1952.", en: "The phrase “calavera catrina” appears in Mañana magazine on 19 June 1948, and several times in 1952." },
+    claims: [{ rank: "stu", t: { es: "Es el primero hallado, no necesariamente el primero impreso: muchas páginas de esos años solo se consultan en la sala de la Hemeroteca.", en: "The earliest found, not necessarily the earliest printed: many pages from those years can only be read on site." }, s: "hndm" }] },
+
+  // ALEBRIJES
+  { id: "a1", lane: "alebrije", year: 1936, dy: 0, rank: "stu", infl: "prensa", yr: "1936 ¿o 1947?", yrEn: "1936 or 1947?", short: { es: "Pedro Linares", en: "Pedro Linares" },
+    label: { es: "Pedro Linares los inventa", en: "Pedro Linares invents them" },
+    card: { es: "Un cartonero de la Ciudad de México, que hacía Judas y piezas para Diego Rivera y Frida Kahlo, crea unas criaturas fantásticas de papel maché.", en: "A Mexico City papier-mâché maker, who made Judas figures and pieces for Diego Rivera and Frida Kahlo, creates fantastic papier-mâché creatures." },
+    why: { es: "La fecha está en duda. Casi todas las fuentes dicen 1936, pero en 2019 la Secretaría de Cultura de la CDMX y el nieto de Linares dijeron 1947.", en: "The date is disputed. Most sources say 1936, but in 2019 Mexico City's culture secretary and Linares's grandson said 1947." },
+    claims: [
+      { rank: "stu", t: { es: "Linares es el creador; lo reconocen las fuentes y, en 2019, la propia ciudad.", en: "Linares is the creator; sources agree, and so did the city in 2019." }, s: "wlin" },
+      { rank: "stu", t: { es: "La fecha de 1947, según la ciudad y la familia en 2019.", en: "The 1947 date, per the city and the family in 2019." },
+        q: "recordaron que en 1947 nació esta pieza artesanal denominada “alebrije” por su creador", qen: "they recalled that this craft piece, named “alebrije” by its creator, was born in 1947", s: "exc19" },
+      { rank: "pop", t: { es: "El famoso sueño con fiebre, con criaturas que gritaban «¡Alebrijes!», se repite mucho pero no tiene otra fuente que el relato.", en: "The famous fever dream, with creatures shouting “¡Alebrijes!”, is widely retold but has no source beyond the story itself." }, s: "wale" }] },
+  { id: "a2", lane: "alebrije", year: 1975, dy: -26, rank: "doc", infl: "prensa", yr: "1975", short: { es: "Documental", en: "Documentary" },
+    label: { es: "Un documental los lleva fuera", en: "A documentary takes them abroad" },
+    card: { es: "La cineasta Judith Bronowski filma a Linares en 1975; su obra empieza a conocerse fuera de México.", en: "Filmmaker Judith Bronowski films Linares in 1975, and his work becomes known outside Mexico." },
+    claims: [{ rank: "doc", t: { es: "Pedro Linares: Artesano de Cartón (1975).", en: "Pedro Linares: Artesano de Cartón (1975)." },
+      q: "Co-produced, co-directed, and wrote this story of the maker of 'alebrijes', fantastic colorful monsters", qen: "Co-produced, co-directed, and wrote this story of the maker of 'alebrijes', fantastic colorful monsters", s: "afana" }] },
+  { id: "a3", lane: "alebrije", year: 1985, dy: 30, rank: "stu", infl: "prensa", yr: "años 70–80", yrEn: "1970s–80s", short: { es: "Rama de Oaxaca", en: "Oaxacan branch" },
+    label: { es: "Rama oaxaqueña, de madera", en: "An Oaxacan branch, in wood" },
+    card: { es: "Tras conocer a Linares, el tallador Manuel Jiménez hace alebrijes de madera en Oaxaca. Hoy muchos piensan que el alebrije es oaxaqueño.", en: "After meeting Linares, carver Manuel Jiménez makes wooden alebrijes in Oaxaca. Today many people think the alebrije is Oaxacan." },
+    claims: [
+      { rank: "stu", t: { es: "Según Wikipedia, Jiménez tomó la idea de Linares.", en: "According to Wikipedia, Jiménez took the idea from Linares." },
+        q: "who took the concept of alebrijes from Linares and began producing wooden \"Oaxacan alebrijes\"", qen: "who took the concept of alebrijes from Linares and began producing wooden \"Oaxacan alebrijes\"", s: "wlin" },
+      { rank: "doc", t: { es: "La familia Linares rechaza que se confundan.", en: "The Linares family objects to the two being confused." },
+        q: "la confusión que prevalece entre el alebrije, las tonas y las tallas de madera oaxaqueñas", qen: "the confusion that prevails between the alebrije, the tonas and the Oaxacan wood carvings", s: "exc25" }] },
+  { id: "a4", lane: "alebrije", year: 2007, dy: -30, rank: "stu", infl: "ciudad", yr: "2007", short: { es: "Desfile del museo", en: "Museum parade" },
+    label: { es: "Desfile de Alebrijes Monumentales", en: "Monumental alebrije parade" },
+    card: { es: "El Museo de Arte Popular organiza cada octubre un desfile de alebrijes gigantes. Así entran al calendario de muertos, diez años antes de Coco.", en: "Each October the Museo de Arte Popular stages a parade of giant alebrijes. That is how they joined the Day of the Dead calendar, ten years before Coco." },
+    claims: [{ rank: "stu", t: { es: "Organizado por el Museo de Arte Popular desde 2007.", en: "Organized by the Museo de Arte Popular since 2007." }, s: "wale" }] },
+  { id: "a5", lane: "alebrije", year: 2017, dy: 30, rank: "doc", infl: "cine", yr: "2017", short: { es: "Coco", en: "Coco" },
+    label: { es: "Coco: guías de las almas", en: "Coco: spirit guides" },
+    card: { es: "En Coco, los alebrijes acompañan a los muertos en su mundo, como Pepita y el xolo Dante. Es el único vínculo directo con los muertos que encontramos.", en: "In Coco, alebrijes accompany the dead in their world, like Pepita and the Xolo Dante. It is the only direct link to the dead we have found." },
+    claims: [{ rank: "doc", t: { es: "La película misma (Pixar, 2017).", en: "The film itself (Pixar, 2017)." }, s: "wale" }] },
+  { id: "a6", lane: "alebrije", year: 2019, dy: -62, rank: "stu", infl: "ciudad", yr: "2019", short: { es: "Patrimonio", en: "Heritage" },
+    label: { es: "Patrimonio de la CDMX", en: "Mexico City heritage" },
+    card: { es: "La ciudad declara los alebrijes de Pedro Linares patrimonio cultural intangible: se anuncia en el desfile de octubre y se publica el 30 de diciembre de 2019.", en: "The city declares Pedro Linares's alebrijes intangible cultural heritage, announced at the October parade and published on 30 December 2019." },
+    claims: [{ rank: "stu", t: { es: "No encontramos el texto en la Gaceta Oficial; lo reporta la prensa.", en: "We did not find the text in the Gaceta Oficial; it is reported by the press." }, s: "mej" }] },
+  { id: "a7", lane: "alebrije", year: 2025, dy: 62, rank: "doc", infl: "prensa", yr: "2025", short: { es: "Disputa", en: "Dispute" },
+    label: { es: "La familia contra el museo", en: "The family vs the museum" },
+    card: { es: "El nieto de Linares acusa al desfile del Museo de Arte Popular de apropiarse del alebrije. Es la postura de una de las partes.", en: "Linares's grandson accuses the Museo de Arte Popular's parade of appropriating the alebrije. This is one party's position." },
+    claims: [{ rank: "doc", t: { es: "Leonardo Linares y el gestor Gustavo Barrán, en Excélsior.", en: "Leonardo Linares and cultural manager Gustavo Barrán, in Excélsior." },
+      q: "como ocurre en el Desfile de Alebrijes Monumentales, que organiza el Museo de Arte Popular (MAP)", qen: "as happens in the Monumental Alebrije Parade, organized by the Museo de Arte Popular (MAP)", s: "exc25" }] },
+
+  // GRAN DESFILE
+  { id: "d1", lane: "desfile", year: 2015, dy: -42, rank: "doc", infl: "cine", yr: "2015",
+    label: { es: "Bond inventa un desfile", en: "Bond invents a parade" },
+    card: { es: "Spectre abre con James Bond persiguiendo a un villano entre un desfile de calaveras en la Ciudad de México. Ese desfile no existía.", en: "Spectre opens with James Bond chasing a villain through a skeleton parade in Mexico City. That parade did not exist." },
+    claims: [
+      { rank: "doc", t: { es: "El productor explica por qué eligieron el Día de Muertos.", en: "The producer explains why they chose the Day of the Dead." },
+        q: "The writers thought the day of the death would be an excellent background in the opening sequence, very colorful, very mysterious",
+        qen: "The writers thought the day of the death would be an excellent background in the opening sequence, very colorful, very mysterious",
+        n: { es: "«Death» es un desliz de la cita original.", en: "“Death” is a slip in the original quote." }, s: "wilson" }] },
+  { id: "dm", lane: "desfile", year: 2015, dy: 30, rank: "disp", infl: "cine", yr: "2015", myth: true,
+    label: { es: "«México pagó la escena»", en: "“Mexico paid for the scene”" },
+    card: { es: "Se dice que México pagó para que la película lo mostrara bien, con el Día de Muertos incluido.", en: "It is said Mexico paid for the film to show it favourably, Day of the Dead included." },
+    why: { es: "Viene de correos de Sony filtrados en 2014, que solo conocemos por la prensa. El productor confirmó incentivos de México, pero negó haber cambiado el guion por ellos.", en: "It comes from Sony emails leaked in 2014, which we only know through the press. The producer confirmed incentives from Mexico but denied changing the script for them." },
+    claims: [{ rank: "doc", t: { es: "La negativa del productor.", en: "The producer's denial." },
+      q: "There is nothing in the script that we hadn't had before.", qen: "There is nothing in the script that we hadn't had before.", s: "wilson" }] },
+  { id: "d2", lane: "desfile", year: 2016.8, dy: 0, rank: "doc", infl: "ciudad", yr: "29 oct 2016", yrEn: "29 Oct 2016",
+    label: { es: "Primer Gran Desfile", en: "First Gran Desfile" },
+    card: { es: "La ciudad monta el desfile que la película inventó, como campaña turística.", en: "The city stages the parade the film invented, as a tourism campaign." },
+    claims: [
+      { rank: "doc", t: { es: "AP sobre el origen de la idea.", en: "AP on where the idea came from." },
+        q: "born out of the imagination of a scriptwriter for last year's James Bond movie", qen: "born out of the imagination of a scriptwriter for last year's James Bond movie", s: "ap16" },
+      { rank: "doc", t: { es: "Lourdes Berho, al frente de la promoción turística de México, sobre la película.", en: "Lourdes Berho, head of Mexico's tourism board, on the film." },
+        q: "that started to create expectations that we would have something", qen: "that started to create expectations that we would have something", s: "ap16" },
+      { rank: "doc", t: { es: "Lo mismo, según funcionarios de turismo.", en: "The same, according to tourism officials." },
+        q: "Mexican tourism officials say the inspiration came from the opening scenes in last year's James Bond movie", qen: "Mexican tourism officials say the inspiration came from the opening scenes in last year's James Bond movie", s: "rnz" }] },
+  { id: "d3", lane: "desfile", year: 2016.9, dy: 64, rank: "stu", infl: "ciudad", yr: "10 nov 2016", yrEn: "10 Nov 2016",
+    label: { es: "Se vuelve fecha oficial", en: "It becomes official" },
+    card: { es: "A los doce días, la ciudad publica un acuerdo que fija la festividad desde el último sábado de octubre hasta el 2 de noviembre.", en: "Twelve days later, the city publishes an agreement fixing the festivities from the last Saturday of October to 2 November." },
+    claims: [{ rank: "stu", t: { es: "No encontramos el texto en la Gaceta Oficial; lo reporta la prensa.", en: "We did not find the text in the Gaceta Oficial; it is reported by the press." },
+      q: "A partir de 2017, será oficial que, desde el último sábado de octubre y hasta el 2 de noviembre", qen: "From 2017 it will be official that, from the last Saturday of October to 2 November", s: "quadratin" }] },
+  // PAN DE MUERTO
+  { id: "p1", lane: "pan", year: 1500, dy: -26, rank: "stu", infl: "mexica", yr: "c. 1500",
+    label: { es: "Ofrendas de masa de amaranto", en: "Amaranth-dough offerings" },
+    card: { es: "Los mexicas hacían figuras de masa de amaranto (huauhtli) para sus ofrendas. Un antropólogo propuso que el pan de trigo ocupó después ese lugar.", en: "The Mexica made figures of amaranth dough (huauhtli) for their offerings. An anthropologist proposed that wheat bread later took their place." },
+    claims: [{ rank: "stu", t: { es: "Lorente lo presenta como una posibilidad, apoyado en Nutini (1988).", en: "Lorente presents it as a possibility, citing Nutini (1988)." },
+      q: "es posible que el pan sustituyera al empleo ritual del amaranto o huauhtli prehispánico", qen: "it is possible that bread replaced the ritual use of pre-Hispanic amaranth, or huauhtli", s: "lorente", where: { es: "nota 1", en: "note 1" } }] },
+  { id: "pm", lane: "pan", year: 1530, dy: 54, rank: "disp", infl: "mexica", yr: "¿c. 1520?", yrEn: "c. 1520?", myth: true,
+    label: { es: "«Imita un corazón sacrificado»", en: "“It imitates a sacrificed heart”" },
+    card: { es: "Se cuenta que el pan nació para reemplazar un corazón ofrecido en sacrificio y mezclado con amaranto.", en: "The story goes that the bread was created to replace a sacrificed heart mixed with amaranth." },
+    why: { es: "No encontramos ningún estudio que lo sostenga. Hasta la versión de Wikipedia que la cuenta dice que no es cierta.", en: "We found no study that supports it. Even the Wikipedia version that tells it says it is not true." },
+    claims: [{ rank: "pop", t: { es: "Así lo resume Wikipedia.", en: "As Wikipedia sums it up." }, q: "Although this origin is not true", qen: "Although this origin is not true", s: "wkpan" }] },
+  { id: "p2", lane: "pan", year: 1560, dy: 22, rank: "stu", infl: "espana", yr: "siglo XVI", yrEn: "16th century",
+    label: { es: "Trigo y «pan de ánimas»", en: "Wheat and “soul bread”" },
+    card: { es: "El trigo llega con los españoles. En Castilla, Aragón y Portugal se llevaba «pan de ánimas» a las tumbas el día de difuntos.", en: "Wheat arrives with the Spanish. In Castile, Aragon and Portugal, “soul bread” was taken to the graves on All Souls' Day." },
+    claims: [
+      { rank: "stu", t: { es: "El pan es de origen colonial.", en: "Bread is colonial in origin." },
+        q: "es un alimento de origen colonial introducido por los españoles en América", qen: "is a food of colonial origin introduced to the Americas by the Spanish", s: "lorente", where: { es: "nota 1", en: "note 1" } },
+      { rank: "stu", t: { es: "El pan de ánimas como antecedente; Wikipedia cita a historiadores que no leímos.", en: "Soul bread as the antecedent; Wikipedia cites historians we have not read." }, s: "wkpan" }] },
+  { id: "p3", lane: "pan", year: 1878.8, dy: -28, rank: "doc", infl: "prensa", yr: "4 nov 1878", yrEn: "4 Nov 1878",
+    label: { es: "Pan de muerto en el Zócalo", en: "Pan de muerto in the Zócalo" },
+    card: { es: "Un diario describe la feria de Todos Santos en el Zócalo: canastos de «tortas de muertos» y mesitas de juguete con la calavera, el pan de muerto y la vela.", en: "A newspaper describes the All Saints fair in the Zócalo: baskets of “tortas de muertos” and toy tables with the skull, the pan de muerto and the candle." },
+    claims: [{ rank: "doc", t: { es: "Las mesitas eran ofrendas en miniatura que se vendían como juguetes. Es el registro más antiguo del nombre que hallamos en la prensa de la capital.", en: "The little tables were miniature ofrendas sold as toys. It is the earliest use of the name we found in the capital's press." },
+      q: "mesitas con la calavera tradicional, el pan de muerto, la vela simbólica que nunca falta", qen: "little tables with the traditional skull, the pan de muerto, the symbolic candle that is never missing",
+      n: { es: "Leído a ojo sobre el escaneo; en el original, «pan de- / muerto» parte la línea.", en: "Read by eye on the scan; in the original, “pan de- / muerto” breaks across a line." }, s: "siglo78" }] },
+  { id: "p4", lane: "pan", year: 2020, dy: 30, rank: "stu", infl: "mexica", yr: "2020", short: { es: "Texcoco", en: "Texcoco" },
+    label: { es: "Pan duro como los huesos", en: "Bread as hard as bones" },
+    card: { es: "A 40 km de la CDMX, en la Sierra de Texcoco, las familias nahuas piensan el pan ritual como algo seco y duro, igual que los huesos de los muertos.", en: "Some 40 km from Mexico City, in the Sierra de Texcoco, Nahua families think of ritual bread as dry and hard, like the bones of the dead." },
+    claims: [{ rank: "stu", t: { es: "Etnografía de David Lorente (INAH).", en: "Ethnography by David Lorente (INAH)." },
+      q: "producir un alimento seco y duro como los huesos, entendidos como materialización física perdurable de los difuntos", qen: "to produce a food as dry and hard as bones, understood as the lasting physical form of the dead", s: "lorente" }] },
+
+  // CALAVERITA DE AZÚCAR
+  { id: "zm", lane: "azucar", year: 1500, dy: 30, rank: "pop", infl: "mexica", yr: "c. 1500",
+    label: { es: "¿Herederas del tzompantli?", en: "Heirs of the tzompantli?" },
+    card: { es: "Se repite que las calaveritas reemplazan los cráneos de los tzompantli, los muros de cráneos mexicas.", en: "It is often said that sugar skulls replaced the skulls of the tzompantli, the Mexica skull racks." },
+    why: { es: "No encontramos ninguna fuente que trace ese paso. Los registros más antiguos que hallamos son de dulces vendidos en la fiesta de muertos de la capital, en el siglo XIX.", en: "We found no source that traces that step. The earliest records we found are of sweets sold at the capital's Day of the Dead fair, in the 19th century." },
+    claims: [{ rank: "pop", t: { es: "Un ejemplo de la versión popular.", en: "An example of the popular version." },
+      q: "Aparecen en sustitución a los cráneos que en tiempos precolombinos se usaban en los Tzompantlis", qen: "They appear as a substitute for the skulls that were used on the Tzompantlis in pre-Columbian times", s: "mdazu" }] },
+  { id: "z1", lane: "azucar", year: 1560, dy: -26, rank: "stu", infl: "espana", yr: "siglo XVI", yrEn: "16th century",
+    label: { es: "Alfeñique, de al-Ándalus", en: "Alfeñique, from al-Andalus" },
+    card: { es: "La pasta de azúcar llamada alfeñique viene del árabe de al-Ándalus y llega con los españoles. Las calaveritas se hacen con esa técnica o con azúcar vaciada en moldes.", en: "The sugar paste called alfeñique comes from the Arabic of al-Andalus and arrives with the Spanish. Sugar skulls are made with that technique or with sugar cast in moulds." },
+    claims: [{ rank: "stu", t: { es: "Un dulce colonial en toda Hispanoamérica.", en: "A colonial sweet across Spanish America." },
+      q: "es una confitura folclórica desde tiempos coloniales en gran parte de Hispanoamérica", qen: "it has been a folk confection since colonial times across much of Spanish America", s: "wkalf" },
+      { rank: "pop", t: { es: "Para las calaveras, el azúcar se vacía en moldes de barro, madera o bronce.", en: "For skulls, the sugar is cast in clay, wood or bronze moulds." }, s: "mdazu" }] },
+  { id: "z2", lane: "azucar", year: 1855.8, dy: 32, rank: "doc", infl: "prensa", yr: "3 nov 1855", yrEn: "3 Nov 1855",
+    label: { es: "«Calaveras de azúcar», 1855", en: "“Calaveras de azúcar”, 1855" },
+    card: { es: "Un periódico satírico de la capital describe el día de muertos como día de paseo, de alfeñiques y de calaveras de azúcar.", en: "A satirical paper in the capital describes the Day of the Dead as a day of strolling, alfeñiques and sugar skulls." },
+    claims: [{ rank: "doc", t: { es: "La mención más antigua de la frase que hallamos en la Hemeroteca Nacional.", en: "The earliest use of the phrase we found in the national newspaper archive." },
+      q: "dia de paseo y de holganza; de bizcochos y alfeñiques; de huesos y calaveras de azúcar", qen: "a day for strolling and idleness; for biscuits and alfeñiques; for bones and sugar skulls",
+      n: { es: "Leído a ojo sobre el escaneo.", en: "Read by eye on the scan." }, s: "patac" }] },
+  { id: "z3", lane: "azucar", year: 1878.8, dy: -18, rank: "doc", infl: "prensa", yr: "4 nov 1878", yrEn: "4 Nov 1878",
+    label: { es: "Ánimas y calaveras de azúcar", en: "Sugar souls and skulls" },
+    card: { es: "En la feria de Todos Santos del Zócalo hay vendedores de alfeñique y de azúcares en forma de ánimas y calaveras.", en: "At the All Saints fair in the Zócalo there are sellers of alfeñique and of sugar shaped like souls and skulls." },
+    claims: [{ rank: "doc", t: { es: "La misma crónica que menciona el pan de muerto.", en: "The same report that mentions the pan de muerto." },
+      q: "vendedores de alfeñiques y azúcares de formas de ánimas y calaveras", qen: "sellers of alfeñiques and of sugar shaped like souls and skulls",
+      n: { es: "Leído a ojo sobre el escaneo.", en: "Read by eye on the scan." }, s: "siglo78" }] },
+  { id: "z4", lane: "azucar", year: 1886.9, dy: -62, rank: "doc", infl: "prensa", yr: "1886", short: { es: "Puebla", en: "Puebla" },
+    label: { es: "Calaveras de salvado en Puebla", en: "Bran skulls in Puebla" },
+    card: { es: "La Carta de Puebla describe galletas de salvado en forma de corazones, estrellas y calaveras, hechas solo en la temporada de Todos Santos.", en: "The letter from Puebla describes bran biscuits shaped like hearts, stars and skulls, made only in the All Saints season." },
+    claims: [{ rank: "doc", t: { es: "Se llamaban encaladillas.", en: "They were called encaladillas." },
+      q: "figurando corazones, estrellas, calaveras", qen: "shaped as hearts, stars, skulls", s: "hogar" }] },
+
+  // CALAVERITAS LITERARIAS
+  { id: "l1", lane: "calav", year: 1792, dy: -10, rank: "doc", infl: "espana", yr: "1792", short: { es: "Bolaños", en: "Bolaños" },
+    label: { es: "La portentosa vida de la Muerte", en: "The Portentous Life of Death" },
+    card: { es: "El fraile Joaquín Bolaños publica en México una vida burlesca de la Muerte, con epitafios en verso. Uno se burla de un médico que «despachaba» a sus enfermos.", en: "Friar Joaquín Bolaños publishes in Mexico a comic life of Death, with verse epitaphs. One mocks a doctor who “dispatched” his patients." },
+    claims: [
+      { rank: "doc", t: { es: "El propósito, en el prólogo.", en: "The purpose, in the preface." },
+        q: "te la presento dorada ò disfrazada con un retazo de chiste", qen: "I present it to you gilded or disguised with a scrap of wit", s: "bolanos", where: { es: "prólogo", en: "preface" } },
+      { rank: "doc", t: { es: "El epitafio del médico Don Rafael.", en: "The epitaph of the doctor Don Rafael." },
+        q: "Este Túmulo elegante De un Médico, es evidente, Que en despachar tanta gente, No ha tenido semejante.", qen: "This elegant tomb of a doctor, it is plain, has had no equal in dispatching so many people.",
+        n: { es: "Muchas fuentes lo citan como el antecedente más antiguo de las calaveras literarias.", en: "Many sources cite it as the earliest forerunner of calavera verses." }, s: "bolanos", where: { es: "p. 69", en: "p. 69" } }] },
+  { id: "lm", lane: "calav", year: 1864, dy: -48, rank: "disp", infl: "prensa", yr: "¿1849 o 1879?", yrEn: "1849 or 1879?", myth: true, short: { es: "«El Socialista»", en: "“El Socialista”" },
+    label: { es: "«La primera, en El Socialista»", en: "“The first, in El Socialista”" },
+    card: { es: "Se repite que la primera calavera impresa salió en el periódico El Socialista de Guadalajara.", en: "It is often said that the first printed calavera appeared in the newspaper El Socialista in Guadalajara." },
+    why: { es: "Las fuentes no coinciden en el año, 1849 o 1879, y ninguna da la página. El Socialista que guarda la Hemeroteca Nacional se publicaba en la Ciudad de México (1871–1888), y buscar «calaveras» en su texto digitalizado no da ningún resultado.", en: "The sources disagree on the year, 1849 or 1879, and none gives the page. The El Socialista held by the national newspaper archive was published in Mexico City (1871–1888), and a search of its digitized text for “calaveras” returns nothing." },
+    claims: [
+      { rank: "pop", t: { es: "La versión de 1849.", en: "The 1849 version." }, q: "data de 1849 de un periódico crítico de nombre El Socialista, editado en Guadalajara, Jalisco, por José Indelicato", qen: "dates from 1849, from a critical newspaper named El Socialista, published in Guadalajara, Jalisco, by José Indelicato", s: "rppcal" },
+      { rank: "pop", t: { es: "La versión de 1879, en la prensa de 2026.", en: "The 1879 version, in the 2026 press." }, q: "se publicó en 1879 en el periódico El Socialista, en Guadalajara", qen: "was published in 1879 in the newspaper El Socialista, in Guadalajara", s: "croncal" },
+      { rank: "stu", t: { es: "Nuestra búsqueda en la Hemeroteca: «calaveras» no aparece en el texto digitalizado de ese periódico.", en: "Our archive search: “calaveras” does not appear in that paper's digitized text." }, s: "hndmsoc" }] },
+  { id: "l3", lane: "calav", year: 1908, dy: 28, rank: "doc", infl: "prensa", yr: "1890–1913",
+    label: { es: "Hojas de Vanegas Arroyo y Posada", en: "Vanegas Arroyo and Posada broadsheets" },
+    card: { es: "Cada noviembre, la imprenta de Antonio Vanegas Arroyo vende hojas sueltas con versos de calaveras ilustrados por Posada. La Catrina salió en una de ellas.", en: "Each November, Antonio Vanegas Arroyo's press sells broadsheets of calavera verses illustrated by Posada. The Catrina appeared on one of them." },
+    claims: [
+      { rank: "doc", t: { es: "Una hoja de 1908 en el Met: una calavera torera, con grabado de Posada.", en: "A 1908 broadsheet at the Met: a bullfighter calavera, with a Posada print." }, s: "met08" },
+      { rank: "pop", t: { es: "Cuándo se vendían, según México Desconocido.", en: "When they were sold, according to México Desconocido." }, q: "mismas que publicaban en hojas sueltas, en periódicos o revistas y se vendían al público el 2 de noviembre", qen: "which they published in broadsheets, newspapers or magazines and sold to the public on 2 November", s: "mdcal" },
+      { rank: "stu", t: { es: "La Calavera Catrina salió en una de estas hojas en noviembre de 1913, tras la muerte de Posada.", en: "The Calavera Catrina appeared on one of these sheets in November 1913, after Posada's death." }, s: "sanchez" }] },
+  { id: "l4", lane: "calav", year: 1942, dy: -30, rank: "pop", infl: "prensa", yr: "años 40", yrEn: "1940s",
+    label: { es: "Taller de Gráfica Popular", en: "Taller de Gráfica Popular" },
+    card: { es: "Tras la Revolución, las calaveras se burlan de famosos como Diego Rivera. En los años 40 las retoma el Taller de Gráfica Popular, un colectivo de grabadores.", en: "After the Revolution, calaveras mock celebrities such as Diego Rivera. In the 1940s the Taller de Gráfica Popular, a printmakers' collective, takes them up." },
+    claims: [{ rank: "pop", t: { es: "Según México Desconocido, sin fuente citada.", en: "According to México Desconocido, with no source cited." },
+      q: "A inicios de la década de 1940, el Taller de Gráfica Popular (donde colaboraban grabadores como Zalce, O’Higgins, Anguiano y Yampolski) impulsó, entre otras actividades, las calaveritas literarias.", qen: "In the early 1940s, the Taller de Gráfica Popular (where printmakers such as Zalce, O'Higgins, Anguiano and Yampolski worked) promoted, among other activities, calavera verses.", s: "mdcal" }] },
+
+  // PAPEL PICADO
+  { id: "ym", lane: "papel", year: 1500, dy: -24, rank: "disp", infl: "mexica", yr: "c. 1500", myth: true,
+    label: { es: "«Viene del papel amate»", en: "“It comes from amate paper”" },
+    card: { es: "Se dice que el papel picado continúa los recortes de papel amate de tiempos prehispánicos.", en: "It is said that papel picado continues the amate-paper cutouts of pre-Hispanic times." },
+    why: { es: "Lo repiten notas de 2026, pero ninguna cita un estudio. Una guía de arte popular responde que el amate es fibroso y se rasga si se corta fino.", en: "2026 articles repeat it, but none cites a study. A folk-art guide replies that amate is fibrous and tears if cut finely." },
+    claims: [
+      { rank: "pop", t: { es: "La versión de 2026.", en: "The 2026 version." }, q: "La práctica retomó técnicas de corte utilizadas desde tiempos prehispánicos, cuando se realizaban figuras sobre papel amate", qen: "The practice took up cutting techniques used since pre-Hispanic times, when figures were made on amate paper", s: "nmaspp" },
+      { rank: "pop", t: { es: "La réplica, tampoco con fuente.", en: "The reply, also unsourced." }, q: "papel picado did not evolve directly from amate", qen: "papel picado did not evolve directly from amate", s: "fagpp" }] },
+  { id: "y1", lane: "papel", year: 1850, dy: 20, rank: "pop", infl: "oficios", yr: "c. 1850",
+    label: { es: "Papel de China en las haciendas", en: "Tissue paper on the haciendas" },
+    card: { es: "Según la versión más repetida, el papel de seda llega hacia 1850 y los trabajadores de las haciendas de San Salvador Huixcolotla, Puebla, empiezan a picarlo.", en: "In the most repeated version, tissue paper arrives around 1850, and workers on the haciendas of San Salvador Huixcolotla, Puebla, start cutting it." },
+    claims: [
+      { rank: "pop", t: { es: "La fecha, en la prensa de 2026.", en: "The date, in the 2026 press." }, q: "Con la llegada del papel de seda, también conocido como papel de China, alrededor de 1850", qen: "With the arrival of tissue paper, also known as papel de China, around 1850", s: "nmaspp" },
+      { rank: "pop", t: { es: "Otra guía lo hace llegar por la ruta de Filipinas, Acapulco y Veracruz.", en: "Another guide has it arrive by the Philippines–Acapulco–Veracruz route." }, q: "Among the imported items was a thin, brightly colored silk paper known as papel de China", qen: "Among the imported items was a thin, brightly colored silk paper known as papel de China", s: "fagpp" }] },
+  { id: "y2", lane: "papel", year: 1927, dy: -32, rank: "pop", infl: "oficios", yr: "años 20–30", yrEn: "1920s–30s", short: { es: "Puebla", en: "Puebla" },
+    label: { es: "Se extiende por Puebla", en: "It spreads through Puebla" },
+    card: { es: "Una guía dice que hacia 1920 ya se hacían tiras en Huixcolotla para mercados y fiestas; Wikipedia, que hacia 1930 llegó a Puebla y Tlaxcala.", en: "One guide says banners were being made in Huixcolotla for markets and fiestas by the 1920s; Wikipedia, that it reached Puebla and Tlaxcala around 1930." },
+    claims: [
+      { rank: "pop", t: { es: "Los años 20.", en: "The 1920s." }, q: "by the 1920s, artisans in Huixcolotla were producing cut-paper banners for markets and festivals", qen: "by the 1920s, artisans in Huixcolotla were producing cut-paper banners for markets and festivals", s: "fagpp" },
+      { rank: "pop", t: { es: "Hacia 1930, citando solo a la guía anterior.", en: "Around 1930, citing only the guide above." }, q: "Around 1930, the art form spread from Huixcolotla to other parts of Mexico such as Puebla and Tlaxcala.", qen: "Around 1930, the art form spread from Huixcolotla to other parts of Mexico such as Puebla and Tlaxcala.", s: "wkpp" }] },
+  { id: "y3", lane: "papel", year: 1967, dy: 30, rank: "pop", infl: "oficios", yr: "años 60–70", yrEn: "1960s–70s", short: { es: "Capital", en: "Capital" },
+    label: { es: "Llega a la capital y a los altares", en: "It reaches the capital and the altars" },
+    card: { es: "Llega a la Ciudad de México en los años 60, y hacia 1970 ya es común en calles y altares de muertos. Solo una fuente lo dice, y no cita estudios.", en: "It reaches Mexico City in the 1960s, and by 1970 it is common on streets and Day of the Dead altars. Only one source says so, and it cites no study." },
+    claims: [{ rank: "pop", t: { es: "Wikipedia, que cita a la guía de arte popular.", en: "Wikipedia, citing the folk-art guide." }, q: "Sometime in the 1960s, papel picado spread to Mexico City and thence to the United States and Europe.", qen: "Sometime in the 1960s, papel picado spread to Mexico City and thence to the United States and Europe.", s: "wkpp" }] },
+  { id: "y4", lane: "papel", year: 1998.7, dy: -30, rank: "stu", infl: "oficios", yr: "22 sep 1998", yrEn: "22 Sep 1998",
+    label: { es: "Patrimonio de Puebla", en: "Puebla heritage" },
+    card: { es: "El gobierno de Puebla declara patrimonio cultural del estado el papel picado a mano de San Salvador Huixcolotla.", en: "Puebla's state government declares the hand-cut papel picado of San Salvador Huixcolotla state cultural heritage." },
+    claims: [{ rank: "stu", t: { es: "No encontramos el decreto en el Periódico Oficial de Puebla; lo reporta la prensa.", en: "We did not find the decree in Puebla's official gazette; it is reported by the press." },
+      q: "el 22 de septiembre de 1998, el Ejecutivo del estado de Puebla lanzó un decreto que declaraba Patrimonio Cultural del Estado de Puebla a la artesanía del papel picado a mano", qen: "on 22 September 1998, the governor of Puebla issued a decree declaring the hand-cut papel picado craft Cultural Heritage of the State of Puebla", s: "mdpp" }] },
+];
+
+// edges: from, to, rank, note (optional, shown when the edge is clicked)
+const E = [
+  { f: "o1", t: "o3", r: "stu" },
+  { f: "o2", t: "o3", r: "stu", note: {
+      title: { es: "¿Se movieron a Todos Santos?", en: "Moved to All Saints?" },
+      es: "¿Se pasaron las fiestas de agosto al 1 y 2 de noviembre para disimularlas? Es una sospecha del propio Durán, y él mismo dice que no la afirma. Historiadores como Stanley Brandes sostienen lo contrario: un origen colonial. Este es el debate central del linaje.",
+      en: "Were the August feasts moved to 1 and 2 November to disguise them? It is Durán's own suspicion, and he says he won't affirm it. Historians such as Stanley Brandes argue the opposite: a colonial origin. This is the central debate of the whole lineage.",
+      q: "(lo cual yo no osaré afirmar)", qen: "(which I will not dare to affirm)", s: "duran" } },
+  { f: "o3", t: "o4", r: "pop", note: { title: { es: "Un hueco de tres siglos", en: "A three-century gap" }, es: "Entre Durán y 1886 aún no tenemos fuentes sobre cómo cambiaron las ofrendas.", en: "Between Durán and 1886 we have no sources yet on how the offerings changed." } },
+  { f: "c1", t: "c2", r: "doc" },
+  { f: "c1", t: "cm", r: "disp" },
+  { f: "c2", t: "c3", r: "pop", note: { title: { es: "Un hueco: 1575–1849", en: "A gap: 1575–1849" }, es: "No encontramos cómo la flor de fiesta y de botica se volvió «flor de muerto». El primer vínculo aparece en 1849, por una moda europea.", en: "We found nothing on how the feast and medicine flower became the “flower of the dead”. The first link appears in 1849, through a European fashion." } },
+  { f: "c3", t: "c4", r: "doc" },
+  { f: "c4", t: "c5", r: "doc" },
+  { f: "o4", t: "c4", r: "doc", note: { title: { es: "La misma carta", en: "The same letter" }, es: "La Carta de Puebla de 1886 documenta a la vez las ofrendas y la flor en ellas.", en: "The 1886 letter from Puebla documents both the offerings and the flower on them." } },
+  { f: "x1", t: "xm", r: "disp" },
+  { f: "x2", t: "xm", r: "disp" },
+  { f: "k1", t: "k2", r: "doc" },
+  { f: "k2", t: "k3", r: "doc", note: { title: { es: "Rivera, dos veces", en: "Rivera, twice" }, es: "Rivera escribió la introducción del libro de 1930 y pintó el mural en 1947.", en: "Rivera wrote the introduction to the 1930 book and painted the mural in 1947." } },
+  { f: "k3", t: "km", r: "disp" },
+  { f: "k3", t: "k4", r: "stu" },
+  { f: "a1", t: "a2", r: "doc" },
+  { f: "a2", t: "a3", r: "stu" },
+  { f: "a1", t: "a4", r: "stu" },
+  { f: "a4", t: "a5", r: "pop", note: { title: { es: "Del desfile a Coco", en: "From the parade to Coco" }, es: "No sabemos si Pixar se inspiró en el desfile del museo. Lo que sí está documentado es que el desfile ya ponía a los alebrijes en octubre desde 2007.", en: "We don't know whether Pixar drew on the museum's parade. What is documented is that the parade had placed alebrijes in October since 2007." } },
+  { f: "a4", t: "a6", r: "stu" },
+  { f: "a6", t: "a7", r: "doc" },
+  { f: "d1", t: "d2", r: "doc", note: { title: { es: "De la ficción a la tradición", en: "From fiction to tradition" }, es: "El caso mejor documentado del proyecto: una película inventa un desfile y, al año siguiente, la ciudad lo monta.", en: "The best-documented case in the project: a film invents a parade, and the next year the city stages it." } },
+  { f: "d1", t: "dm", r: "disp" },
+  { f: "d2", t: "d3", r: "stu" },
+  { f: "p1", t: "p2", r: "stu", note: { title: { es: "Del amaranto al trigo", en: "From amaranth to wheat" }, es: "Que el pan de trigo ocupara el lugar ritual de la masa de amaranto es una tesis de antropólogos (Nutini, 1988), no un hecho documentado. Lorente la presenta como posible.", en: "That wheat bread took the ritual place of amaranth dough is an anthropologists' thesis (Nutini, 1988), not a documented fact. Lorente presents it as possible.", q: "es posible que el pan sustituyera al empleo ritual del amaranto o huauhtli prehispánico", qen: "it is possible that bread replaced the ritual use of pre-Hispanic amaranth, or huauhtli", s: "lorente" } },
+  { f: "p1", t: "pm", r: "disp" },
+  { f: "p2", t: "p3", r: "pop", note: { title: { es: "Un hueco: siglos XVI a XIX", en: "A gap: 16th to 19th century" }, es: "No leímos fuentes sobre el pan de muerto entre la llegada del trigo y 1878, el primer registro que hallamos en la prensa de la capital.", en: "We read no sources on pan de muerto between the arrival of wheat and 1878, the earliest record we found in the capital's press." } },
+  { f: "p3", t: "p4", r: "stu" },
+  { f: "p3", t: "z3", r: "doc", note: { title: { es: "La misma crónica", en: "The same report" }, es: "El Siglo Diez y Nueve describe en la misma nota el pan de muerto y los dulces en forma de calavera de la feria del Zócalo.", en: "El Siglo Diez y Nueve describes the pan de muerto and the skull-shaped sweets of the Zócalo fair in the same report." } },
+  { f: "zm", t: "z2", r: "pop" },
+  { f: "z1", t: "z2", r: "pop", note: { title: { es: "Un hueco: 1560–1855", en: "A gap: 1560–1855" }, es: "No leímos fuentes coloniales sobre calaveras de azúcar. Wikipedia cita una venta de figuras de esqueletos en la década de 1740, que no comprobamos.", en: "We read no colonial sources on sugar skulls. Wikipedia cites a sale of skeleton figures in the 1740s, which we did not check." } },
+  { f: "z2", t: "z3", r: "doc" },
+  { f: "z3", t: "z4", r: "doc" },
+  { f: "l1", t: "lm", r: "disp" },
+  { f: "l1", t: "l3", r: "pop", note: { title: { es: "Un siglo sin fuentes leídas", en: "A century with no sources read" }, es: "Entre Bolaños (1792) y las hojas de Vanegas Arroyo (años 1890) no leímos ninguna calavera impresa. Aquí cae la disputa sobre El Socialista.", en: "Between Bolaños (1792) and the Vanegas Arroyo sheets (1890s) we read no printed calavera. The El Socialista dispute falls here." } },
+  { f: "k1", t: "l3", r: "stu", note: { title: { es: "La misma imprenta", en: "The same press" }, es: "La Calavera Catrina salió en una hoja de calaveras de Vanegas Arroyo, como los versos de este carril. La Catrina y las calaveras literarias nacen juntas.", en: "The Calavera Catrina appeared on a Vanegas Arroyo calavera sheet, like the verses in this lane. The Catrina and calavera verses were born together." } },
+  { f: "l3", t: "l4", r: "pop" },
+  { f: "ym", t: "y1", r: "disp" },
+  { f: "y1", t: "y2", r: "pop", note: { title: { es: "Cuatro cronologías", en: "Four timelines" }, es: "Todas las fuentes coinciden en dónde nació, Huixcolotla, y ninguna coincide en cuándo: 1850, fines del siglo XIX, 1920 o 1930. Ninguna cita un estudio.", en: "Every source agrees on where it was born, Huixcolotla, and none agrees on when: 1850, the late 19th century, 1920 or 1930. None cites a study." } },
+  { f: "y2", t: "y3", r: "pop" },
+  { f: "y3", t: "y4", r: "stu" },
+];
+const LAST = { ofrenda: "o4", cempa: "c5", pan: "p4", azucar: "z4", xolo: "xm", catrina: "k4", calav: "l4", papel: "y4", alebrije: "a7", desfile: "d3" };
+const PENDING = {
+  ofrenda: { es: "Las megaofrendas del Zócalo y de la UNAM, y la ofrenda doméstica de hoy, aún no tienen fuentes.", en: "The giant Zócalo and UNAM offerings, and today's home altar, have no sources yet." },
+  cempa: { es: "Falta documentar el siglo XX, los cultivos actuales y el puente de pétalos de Coco (2017).", en: "Still to document: the 20th century, today's growers, and Coco's petal bridge (2017)." },
+  xolo: { es: "Falta fechar la fusión del guía y el xolo, su rescate como raza en el siglo XX y el Dante de Coco.", en: "Still to date: the merging of guide dog and Xolo, the breed's 20th-century revival, and Coco's Dante." },
+  alebrije: { es: "Falta documentar el papel de los alebrijes en la celebración de 2026.", en: "Still to document: the role of alebrijes in the 2026 celebration." },
+  desfile: { es: "Faltan las ediciones de 2017 a 2026 y su programa oficial.", en: "Still to source: the 2017–2026 editions and their official programme." },
+  catrina: { es: "Faltan las fuentes del maquillaje, los disfraces y los desfiles de catrinas del siglo XXI.", en: "Still to source: 21st-century Catrina make-up, costumes and parades." },
+};
+
+// ---------- today: what each symbol means in CDMX now (only lanes sourced so far) ----------
+const TODAY = {
+  cempa: {
+    title: { es: "El cempasúchil, hoy", en: "The marigold, today" },
+    tip: { es: "La flor que, según la tradición, guía a las almas a casa por su color y su olor.", en: "The flower that, by tradition, guides souls home by its colour and scent." },
+    now: { es: "Es la flor de las ofrendas: va en el altar y sus pétalos se riegan en un camino que, según la tradición, guía a las almas a casa por su color y su olor. En 2026 la ciudad cultivó casi 10 millones de plantas en Xochimilco y Tláhuac, la plantó en Reforma desde junio por el Mundial y estrenó un día oficial, el 30 de octubre.",
+      en: "It is the flower of the ofrendas: it goes on the altar, and its petals are strewn in a path that, by tradition, guides souls home by its colour and scent. In 2026 the city grew almost 10 million plants in Xochimilco and Tláhuac, planted it along Reforma from June for the World Cup, and held its first official day, 30 October." },
+    steps: [
+      { id: "c1", es: "Flor de fiesta mexica, sin relación con los muertos", en: "A Mexica feast flower, with no link to the dead" },
+      { id: "c2", es: "Medicina, y ya viaja a Europa", en: "Medicine, and already off to Europe" },
+      { id: "c3", es: "«Flor de muerto» = pesar, por una moda europea", en: "“Flower of the dead” = grief, via a European fashion" },
+      { id: "c4", es: "Pétalos en la puerta y en las ofrendas de Puebla", en: "Petals at the door and on Puebla's offerings" },
+      { id: "c5", es: "La flor de noviembre en la prensa capitalina", en: "November's flower in the Mexico City press" },
+    ],
+    clash: { es: "Hoy se suele decir que los mexicas ya la usaban para guiar a sus muertos. Las crónicas del siglo XVI que revisamos no lo registran: el primer vínculo con la muerte que encontramos es de 1849. El camino de pétalos, en cambio, ya está documentado en 1886.",
+      en: "Today it is often said that the Mexica already used it to guide their dead. The 16th-century chronicles we checked do not record that: the first link to death we found is from 1849. The petal path, by contrast, is documented as early as 1886." },
+    claims: [
+      { rank: "doc", t: { es: "Lo que enseña hoy la SEP en primaria.", en: "What the SEP teaches in primary school today." },
+        q: "mientras que su aroma se cree que guía a las almas de los difuntos", qen: "while its scent is believed to guide the souls of the dead",
+        n: { es: "El material está marcado «Generado por IA».", en: "The material is labelled “Generado por IA” (AI-generated)." }, s: "sep" },
+      { rank: "doc", t: { es: "El camino de pétalos, explicado en 2026.", en: "The petal path, as explained in 2026." },
+        q: "se traza un camino de flores de cempasúchil para guiar a las almas de los seres queridos desde el más allá hasta sus hogares en las ofrendas",
+        qen: "a path of marigold flowers is laid to guide the souls of loved ones from the beyond to their homes, to the ofrendas", s: "nmas26" },
+      { rank: "doc", t: { es: "Producción récord en el suelo de conservación de la ciudad. En 2019 eran poco más de un millón.", en: "Record production on the city's conservation land. In 2019 it was just over a million." },
+        q: "alistan casi 10 millones de plantas para Día de Muertos", qen: "almost 10 million plants readied for the Day of the Dead", s: "univ26" },
+      { rank: "doc", t: { es: "Fuera de temporada, por el Mundial.", en: "Out of season, for the World Cup." },
+        q: "Por primera vez las flores de cempasuchil salen a relucir las calles de Paseo de la Reforma", qen: "For the first time, marigolds brighten the streets of Paseo de la Reforma", s: "infojun" },
+      { rank: "stu", t: { es: "Un día oficial nuevo, celebrado por primera vez el 30 de octubre de 2026.", en: "A new official day, first held on 30 October 2026." },
+        q: "en la Ciudad de México se declara el 30 de octubre de cada año como Día de la Flor de Cempasúchil", qen: "in Mexico City, 30 October of each year is declared Marigold Flower Day",
+        n: { es: "La prensa cita el decreto; no consultamos el texto de la Gaceta (22 de junio de 2026).", en: "The press quotes the decree; we did not read the Gaceta text (22 June 2026)." }, s: "cron26" },
+    ],
+  },
+  ofrenda: {
+    title: { es: "La ofrenda, hoy", en: "The ofrenda, today" },
+    tip: { es: "El altar donde las familias reciben a sus muertos el 1 y 2 de noviembre; en 2026, también una ofrenda gigante en el Zócalo.", en: "The altar where families welcome their dead on 1 and 2 November; in 2026, also a giant one in the Zócalo." },
+    now: { es: "En casa es el lugar del reencuentro: agua para la sed del viaje, velas para alumbrar el camino, sal, flores, pan, la comida favorita y la foto de quien se recuerda. En 2026 también fue espectáculo público: la Ofrenda Monumental del Zócalo, dedicada a Posada, y ofrendas comunitarias en plazas y Utopías de toda la ciudad.",
+      en: "At home it is the place of reunion: water for the thirst of the journey, candles to light the way, salt, flowers, bread, favourite food and the photo of the person remembered. In 2026 it was also a public spectacle: the Monumental Ofrenda in the Zócalo, dedicated to Posada, and community ofrendas in squares and Utopías across the city." },
+    steps: [
+      { id: "o1", es: "Los mexicas hacían ofrendas a sus muertos durante cuatro años", en: "The Mexica made offerings to their dead for four years" },
+      { id: "o2", es: "Dos fiestas de muertos en el calendario mexica, en agosto", en: "Two feasts of the dead in the Mexica calendar, in August" },
+      { id: "o3", es: "Durán ve ofrendas el 1 y 2 de noviembre, para niños y adultos", en: "Durán sees offerings on 1 and 2 November, for children and adults" },
+      { id: "o4", es: "La ofrenda de los grandes y la de los chiquitos, en Puebla", en: "The grown-ups' ofrenda and the little ones', in Puebla" },
+    ],
+    clash: { es: "Las guías de 2026 dicen que el agua calma la sed del viaje desde el Mictlán y que los siete niveles son los pasos del alma. No encontramos ni el Mictlán ni los niveles en las fuentes antiguas que revisamos. Que la fiesta prehispánica se mudara a Todos Santos fue, para Durán, una sospecha que no se atrevió a afirmar. Lo que sí vio fue la costumbre actual: ofrendas a los niños el 1 de noviembre y a los adultos el 2.",
+      en: "2026 guides say the water quenches the thirst of the journey from Mictlán and that the seven levels are the soul's steps. We found neither Mictlán nor the levels in the early sources we checked. That the pre-Hispanic feast moved into All Saints was, for Durán, a suspicion he did not dare affirm. What he did see was today's custom: offerings to children on 1 November and to adults on the 2nd." },
+    claims: [
+      { rank: "doc", t: { es: "Para qué sirve, según una guía de 2026.", en: "What it is for, according to a 2026 guide." },
+        q: "La ofrenda tiene como objetivo el reencuentro en los seres vivos y las almas que partieron", qen: "The aim of the ofrenda is the reunion of the living and the souls who have departed", s: "cronofr" },
+      { rank: "doc", t: { es: "El agua.", en: "The water." },
+        q: "Tiene como propósito satisfacer la sed de las almas que llegan a los hogares después de su recorrido desde el Mictlán", qen: "Its purpose is to quench the thirst of the souls who reach their homes after their journey from Mictlán", s: "cronofr" },
+      { rank: "doc", t: { es: "Los siete niveles, según la misma guía.", en: "The seven levels, according to the same guide." },
+        q: "hace alusión a los siete pasos que las almas deben cruzar para alcanzar el descanso eterno", qen: "refers to the seven steps souls must cross to reach eternal rest",
+        n: { es: "No buscamos todavía el origen de los niveles.", en: "We have not yet looked for where the levels come from." }, s: "cronofr" },
+      { rank: "doc", t: { es: "La invitación del gobierno a la Ofrenda Monumental del Zócalo.", en: "The city government's invitation to the Monumental Ofrenda in the Zócalo." },
+        q: "rendiremos homenaje a quienes siguen viviendo en nuestros recuerdos", qen: "we will pay tribute to those who live on in our memories", s: "unocat" },
+      { rank: "doc", t: { es: "Ofrendas públicas en los barrios, del 29 de octubre al 2 de noviembre.", en: "Public ofrendas in the neighbourhoods, 29 October to 2 November." },
+        q: "se instalarán ofrendas comunitarias en distintos puntos de la capital", qen: "community ofrendas will be set up at various points across the capital", s: "milcat" },
+    ],
+  },
+  xolo: {
+    title: { es: "El xoloitzcuintle, hoy", en: "The Xoloitzcuintle, today" },
+    tip: { es: "El perro que, según se dice hoy, acompaña a las almas al Mictlán. Desde octubre de 2026, sus saberes son patrimonio de la ciudad.", en: "The dog said today to accompany souls to Mictlán. Since October 2026 the knowledge around it is city heritage." },
+    now: { es: "Se le presenta como el perro que acompaña a las almas en su camino al Mictlán, y aparece en altares, en la iluminación del Zócalo y en Coco. El 27 de octubre de 2026 la ciudad declaró patrimonio cultural inmaterial los saberes, creencias y narraciones asociados al xolo. La declaratoria protege esos significados, no al animal ni a la raza.",
+      en: "It is presented as the dog that accompanies souls on their way to Mictlán, and it appears on altars, in the Zócalo's lighting and in Coco. On 27 October 2026 the city declared the knowledge, beliefs and stories associated with the Xolo intangible cultural heritage. The declaration protects those meanings, not the animal or the breed." },
+    steps: [
+      { id: "x1", es: "El perro que cruza el río con el muerto es rojizo", en: "The dog that crosses the river with the dead is reddish" },
+      { id: "x2", es: "El perro sin pelo aparece en otro libro, sin relación con los muertos", en: "The hairless dog appears in another book, with no link to the dead" },
+      { id: "xm", es: "La fusión de los dos: aún sin fecha", en: "The merging of the two: still undated" },
+    ],
+    clash: { es: "Hoy se da por hecho que el xolo es el perro guía del Mictlán. En Sahagún son dos pasajes distintos: el perro que ayuda al muerto a cruzar el río es de pelo rojizo, y el xoloitzcuintli sin pelo se describe aparte, sin mencionar a los muertos. La propia declaratoria de 2026 protege las narraciones y creencias como patrimonio, que es justamente lo que esta tarjeta muestra: un significado vivo, no un dato del siglo XVI.",
+      en: "Today it is taken for granted that the Xolo is the guide dog of Mictlán. In Sahagún these are two separate passages: the dog that helps the dead cross the river has reddish hair, and the hairless Xoloitzcuintli is described elsewhere, with no mention of the dead. The 2026 declaration itself protects the stories and beliefs as heritage, which is exactly what this card shows: a living meaning, not a 16th-century fact." },
+    claims: [
+      { rank: "doc", t: { es: "Cómo lo explica la prensa al informar de la declaratoria.", en: "How the press explains it when reporting the declaration." },
+        q: "En las antiguas narraciones, el xoloitzcuintle aparece como acompañante de las almas en su camino al Mictlán", qen: "In the ancient stories, the Xoloitzcuintle appears as the companion of souls on their way to Mictlán", s: "infoxolo" },
+      { rank: "stu", t: { es: "Lo que protege la declaratoria, y lo que no.", en: "What the declaration protects, and what it does not." },
+        q: "no implica una declaratoria de protección sobre el animal en sí, la raza canina, sus variedades o sus características biológicas", qen: "it does not imply a declaration of protection for the animal itself, the dog breed, its varieties or its biological characteristics",
+        n: { es: "La prensa resume el decreto (Gaceta Oficial, 27 oct 2026); no leímos el texto de la Gaceta.", en: "The press summarizes the decree (Gaceta Oficial, 27 Oct 2026); we did not read the Gaceta text." }, s: "cronxolo" },
+      { rank: "stu", t: { es: "Más allá del Día de Muertos.", en: "Beyond the Day of the Dead." },
+        q: "su importancia cultural trasciende las representaciones relacionadas con el Día de Muertos", qen: "its cultural importance goes beyond its Day of the Dead representations", s: "infoxolo" },
+      { rank: "doc", t: { es: "En la iluminación de los edificios del Zócalo, 2026.", en: "In the lighting of the Zócalo's buildings, 2026." },
+        q: "entre ellas calaveras garbanceras, colibríes esqueléticos y xoloitzcuintles", qen: "among them garbancera skulls, skeletal hummingbirds and Xoloitzcuintles", s: "milcat" },
+    ],
+  },
+  catrina: {
+    title: { es: "La Catrina, hoy", en: "The Catrina, today" },
+    tip: { es: "La figura central de 2026: una Catrina de 33 metros en el Zócalo, récord Guinness, y catrinas maquilladas en la calle.", en: "The centrepiece of 2026: a 33-metre Catrina in the Zócalo, a Guinness record, and made-up Catrinas in the streets." },
+    now: { es: "Es la cara de la celebración: maquillaje, disfraces, una Mega Procesión de Catrinas desde el Ángel. En 2026 fue el centro de la Ofrenda Monumental, dedicada a Posada: una figura de cartonería de 33.411 metros que obtuvo el récord Guinness a la Catrina más alta. La jefa de Gobierno la presentó como lo que fue en su origen: una sátira de quienes niegan sus raíces.",
+      en: "It is the face of the celebration: make-up, costumes, a Mega Procession of Catrinas from the Ángel. In 2026 it was the centre of the Monumental Ofrenda, dedicated to Posada: a 33.411-metre papier-mâché figure that won the Guinness record for the tallest Catrina. The head of government presented it as what it was at the start: a satire of people who deny their roots." },
+    steps: [
+      { id: "k1", es: "Posada graba una calavera de busto con sombrero", en: "Posada etches a skull, shoulders up, in a hat" },
+      { id: "k2", es: "Un libro de 1930 ya la titula «Calavera Catrina»", en: "A 1930 book already titles her “Calavera Catrina”" },
+      { id: "k3", es: "Rivera la pinta de cuerpo entero", en: "Rivera paints her full-length" },
+      { id: "k4", es: "El nombre aparece en la prensa", en: "The name appears in the press" },
+    ],
+    clashTitle: { es: "Donde coinciden, y donde no", en: "Where they agree, and where they don't" },
+    clash: { es: "El sentido satírico que se le da hoy sí viene de Posada. Pero la Catrina elegante y de cuerpo entero que se homenajea como «de Posada» es la de Rivera (1947): Posada grabó solo un busto, que se publicó tras su muerte, y el nombre aparece impreso por primera vez en 1930.",
+      en: "The satirical meaning given to her today does come from Posada. But the elegant, full-length Catrina honoured as “Posada's” is Rivera's (1947): Posada etched only a bust, published after his death, and the name first appears in print in 1930." },
+    claims: [
+      { rank: "doc", t: { es: "Cómo la presentó la jefa de Gobierno, Clara Brugada.", en: "How the head of government, Clara Brugada, presented her." },
+        q: "Van a ver a una elegante Catrina de pálido rostro y sombrero aristocrático, que se burla de las apariencias; que se burla del clasismo y de quienes no se apegan a sus raíces",
+        qen: "You will see an elegant Catrina with a pale face and an aristocratic hat, who mocks appearances; who mocks classism and those who do not hold to their roots", s: "infoact" },
+      { rank: "doc", t: { es: "El récord, según el adjudicador de Guinness en la inauguración.", en: "The record, according to the Guinness adjudicator at the opening." },
+        q: "con una cifra oficial de 33.411 metros", qen: "with an official figure of 33.411 metres",
+        n: { es: "Los anuncios previos hablaban de 32 metros y 100 mil plantas de cempasúchil; la nota de la inauguración dice 70 mil.", en: "Earlier announcements said 32 metres and 100,000 marigold plants; the opening report says 70,000." }, s: "unocat" },
+      { rank: "doc", t: { es: "La Catrina en la calle: una procesión el 25 de octubre.", en: "The Catrina in the streets: a procession on 25 October." },
+        q: "se llevará a cabo la Mega Procesión de Catrinas", qen: "the Mega Procession of Catrinas will take place", s: "univofr" },
+    ],
+  },
+  alebrije: {
+    title: { es: "Los alebrijes, hoy", en: "Alebrijes, today" },
+    tip: { es: "Criaturas de cartonería que hoy se explican como guías de los espíritus; en 2026, más de 200 alebrijes monumentales en Reforma.", en: "Papier-mâché creatures now explained as spirit guides; in 2026, over 200 monumental alebrijes on Reforma." },
+    now: { es: "Forman parte de la temporada: el 17 de octubre de 2026 salió del Zócalo el 18.º Desfile de Alebrijes Monumentales, y las figuras se quedaron en Reforma hasta el 8 de noviembre. El material escolar de la SEP los explica como guías de los espíritus en altares y ofrendas.",
+      en: "They are part of the season: on 17 October 2026 the 18th Parade of Monumental Alebrijes left the Zócalo, and the figures stayed on Reforma until 8 November. The SEP's school material explains them as spirit guides on altars and ofrendas." },
+    steps: [
+      { id: "a1", es: "Pedro Linares los crea en la CDMX (¿1936 o 1947?)", en: "Pedro Linares creates them in Mexico City (1936 or 1947?)" },
+      { id: "a2", es: "Un documental los lleva al extranjero", en: "A documentary takes them abroad" },
+      { id: "a3", es: "Una rama de madera en Oaxaca", en: "A wooden branch in Oaxaca" },
+      { id: "a4", es: "El museo los pone a desfilar en octubre", en: "The museum parades them in October" },
+      { id: "a5", es: "Coco los vuelve guías en la tierra de los muertos", en: "Coco makes them guides in the land of the dead" },
+      { id: "a6", es: "La ciudad los declara patrimonio", en: "The city declares them heritage" },
+      { id: "a7", es: "La familia Linares disputa el desfile", en: "The Linares family disputes the parade" },
+    ],
+    clash: { es: "La SEP dice que los alebrijes se ponen en las ofrendas para guiar a los espíritus. El único vínculo con los muertos que encontramos es Coco (2017). Antes de eso, lo que los acercaba a la fiesta era el calendario: el desfile del museo en octubre, desde 2007. La propia fecha de origen («los años 30» para la SEP) está en disputa.",
+      en: "The SEP says alebrijes are placed on ofrendas to guide spirits. The only link to the dead we found is Coco (2017). Before that, what brought them close to the holiday was the calendar: the museum's parade in October, from 2007. Even their founding date (“the 1930s” for the SEP) is disputed." },
+    claims: [
+      { rank: "doc", t: { es: "Lo que enseña hoy la SEP.", en: "What the SEP teaches today." },
+        q: "se colocan en altares y ofrendas para guiar a los espíritus con sus colores y formas vibrantes", qen: "they are placed on altars and ofrendas to guide spirits with their bright colours and shapes",
+        n: { es: "El material está marcado «Generado por IA».", en: "The material is labelled “Generado por IA” (AI-generated)." }, s: "sepale" },
+      { rank: "doc", t: { es: "El 18.º desfile del Museo de Arte Popular, 17 de octubre de 2026.", en: "The Museo de Arte Popular's 18th parade, 17 October 2026." },
+        q: "como parte de las actividades culturales previas y durante las celebraciones por el Día de Muertos", qen: "as part of the cultural activities before and during the Day of the Dead celebrations", s: "infoale" },
+      { rank: "doc", t: { es: "Cuántos se exhibieron en Reforma.", en: "How many were shown on Reforma." },
+        q: "la exposición de 208 alebrijes monumentales", qen: "the exhibition of 208 monumental alebrijes", s: "infoact" },
+    ],
+  },
+  pan: {
+    title: { es: "El pan de muerto, hoy", en: "Pan de muerto, today" },
+    tip: { es: "Pan de trigo con «huesitos» de masa, para la ofrenda y para la mesa.", en: "Wheat bread with dough “bones”, for the ofrenda and the table." },
+    now: { es: "Va en la ofrenda y en la mesa. Sus tiras de masa, las canillas, se leen como los huesos del difunto y a veces como lágrimas. Para 2026 la industria panificadora calculó vender unos 4.5 millones de kilos en el país, y en la capital cientos de panaderías hacen su propia versión.",
+      en: "It goes on the ofrenda and on the table. Its dough strips, the canillas, are read as the bones of the dead, and sometimes as tears. For 2026 the baking industry expected to sell about 4.5 million kilos nationwide, and in the capital hundreds of bakeries make their own version." },
+    steps: [
+      { id: "p1", es: "Masa de amaranto en las ofrendas mexicas", en: "Amaranth dough on Mexica offerings" },
+      { id: "pm", es: "El corazón sacrificado: una leyenda sin apoyo", en: "The sacrificed heart: an unsupported legend" },
+      { id: "p2", es: "El trigo y el pan de ánimas llegan de España", en: "Wheat and soul bread arrive from Spain" },
+      { id: "p3", es: "1878: pan de muerto en la feria del Zócalo", en: "1878: pan de muerto at the Zócalo fair" },
+      { id: "p4", es: "Cerca de la capital, pan duro como los huesos", en: "Near the capital, bread as hard as bones" },
+    ],
+    clash: { es: "En 2026 se explica como herencia mesoamericana: los huesos del pan serían el origen de la vida. Pero el trigo, el azúcar y la mantequilla llegaron con los españoles, y la leyenda del corazón sacrificado no tiene apoyo. La lectura de los huesos sí tiene un eco documentado: en Texcoco el pan ritual se piensa seco y duro, como los huesos de los muertos.",
+      en: "In 2026 it is explained as a Mesoamerican legacy: the bread's bones would stand for the origin of life. But wheat, sugar and butter came with the Spanish, and the sacrificed-heart legend has no support. The bone reading does have a documented echo: in Texcoco ritual bread is thought of as dry and hard, like the bones of the dead." },
+    claims: [
+      { rank: "doc", t: { es: "El Imparcial, citando al Instituto de Investigaciones Antropológicas de la UNAM.", en: "El Imparcial, citing UNAM's Institute of Anthropological Research." },
+        q: "estas piezas, conocidas como canillas, se relacionan con los huesos de los difuntos y, en algunas interpretaciones, con las lágrimas por su pérdida", qen: "these pieces, known as canillas, are related to the bones of the dead and, in some readings, to the tears shed for their loss", s: "imppan" },
+      { rank: "doc", t: { es: "El antropólogo Andrés Medina (UNAM), en N+.", en: "Anthropologist Andrés Medina (UNAM), in N+." },
+        q: "Puede considerarse una fusión de tradiciones mesoamericanas y españolas, asegura Andrés Medina", qen: "It can be considered a fusion of Mesoamerican and Spanish traditions, says Andrés Medina", s: "nmaspan" },
+      { rank: "doc", t: { es: "La lectura de los huesos, en la misma nota.", en: "The reading of the bones, in the same article." },
+        q: "Si su decoración recuerda a los huesos, es porque, en la cosmovisión mesoamericana, estos se consideraban el origen de la vida.", qen: "If its decoration recalls bones, it is because in the Mesoamerican worldview bones were considered the origin of life.", s: "nmaspan" },
+      { rank: "doc", t: { es: "Lo que esperaba vender la industria (Canainpa), presentado el 27 de octubre.", en: "What the industry (Canainpa) expected to sell, presented on 27 October." },
+        q: "se proyecta la comercialización de aproximadamente 4 millones 545 mil kilogramos de pan de muerto en el país", qen: "sales of about 4,545,000 kilograms of pan de muerto nationwide are projected", s: "publipan" },
+    ],
+  },
+  azucar: {
+    title: { es: "La calaverita de azúcar, hoy", en: "The sugar skull, today" },
+    tip: { es: "Dulce de azúcar en forma de cráneo, para la ofrenda o para regalar.", en: "A skull-shaped sugar sweet, for the ofrenda or as a gift." },
+    now: { es: "Va en la ofrenda, a veces con un nombre en la frente, y también se regala a los vivos. En octubre de 2026 la Feria del Alfeñique de Toluca, en el Estado de México, vendió calaveras de azúcar y de chocolate, y la Profeco publicó una receta para hacerlas en casa.",
+      en: "It goes on the ofrenda, sometimes with a name on its forehead, and is also given to the living. In October 2026 the Feria del Alfeñique in Toluca, State of Mexico, sold sugar and chocolate skulls, and Profeco, the consumer agency, published a recipe for making them at home." },
+    steps: [
+      { id: "zm", es: "El tzompantli: una explicación sin fuente", en: "The tzompantli: an explanation with no source" },
+      { id: "z1", es: "El alfeñique llega de al-Ándalus, vía España", en: "Alfeñique arrives from al-Andalus, via Spain" },
+      { id: "z2", es: "1855: «calaveras de azúcar» en la prensa", en: "1855: “calaveras de azúcar” in the press" },
+      { id: "z3", es: "1878: ánimas y calaveras de azúcar en el Zócalo", en: "1878: sugar souls and skulls in the Zócalo" },
+      { id: "z4", es: "1886: calaveras de salvado en Puebla", en: "1886: bran skulls in Puebla" },
+    ],
+    clash: { es: "La explicación más repetida, que las calaveritas sustituyen los cráneos del tzompantli, no tiene una fuente que la trace. Lo que la prensa de la capital sí registra, en 1855 y 1878, son dulces de azúcar con forma de calavera y de ánima vendidos en la fiesta de muertos, hechos con el alfeñique, una técnica de origen árabe y español.",
+      en: "The most repeated explanation, that sugar skulls replaced the skulls of the tzompantli, has no source tracing it. What the capital's press does record, in 1855 and 1878, is skull- and soul-shaped sugar sweets sold at the Day of the Dead fair, made with alfeñique, a technique of Arab and Spanish origin." },
+    claims: [
+      { rank: "doc", t: { es: "La Feria del Alfeñique de Toluca, octubre de 2026.", en: "The Feria del Alfeñique in Toluca, October 2026." },
+        q: "Con calaveras de azúcar y chocolate, figuras decorativas y dulces hechos a mano, los puestos instalados en los portales del centro de la ciudad ofrecen productos para adornar las ofrendas", qen: "With sugar and chocolate skulls, decorative figures and handmade sweets, the stalls in the arcades of the city centre offer goods to decorate the ofrendas", s: "unoalf" },
+      { rank: "doc", t: { es: "La receta de la Profeco.", en: "Profeco's recipe." },
+        q: "En su canal de YouTube, Profeco ofrece una receta para elaborar calaveritas de azúcar.", qen: "On its YouTube channel, Profeco offers a recipe for making sugar skulls.", s: "adnprof" },
+      { rank: "pop", t: { es: "El nombre en la frente, para muertos y para vivos (nota de 2017).", en: "The name on the forehead, for the dead and the living (a 2017 article)." },
+        q: "Algunas tienen el nombre del difunto, otras se regalan con el nombre de las personas vivas, recordándoles su inevitable destino.", qen: "Some carry the name of the deceased; others are given with the names of living people, reminding them of their inevitable fate.", s: "mdazu" },
+    ],
+  },
+  calav: {
+    title: { es: "Las calaveritas literarias, hoy", en: "Calavera verses, today" },
+    tip: { es: "Versos burlones en los que la Muerte viene por alguien vivo.", en: "Mocking verses in which Death comes for someone alive." },
+    now: { es: "Son versos breves y burlones en los que la Muerte, la «Flaca» o la «Huesuda», viene por alguien vivo, a menudo un amigo o un político. Se escriben en vísperas del Día de Muertos, y la prensa de 2026 las presenta como una forma de crítica social nacida en el siglo XIX.",
+      en: "They are short, mocking verses in which Death, “la Flaca” or “la Huesuda”, comes for someone alive, often a friend or a politician. They are written on the eve of the Day of the Dead, and the 2026 press presents them as a form of social criticism born in the 19th century." },
+    steps: [
+      { id: "l1", es: "1792: los epitafios burlescos de Bolaños", en: "1792: Bolaños's comic epitaphs" },
+      { id: "lm", es: "«La primera, en El Socialista»: año en disputa", en: "“The first, in El Socialista”: year disputed" },
+      { id: "l3", es: "Hojas de Vanegas Arroyo, con grabados de Posada", en: "Vanegas Arroyo broadsheets, with Posada prints" },
+      { id: "l4", es: "Años 40: el Taller de Gráfica Popular", en: "1940s: the Taller de Gráfica Popular" },
+    ],
+    clashTitle: { es: "Donde coinciden, y donde no", en: "Where they agree, and where they don't" },
+    clash: { es: "La crítica social sí está en la historia: las hojas de Vanegas Arroyo y Posada se burlaban de todos. Lo que no se sostiene es la fecha de nacimiento que da la prensa de 2026. Dice 1879 en El Socialista de Guadalajara; otras fuentes dicen 1849, y no encontramos la página. El antecedente más antiguo que pudimos leer es un libro de 1792.",
+      en: "The social criticism is in the history: the Vanegas Arroyo and Posada sheets mocked everyone. What doesn't hold up is the birth date the 2026 press gives. It says 1879, in El Socialista of Guadalajara; other sources say 1849, and we could not find the page. The oldest forerunner we could read is a book from 1792." },
+    claims: [
+      { rank: "doc", t: { es: "Cómo las define la prensa en 2026.", en: "How the press defines them in 2026." },
+        q: "Estos poemas breves, escritos con un tono humorístico y jocoso, plantean situaciones imaginarias sobre el encuentro de un personaje con la muerte, burlándose de ella de forma amigable.", qen: "These short poems, written in a humorous, joking tone, imagine a person's encounter with death, teasing it in a friendly way.", s: "croncal" },
+      { rank: "doc", t: { es: "Su función, según la misma nota.", en: "Their purpose, according to the same article." },
+        q: "Estos divertidos escritos tienen su origen en el siglo XIX, cuando surgieron como un medio para expresar ideas en una época donde la libertad de expresión era difícil o perseguida.", qen: "These amusing pieces originated in the 19th century, when they emerged as a way to express ideas at a time when free expression was difficult or persecuted.", s: "croncal" },
+      { rank: "doc", t: { es: "La fecha que repite, y que no pudimos comprobar.", en: "The date it repeats, which we could not check." },
+        q: "se publicó en 1879 en el periódico El Socialista, en Guadalajara", qen: "was published in 1879 in the newspaper El Socialista, in Guadalajara", s: "croncal" },
+    ],
+  },
+  papel: {
+    title: { es: "El papel picado, hoy", en: "Papel picado, today" },
+    tip: { es: "Tiras de papel de China picado que cuelgan sobre la ofrenda y las calles.", en: "Strings of cut tissue paper hung over the ofrenda and the streets." },
+    now: { es: "Cuelga sobre la ofrenda, en calles y mercados. Se dice que en el altar representa el aire, uno de los cuatro elementos. En San Salvador Huixcolotla, Puebla, donde nació, se sigue picando a mano con martillo y cincel, y en 2026 había pedidos desde Estados Unidos, España, Italia, Corea y Japón.",
+      en: "It hangs over the ofrenda, in streets and markets. It is said to stand for air on the altar, one of the four elements. In San Salvador Huixcolotla, Puebla, where it was born, it is still cut by hand with hammer and chisel, and in 2026 orders came from the United States, Spain, Italy, Korea and Japan." },
+    steps: [
+      { id: "ym", es: "«Viene del amate»: sin estudio que lo sostenga", en: "“It comes from amate”: no study supports it" },
+      { id: "y1", es: "Papel de China en las haciendas, c. 1850", en: "Tissue paper on the haciendas, c. 1850" },
+      { id: "y2", es: "Se extiende por Puebla y Tlaxcala", en: "It spreads through Puebla and Tlaxcala" },
+      { id: "y3", es: "Llega a la capital y a los altares", en: "It reaches the capital and the altars" },
+      { id: "y4", es: "1998: patrimonio de Puebla", en: "1998: Puebla heritage" },
+    ],
+    clash: { es: "En 2026 se cuenta como herencia prehispánica del papel amate, y en el altar como el elemento aire. Ninguna de las dos ideas tiene una fuente que la trace. Las fuentes coinciden en el lugar, Huixcolotla, pero no en la fecha: 1850, 1920 o 1930. Es el símbolo peor documentado del proyecto.",
+      en: "In 2026 it is told as a pre-Hispanic legacy of amate paper, and on the altar as the element of air. Neither idea has a source tracing it. The sources agree on the place, Huixcolotla, but not on the date: 1850, 1920 or 1930. It is the least documented symbol in the project." },
+    claims: [
+      { rank: "doc", t: { es: "Cómo se hace hoy en Huixcolotla.", en: "How it is made in Huixcolotla today." },
+        q: "Con martillos, cinceles y plantillas, los artesanos trabajan sobre varias capas de papel de china", qen: "With hammers, chisels and templates, the artisans work on several layers of tissue paper", s: "nmaspp" },
+      { rank: "doc", t: { es: "A dónde va.", en: "Where it goes." },
+        q: "Los pedidos llegan de distintas partes del mundo, entre ellos Estados Unidos, España, Italia, Corea y Japón.", qen: "Orders come from around the world, including the United States, Spain, Italy, Korea and Japan.", s: "nmaspp" },
+      { rank: "stu", t: { es: "El significado en el altar, según un cuadernillo del INAH, que lo matiza con «se dice».", en: "Its meaning on the altar, according to an INAH booklet, which hedges it with “it is said”." },
+        q: "Se dice que el papel picado representa al aire, uno de los cuatro elementos que deben estar presentes en la ofrenda", qen: "It is said that papel picado represents air, one of the four elements that must be present on the ofrenda", s: "inahpp" },
+    ],
+  },
+  desfile: {
+    title: { es: "El Gran Desfile, hoy", en: "The Gran Desfile, today" },
+    tip: { es: "Diez ediciones después de Spectre, un desfile oficial con más de un millón de asistentes.", en: "Ten editions after Spectre, an official parade with over a million spectators." },
+    now: { es: "El 31 de octubre de 2026 se celebró la décima edición, de la Diana Cazadora al Zócalo, dedicada a Nellie Campobello, Juan Rulfo, Juan Gabriel y Emilio «el Indio» Fernández. Según el gobierno, la de 2025 reunió a 1.45 millones de personas. La prensa ya lo llama tradición, y también recuerda, con ironía, que nació de una película de James Bond.",
+      en: "On 31 October 2026 the tenth edition ran from the Diana Cazadora to the Zócalo, dedicated to Nellie Campobello, Juan Rulfo, Juan Gabriel and Emilio “el Indio” Fernández. According to the city, the 2025 edition drew 1.45 million people. The press now calls it a tradition, and also recalls, with some irony, that it was born from a James Bond film." },
+    steps: [
+      { id: "d1", es: "Spectre inventa un desfile de calaveras", en: "Spectre invents a skeleton parade" },
+      { id: "d2", es: "La ciudad lo monta al año siguiente", en: "The city stages it the next year" },
+      { id: "d3", es: "Un acuerdo lo vuelve fecha oficial", en: "An official order makes it a fixed date" },
+    ],
+    clashTitle: { es: "Aquí el significado y la historia coinciden", en: "Here meaning and history agree" },
+    clash: { es: "Es el único símbolo del proyecto cuyo origen se cuenta hoy tal como ocurrió: la prensa de 2026 dice abiertamente que viene de Spectre (2015). En 2016 la ciudad lo oficializó «para preservar la tradición»; diez años después, ya lo es.",
+      en: "It is the only symbol in the project whose origin is told today the way it happened: the 2026 press says openly that it comes from Spectre (2015). In 2016 the city made it official “to preserve tradition”; ten years on, it is one." },
+    claims: [
+      { rank: "doc", t: { es: "Cómo lo cuenta la prensa en 2026.", en: "How the press tells it in 2026." },
+        q: "sembró en México una de sus tradiciones más representativas a nivel internacional (a pesar de su juventud como costumbre)", qen: "planted in Mexico one of its most internationally representative traditions (despite its youth as a custom)",
+        n: { es: "La misma nota lo llama, en broma, «la ancestral procesión Bond de Día de Muertos».", en: "The same article jokingly calls it “the ancestral Bond procession of the Day of the Dead”." }, s: "crondes" },
+      { rank: "doc", t: { es: "La edición de 2026.", en: "The 2026 edition." },
+        q: "la décima edición del Gran Desfile de Día de Muertos", qen: "the tenth edition of the Gran Desfile de Día de Muertos", s: "infoact" },
+      { rank: "doc", t: { es: "A quiénes estuvo dedicada.", en: "Who it was dedicated to." },
+        q: "la escritora Nellie Campobello, el novelista Juan Rulfo, el cantautor Juan Gabriel y el director de cine Emilio “El Indio” Fernández", qen: "the writer Nellie Campobello, the novelist Juan Rulfo, the singer-songwriter Juan Gabriel and the film director Emilio “El Indio” Fernández", s: "infoact" },
+      { rank: "doc", t: { es: "El público, con cifras oficiales de la edición anterior.", en: "The crowd, with official figures from the previous edition." },
+        q: "La edición 2025 del desfile reunió a un millón 450,000 asistentes, según cifras del Gobierno capitalino", qen: "The 2025 parade drew 1,450,000 spectators, according to city government figures", s: "infodes" },
+      { rank: "doc", t: { es: "Turismo: lo que esperaba la jefa de Gobierno.", en: "Tourism: what the head of government expected." },
+        q: "se espera una ocupación hotelera de 90% con motivo del desfile", qen: "90% hotel occupancy is expected because of the parade", s: "infoact" },
+    ],
+  },
+};
+
+// ---------- geometry ----------
+const LANES = ["ofrenda", "cempa", "pan", "azucar", "xolo", "catrina", "calav", "papel", "alebrije", "desfile"];
+const BANNER = { ofrenda: "--morado", cempa: "--naranja", pan: "--trigo", azucar: "--cielo", xolo: "--verde", catrina: "--rosa", calav: "--tinta", papel: "--lima", alebrije: "--ambar", desfile: "--azul" };
+// The drawing width follows its container; below MIN_W (phones) it stays at MIN_W and the diagram scrolls sideways.
+const MIN_W = 900, TOP = 54, LANE_H = 170, LEFT = 130;
+let W = 1240, X_END = W - 210;
+const H = TOP + LANE_H * LANES.length + 34;
+function xOf(y) {
+  // five stretches: Mexica/colonial, 1600–1840 (compressed), 1840–1955 (press and art), 1955–2005 (compressed), 2005–2026 (parade, Coco, heritage)
+  const span = X_END - LEFT, a = span * .24, b = span * .05, c = span * .38, d = span * .07;
+  if (y <= 1600) return LEFT + (y - 1450) / 150 * a;
+  if (y <= 1840) return LEFT + a + (y - 1600) / 240 * b;
+  if (y <= 1955) return LEFT + a + b + (y - 1840) / 115 * c;
+  if (y <= 2005) return LEFT + a + b + c + (y - 1955) / 50 * d;
+  return LEFT + a + b + c + d + (y - 2005) / 21 * (span - a - b - c - d);
+}
+const laneY = l => TOP + LANE_H * LANES.indexOf(l) + LANE_H / 2;
+const byId = Object.fromEntries(N.map(n => [n.id, n]));
+const pos = id => { const n = byId[id]; return { x: xOf(n.year), y: laneY(n.lane) + n.dy }; };
+const cssv = v => `var(${v})`;
+
+let lang = "es";
+let selected = "today-cempa";
+try { const l = localStorage.getItem("ddm-lang"); if (l === "en" || l === "es") lang = l; } catch (e) {}
+
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+
+// ---------- papel picado banners ----------
+// mask: white = paper, black = cut. A window is cut, the motif is left as paper, then the motif's own holes are cut.
+function banner(g, lane, x, y) {
+  const w = 120, h = 128, id = "m-" + lane;
+  const defs = el("defs", {}, g);
+  const m = el("mask", { id, maskUnits: "userSpaceOnUse", x: x - 5, y: y - 5, width: w + 10, height: h + 20 }, defs);
+  // paper with scalloped bottom
+  let d = `M${x},${y} H${x + w} V${y + h - 8}`;
+  const n = 8, sw = w / n;
+  for (let i = n; i > 0; i--) d += ` A${sw / 2},${sw / 2.2} 0 0 1 ${x + (i - 1) * sw},${y + h - 8}`;
+  d += " Z";
+  el("path", { d, fill: "#fff" }, m);
+  // border dots
+  for (let i = 0; i < 9; i++) el("circle", { cx: x + 12 + i * 12, cy: y + 10, r: 2.2, fill: "#000" }, m);
+  for (let i = 0; i < 9; i++) el("circle", { cx: x + 12 + i * 12, cy: y + h - 18, r: 1.8, fill: "#000" }, m);
+  // window
+  el("rect", { x: x + 10, y: y + 18, width: w - 20, height: h - 44, rx: 6, fill: "#000" }, m);
+  const cx = x + w / 2, cy = y + 18 + (h - 44) / 2;
+  const W_ = "#fff", B = "#000";
+  // bridges so the motif "hangs" from the frame
+  el("rect", { x: cx - 1.5, y: y + 18, width: 3, height: 12, fill: W_ }, m);
+  el("rect", { x: cx - 1.5, y: y + h - 38, width: 3, height: 12, fill: W_ }, m);
+  if (lane === "catrina") {
+    el("ellipse", { cx, cy: cy - 14, rx: 40, ry: 8, fill: W_ }, m);                 // hat brim
+    el("path", { d: `M${cx - 18},${cy - 16} Q${cx},${cy - 40} ${cx + 18},${cy - 16} Z`, fill: W_ }, m); // crown
+    el("path", { d: `M${cx + 10},${cy - 30} q14,-14 26,-4 q-12,0 -20,10 Z`, fill: W_ }, m); // feather
+    el("circle", { cx, cy: cy + 6, r: 17, fill: W_ }, m);                            // skull
+    el("rect", { x: cx - 10, y: cy + 14, width: 20, height: 12, rx: 3, fill: W_ }, m); // jaw
+    el("circle", { cx: cx - 7, cy: cy + 4, r: 5, fill: B }, m);
+    el("circle", { cx: cx + 7, cy: cy + 4, r: 5, fill: B }, m);
+    el("path", { d: `M${cx},${cy + 9} l-3,6 h6 Z`, fill: B }, m);
+    for (let i = -2; i <= 2; i++) el("rect", { x: cx + i * 4 - 1, y: cy + 18, width: 2, height: 6, fill: B }, m);
+    el("path", { d: `M${cx - 30},${cy - 14} q30,-6 60,0`, stroke: B, "stroke-width": 1.5, fill: "none" }, m);
+  } else if (lane === "cempa") {
+    for (let i = 0; i < 14; i++) { const a = i / 14 * Math.PI * 2; el("circle", { cx: cx + Math.cos(a) * 22, cy: cy + Math.sin(a) * 22, r: 11, fill: W_ }, m); }
+    for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2 + .3; el("circle", { cx: cx + Math.cos(a) * 12, cy: cy + Math.sin(a) * 12, r: 9, fill: W_ }, m); }
+    el("circle", { cx, cy, r: 9, fill: W_ }, m);
+    for (let i = 0; i < 14; i++) { const a = (i + .5) / 14 * Math.PI * 2; el("circle", { cx: cx + Math.cos(a) * 26, cy: cy + Math.sin(a) * 26, r: 2.4, fill: B }, m); }
+    for (let i = 0; i < 10; i++) { const a = (i + .5) / 10 * Math.PI * 2 + .3; el("circle", { cx: cx + Math.cos(a) * 15, cy: cy + Math.sin(a) * 15, r: 1.8, fill: B }, m); }
+    el("circle", { cx, cy, r: 4, fill: B }, m);
+  } else if (lane === "xolo") {
+    // standing dog, facing left: long body, tall pointed ears, thin tail
+    el("ellipse", { cx: cx + 4, cy: cy + 2, rx: 24, ry: 11, fill: W_ }, m);                      // body
+    el("path", { d: `M${cx - 18},${cy - 2} L${cx - 26},${cy - 16} L${cx - 14},${cy - 12} Z`, fill: W_ }, m); // neck
+    el("ellipse", { cx: cx - 28, cy: cy - 18, rx: 10, ry: 7, fill: W_ }, m);                      // head
+    el("path", { d: `M${cx - 38},${cy - 17} l-8,4 l9,2 Z`, fill: W_ }, m);                        // snout
+    el("path", { d: `M${cx - 30},${cy - 23} l-4,-16 l9,12 Z`, fill: W_ }, m);                     // ear
+    el("path", { d: `M${cx - 23},${cy - 23} l2,-16 l5,14 Z`, fill: W_ }, m);                      // ear
+    for (const lx of [-14, -6, 12, 20]) el("rect", { x: cx + lx, y: cy + 8, width: 4, height: 22, rx: 2, fill: W_ }, m); // legs
+    el("path", { d: `M${cx + 26},${cy - 2} q16,-6 14,-22`, stroke: W_, "stroke-width": 3.5, fill: "none", "stroke-linecap": "round" }, m); // tail
+    el("circle", { cx: cx - 30, cy: cy - 19, r: 1.8, fill: B }, m);
+    for (let i = 0; i < 3; i++) el("path", { d: `M${cx - 6 + i * 10},${cy - 4} l3,6 l3,-6`, stroke: B, "stroke-width": 1.4, fill: "none" }, m);
+  } else if (lane === "ofrenda") {
+    el("path", { d: `M${cx - 34},${cy + 30} V${cy - 6} A34,30 0 0 1 ${cx + 34},${cy - 6} V${cy + 30}`, stroke: W_, "stroke-width": 7, fill: "none" }, m); // marigold arch
+    for (let i = 0; i < 9; i++) { const a = Math.PI + i / 8 * Math.PI; el("circle", { cx: cx + Math.cos(a) * 34, cy: cy - 6 + Math.sin(a) * 30, r: 2, fill: B }, m); }
+    el("rect", { x: cx - 26, y: cy + 22, width: 52, height: 8, fill: W_ }, m);   // tiers
+    el("rect", { x: cx - 19, y: cy + 13, width: 38, height: 8, fill: W_ }, m);
+    el("rect", { x: cx - 12, y: cy + 4, width: 24, height: 8, fill: W_ }, m);
+    for (const k of [-15, 15]) {                                                // candles
+      el("rect", { x: cx + k - 2.5, y: cy - 8, width: 5, height: 12, fill: W_ }, m);
+      el("path", { d: `M${cx + k},${cy - 19} q5,6 0,9 q-5,-3 0,-9 Z`, fill: W_ }, m);
+    }
+    el("circle", { cx, cy: cy - 4, r: 7, fill: W_ }, m);                         // pan de muerto
+    el("path", { d: `M${cx - 6},${cy - 4} h12 M${cx},${cy - 10} v12`, stroke: B, "stroke-width": 1.5 }, m);
+    for (let i = 0; i < 5; i++) el("rect", { x: cx - 22 + i * 10, y: cy + 25, width: 4, height: 2.5, fill: B }, m);
+  } else if (lane === "pan") {
+    // round loaf: a cross of dough bones and a knob on top, sugar dots
+    el("circle", { cx, cy: cy + 4, r: 30, fill: W_ }, m);
+    for (const a of [0, Math.PI / 2]) {
+      const dx = Math.cos(a), dy = Math.sin(a);
+      el("line", { x1: cx - dx * 24, y1: cy + 4 - dy * 24, x2: cx + dx * 24, y2: cy + 4 + dy * 24, stroke: B, "stroke-width": 1.6 }, m);
+      for (const k of [-1, 1]) for (const o of [-1, 1]) el("circle", { cx: cx + dx * 24 * k - dy * 3.2 * o, cy: cy + 4 + dy * 24 * k + dx * 3.2 * o, r: 3.2, fill: "none", stroke: B, "stroke-width": 1.4 }, m);
+    }
+    el("circle", { cx, cy: cy + 4, r: 6.5, fill: W_, stroke: B, "stroke-width": 1.6 }, m);
+    for (const [dx, dy] of [[-14, -10], [12, -14], [-16, 16], [15, 15], [-6, 22], [20, 2], [-21, 0], [6, -21]]) el("circle", { cx: cx + dx, cy: cy + 4 + dy, r: 1.3, fill: B }, m);
+  } else if (lane === "azucar") {
+    // sugar skull: flower eyes, heart nose, a name band on the forehead
+    el("ellipse", { cx, cy: cy - 2, rx: 27, ry: 25, fill: W_ }, m);
+    el("rect", { x: cx - 16, y: cy + 14, width: 32, height: 16, rx: 6, fill: W_ }, m);
+    el("rect", { x: cx - 18, y: cy - 22, width: 36, height: 7, rx: 3, fill: B }, m);
+    for (let i = 0; i < 5; i++) el("rect", { x: cx - 14 + i * 6.4, y: cy - 20, width: 3.2, height: 3, fill: W_ }, m);
+    for (const k of [-11, 11]) {
+      el("circle", { cx: cx + k, cy: cy - 1, r: 7, fill: B }, m);
+      for (let i = 0; i < 6; i++) { const a = i / 6 * Math.PI * 2; el("circle", { cx: cx + k + Math.cos(a) * 3.6, cy: cy - 1 + Math.sin(a) * 3.6, r: 1.6, fill: W_ }, m); }
+    }
+    el("path", { d: `M${cx},${cy + 12} l-4,-4 a2.4,2.4 0 0 1 4,-2 a2.4,2.4 0 0 1 4,2 Z`, fill: B }, m);
+    for (let i = -2; i <= 2; i++) el("rect", { x: cx + i * 5 - 1, y: cy + 19, width: 2, height: 8, fill: B }, m);
+    for (const k of [-24, 24]) el("path", { d: `M${cx + k},${cy - 2} q${k > 0 ? 6 : -6},4 0,8`, stroke: B, "stroke-width": 1.4, fill: "none" }, m);
+  } else if (lane === "calav") {
+    // a broadsheet: a small skull above lines of verse
+    el("rect", { x: cx - 26, y: cy - 34, width: 52, height: 66, rx: 2, fill: W_ }, m);
+    el("circle", { cx, cy: cy - 18, r: 9, fill: B }, m);
+    el("circle", { cx: cx - 3.5, cy: cy - 19, r: 2.4, fill: W_ }, m);
+    el("circle", { cx: cx + 3.5, cy: cy - 19, r: 2.4, fill: W_ }, m);
+    el("rect", { x: cx - 5, y: cy - 11, width: 10, height: 4, fill: B }, m);
+    for (let i = 0; i < 6; i++) el("rect", { x: cx - 19 + (i % 2) * 5, y: cy - 2 + i * 5, width: 38 - (i % 2) * 10, height: 2, fill: B }, m);
+  } else if (lane === "papel") {
+    // three small papel picado flags on a string, each with its own cutouts
+    el("rect", { x: cx - 44, y: cy - 30, width: 88, height: 2.5, fill: W_ }, m);
+    [-29, 0, 29].forEach((fx, j) => {
+      const x0 = cx + fx - 12, y0 = cy - 28;
+      let d = `M${x0},${y0} H${x0 + 24} V${y0 + 40}`;
+      for (let i = 3; i > 0; i--) d += ` A4,4 0 0 1 ${x0 + (i - 1) * 8},${y0 + 40}`;
+      el("path", { d: d + " Z", fill: W_ }, m);
+      const fy = y0 + 18;
+      if (j === 1) { el("circle", { cx: cx + fx, cy: fy, r: 6, fill: B }, m); el("circle", { cx: cx + fx - 2.2, cy: fy - 1, r: 1.4, fill: W_ }, m); el("circle", { cx: cx + fx + 2.2, cy: fy - 1, r: 1.4, fill: W_ }, m); }
+      else { for (let i = 0; i < 5; i++) { const a = i / 5 * Math.PI * 2; el("circle", { cx: cx + fx + Math.cos(a) * 4.5, cy: fy + Math.sin(a) * 4.5, r: 2.4, fill: B }, m); } }
+      for (let i = 0; i < 3; i++) el("rect", { x: x0 + 4 + i * 7, y: y0 + 31, width: 3, height: 3, fill: B }, m);
+    });
+  } else if (lane === "alebrije") {
+    // winged, horned creature with a curled tail and spotted body
+    el("path", { d: `M${cx - 2},${cy + 2} L${cx - 8},${cy - 30} L${cx + 6},${cy - 14} L${cx + 14},${cy - 34} L${cx + 18},${cy - 2} Z`, fill: W_ }, m); // wings
+    el("ellipse", { cx: cx + 4, cy: cy + 8, rx: 18, ry: 10, fill: W_ }, m);                                  // body
+    el("circle", { cx: cx - 18, cy: cy - 2, r: 8, fill: W_ }, m);                                            // head
+    el("path", { d: `M${cx - 22},${cy - 8} l-5,-10 l8,6 Z M${cx - 15},${cy - 9} l1,-11 l5,9 Z`, fill: W_ }, m); // horns
+    el("path", { d: `M${cx - 26},${cy - 1} l-9,3 l9,3 Z`, fill: W_ }, m);                                   // snout
+    el("path", { d: `M${cx + 20},${cy + 6} q16,-2 14,-14 q-2,-8 -8,-4 q-4,4 2,6`, stroke: W_, "stroke-width": 3.5, fill: "none", "stroke-linecap": "round" }, m); // tail
+    for (const lx of [-10, -2, 8, 16]) el("rect", { x: cx + lx, y: cy + 14, width: 3.5, height: 14, rx: 1.5, fill: W_ }, m); // legs
+    el("circle", { cx: cx - 20, cy: cy - 3, r: 1.8, fill: B }, m);                                           // eye
+    for (const [dx, dy] of [[-6, 6], [2, 4], [10, 8], [4, 12], [-2, 12], [12, 3]]) el("circle", { cx: cx + dx, cy: cy + dy, r: 1.7, fill: B }, m); // spots
+    for (let i = 0; i < 3; i++) el("path", { d: `M${cx + 2 + i * 4},${cy - 8 - i * 6} l3,3`, stroke: B, "stroke-width": 1.2 }, m); // wing veins
+  } else if (lane === "desfile") {
+    // a giant skeleton marioneta on strings
+    el("rect", { x: cx - 30, y: cy - 38, width: 60, height: 4, fill: W_ }, m);                                 // control bar
+    for (const sx of [-26, 0, 26]) el("rect", { x: cx + sx - .8, y: cy - 36, width: 1.6, height: sx === 0 ? 12 : 26, fill: W_ }, m); // strings
+    el("circle", { cx, cy: cy - 16, r: 9, fill: W_ }, m);                                                     // skull
+    el("circle", { cx: cx - 3.5, cy: cy - 17, r: 2.4, fill: B }, m);
+    el("circle", { cx: cx + 3.5, cy: cy - 17, r: 2.4, fill: B }, m);
+    for (let i = -1; i <= 1; i++) el("rect", { x: cx + i * 3 - .6, y: cy - 11, width: 1.2, height: 3, fill: B }, m);
+    el("rect", { x: cx - 1.5, y: cy - 7, width: 3, height: 22, fill: W_ }, m);                               // spine
+    for (let i = 0; i < 3; i++) el("rect", { x: cx - 9 + i, y: cy - 3 + i * 5, width: 18 - 2 * i, height: 2.6, rx: 1.3, fill: W_ }, m); // ribs
+    el("path", { d: `M${cx - 6},${cy - 5} L${cx - 26},${cy - 10} M${cx + 6},${cy - 5} L${cx + 26},${cy - 10}`, stroke: W_, "stroke-width": 3, "stroke-linecap": "round" }, m); // arms
+    el("path", { d: `M${cx - 1},${cy + 15} L${cx - 10},${cy + 32} M${cx + 1},${cy + 15} L${cx + 12},${cy + 30}`, stroke: W_, "stroke-width": 3, "stroke-linecap": "round" }, m); // legs
+  }
+  const grp = el("g", { class: "banner" }, g);
+  el("line", { x1: x - 14, y1: y - 2, x2: x + w + 14, y2: y - 2, stroke: cssv("--muted"), "stroke-width": 1 }, grp); // string
+  el("rect", { x, y, width: w, height: h + 4, fill: cssv(BANNER[lane]), mask: `url(#${id})` }, grp);
+  el("rect", { class: "bframe", x: x - 5, y: y - 6, width: w + 10, height: h + 16, rx: 6 }, grp);
+  const cap = el("text", { class: "banner-cap", x: x + w / 2, y: y + h + 22, "text-anchor": "middle" }, grp);
+  cap.textContent = T[lang].cap;
+  return grp;
+}
+
+// ---------- node marks ----------
+function mark(g, rank, color, cx, cy, r = 8) {
+  el("circle", { class: "halo", cx, cy, r: r + 4 }, g);
+  if (rank === "doc") el("circle", { class: "core", cx, cy, r, fill: color }, g);
+  else if (rank === "stu") {
+    el("circle", { class: "core", cx, cy, r: r - 1, fill: "none", stroke: color, "stroke-width": 2 }, g);
+    el("path", { d: `M${cx},${cy - r + 1} A${r - 1},${r - 1} 0 0 0 ${cx},${cy + r - 1} Z`, fill: color }, g);
+  } else if (rank === "pop") el("circle", { class: "core", cx, cy, r: r - 1, fill: "none", stroke: color, "stroke-width": 2 }, g);
+  else if (rank === "disp") {
+    el("circle", { class: "core", cx, cy, r: r - 1, fill: "none", stroke: color, "stroke-width": 1.6, opacity: .55 }, g);
+    const k = r * .45;
+    el("path", { class: "xmark", d: `M${cx - k},${cy - k} L${cx + k},${cy + k} M${cx + k},${cy - k} L${cx - k},${cy + k}`, stroke: color, opacity: .8 }, g);
+  } else if (rank === "pend") el("circle", { class: "core", cx, cy, r: 5, fill: cssv("--gris") }, g);
+  el("circle", { class: "ring", cx, cy, r: r + 4, fill: "none" }, g);
+}
+
+// ---------- build SVG ----------
+const host = document.getElementById("diagram");
+const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; host.appendChild(tip);
+
+function edgePath(a, b) {
+  const mx = (a.x + b.x) / 2;
+  if (Math.abs(a.y - b.y) < 2) return `M${a.x},${a.y} L${b.x},${b.y}`;
+  return `M${a.x},${a.y} C${mx},${a.y} ${mx},${b.y} ${b.x},${b.y}`;
+}
+
+function draw() {
+  W = Math.max(MIN_W, Math.floor(host.clientWidth)); X_END = W - 210;
+  host.querySelector("svg")?.remove();
+  const t = T[lang];
+  const svg = el("svg", { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": t.intro });
+  host.insertBefore(svg, tip);
+
+  // axis
+  const ax = el("g", { class: "axis" }, svg);
+  const ticks = [1500, 1600, 1850, 1900, 1950, 2010, 2026];
+  for (const yv of ticks) {
+    const x = xOf(yv);
+    el("line", { x1: x, y1: TOP - 14, x2: x, y2: H - 30 }, ax).setAttribute("stroke-dasharray", "2 4");
+    const tx = el("text", { x, y: TOP - 22, "text-anchor": "middle" }, ax); tx.textContent = yv;
+  }
+  // compressed stretch marker
+  for (const [a, b] of [[1600, 1840], [1955, 2005]]) {
+    const bx1 = xOf(a), bx2 = xOf(b);
+    el("rect", { x: bx1, y: TOP - 14, width: bx2 - bx1, height: H - TOP - 16, fill: cssv("--line"), opacity: .25 }, ax);
+    const br = el("text", { x: (bx1 + bx2) / 2, y: H - 14, "text-anchor": "middle" }, ax);
+    br.textContent = lang === "es" ? "comprimido" : "compressed";
+  }
+
+  // lanes
+  LANES.forEach((l, i) => {
+    const y = laneY(l);
+    if (i > 0) el("line", { class: "lane-rule", x1: 0, y1: y - LANE_H / 2, x2: W, y2: y - LANE_H / 2 }, svg);
+    const lab = el("text", { class: "lane-label", x: 8, y: y + 6 }, svg); lab.textContent = t.lanes[l];
+    const b = banner(svg, l, X_END + 60, y - LANE_H / 2 + 14);
+    b.classList.add("node", "today");
+    b.setAttribute("tabindex", 0); b.setAttribute("role", "button"); b.dataset.id = "today-" + l;
+    b.setAttribute("aria-label", `${t.pendTitle}: ${t.lanes[l]}`);
+    bindNode(b, "today-" + l);
+  });
+
+  // from each lane's last sourced point to its banner (today); grey where today is not sourced yet
+  for (const l of LANES) {
+    const a = pos(LAST[l]); const b = { x: X_END + 54, y: laneY(l) };
+    el("path", { class: TODAY[l] ? "edge stu" : "edge pend", d: edgePath(a, b), stroke: TODAY[l] ? cssv(BANNER[l]) : null }, svg);
+  }
+
+  // edges
+  for (const e of E) {
+    const a = pos(e.f), b = pos(e.t);
+    const color = cssv(INFL[byId[e.t].infl].c);
+    const cls = e.r === "disp" ? "edge disp" : `edge ${e.r}`;
+    const d = edgePath(a, b);
+    el("path", { class: cls, d, stroke: color }, svg);
+    if (e.note) {
+      const hit = el("path", { class: "edgehit", d, tabindex: 0, role: "button", "aria-label": e.note.title[lang] }, svg);
+      bindEdge(hit, e);
+    }
+  }
+
+  // nodes
+  for (const n of N) {
+    const p = pos(n.id);
+    const color = cssv(INFL[n.infl].c);
+    const g = el("g", { class: "node" + (selected === n.id ? " sel" : ""), tabindex: 0, role: "button", "data-id": n.id, "aria-label": n.label[lang] }, svg);
+    mark(g, n.rank, color, p.x, p.y);
+    const lab = el("text", { class: "nlabel" + (n.myth ? " myth" : ""), x: p.x + 14, y: p.y + 1 }, g);
+    lab.textContent = (n.short || n.label)[lang];  // short label on the timeline where a lane is crowded; the card shows the full title
+    const yr = el("text", { class: "yr", x: p.x + 14, y: p.y + 14 }, g);
+    yr.textContent = lang === "en" && n.yrEn ? n.yrEn : n.yr;
+    bindNode(g, n.id);
+  }
+  fitLabels(svg);
+}
+
+// place each label right of its point if free; otherwise try the other candidate spots and keep the least crowded
+function fitLabels(svg) {
+  const boxes = [...svg.querySelectorAll("g.node .core, .lane-label, :scope > .yr")].map(c => c.getBBox());
+  const hit = (a, b) => a.x < b.x + b.width + 4 && b.x < a.x + a.width + 4 && a.y < b.y + b.height + 5 && b.y < a.y + a.height + 5;
+  const groups = [...svg.querySelectorAll("g.node[data-id]")].filter(g => byId[g.dataset.id])
+    .sort((a, b) => pos(a.dataset.id).x - pos(b.dataset.id).x);
+  for (const g of groups) {
+    const p = pos(g.dataset.id), label = g.querySelector(".nlabel"), yr = g.querySelector(".yr");
+    const box = () => { const a = label.getBBox(), b = yr.getBBox(); const x = Math.min(a.x, b.x), y = Math.min(a.y, b.y); return { x, y, width: Math.max(a.x + a.width, b.x + b.width) - x, height: Math.max(a.y + a.height, b.y + b.height) - y }; };
+    // candidate spots in order of preference: [side, vertical shift of the label's baseline]
+    const spots = [["right", 0], ["left", 0], ["right", -18], ["left", -18], ["right", 26], ["left", 26],
+      ["right", -34], ["left", -34], ["right", 40], ["left", 40], ["right", -50], ["left", -50], ["right", 56], ["left", 56]];
+    const place = ([s, dy]) => {
+      for (const t of [label, yr]) { t.setAttribute("text-anchor", s === "right" ? "start" : "end"); t.setAttribute("x", s === "right" ? p.x + 14 : p.x - 14); }
+      label.setAttribute("y", p.y + 1 + dy); yr.setAttribute("y", p.y + 14 + dy);
+    };
+    // cost of a spot: 0 when free; otherwise the number of things it touches, with running past the edges counted heavily
+    const cost = b => (b.x + b.width > X_END - 6 ? 10 : 0) + (b.x < 4 ? 10 : 0) + boxes.filter(o => hit(b, o)).length;
+    let best = spots[0], bestCost = Infinity;
+    for (const sp of spots) { place(sp); const c = cost(box()); if (c < bestCost) { best = sp; bestCost = c; } if (c === 0) break; }
+    place(best);
+    boxes.push(box());
+  }
+}
+
+// ---------- interaction ----------
+function showTip(evt, html) {
+  tip.innerHTML = html; tip.hidden = false;
+  const r = host.getBoundingClientRect();
+  const tgt = evt.currentTarget.getBoundingClientRect();
+  let x = tgt.left - r.left + host.scrollLeft + tgt.width / 2 + 14;
+  let y = tgt.top - r.top + tgt.height + 6;
+  // flip above when the tip would run past the diagram's bottom: overflowing there adds a scrollbar,
+  // the layout shifts, the pointer leaves the target and the tip flickers on and off
+  const h = tip.offsetHeight;
+  if (y + h > host.clientHeight - 4) y = Math.max(4, tgt.top - r.top - h - 6);
+  const maxX = host.scrollLeft + host.clientWidth - 270;
+  if (x > maxX) x = Math.max(host.scrollLeft + 4, tgt.left - r.left + host.scrollLeft - 270);
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+const hideTip = () => { tip.hidden = true; };
+const rankLine = r => `${RANK_MARK[r]} ${T[lang][r]}`;
+
+function bindNode(g, id) {
+  const n = byId[id];
+  g.addEventListener("mouseenter", e => {
+    if (n) showTip(e, `<b>${esc(n.label[lang])}</b>${esc(n.card[lang])}<div class="r">${rankLine(n.rank)}</div>`);
+    else {
+      const l = id.slice(6), td = TODAY[l];
+      showTip(e, td ? `<b>${esc(td.title[lang])}</b>${esc(td.tip[lang])}<div class="r">${esc(T[lang].seeToday)}</div>`
+                    : `<b>${esc(T[lang].pendTitle)}: ${esc(T[lang].lanes[l])}</b>${esc(PENDING[l][lang])}<div class="r">${rankLine("pend")}</div>`);
+    }
+  });
+  g.addEventListener("mouseleave", hideTip);
+  g.addEventListener("focus", e => g.dispatchEvent(new Event("mouseenter")));
+  g.addEventListener("blur", hideTip);
+  const act = () => { selected = id; hideTip(); renderCard(); markSel(); revealCard(); };
+  g.addEventListener("click", act);
+  g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); act(); } });
+}
+function bindEdge(p, e) {
+  p.addEventListener("mouseenter", ev => showTip(ev, `<b>${esc(e.note.title[lang])}</b>${esc(e.note[lang])}<div class="r">${rankLine(e.r)}</div>`));
+  p.addEventListener("mouseleave", hideTip);
+  const act = () => { selected = "edge:" + e.f + ">" + e.t; hideTip(); renderCard(); markSel(); revealCard(); };
+  p.addEventListener("click", act);
+  p.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); act(); } });
+}
+function markSel() { host.querySelectorAll("g.node").forEach(g => g.classList.toggle("sel", g.dataset.id === selected)); }
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+function srcHtml(key, where) {
+  const s = S[key]; if (!s) return "";
+  return `<div class="src">${esc(T[lang].source)}: <a href="${s.url}" target="_blank" rel="noopener">${esc(s.label)}</a>${where ? ", " + esc(where[lang]) : ""}</div>`;
+}
+function quoteHtml(q, qen) {
+  if (!q) return "";
+  const tr = lang === "en" && qen && qen !== q ? `<div class="tr"><span class="lab">${esc(T.en.translation)}</span>${esc(qen)}</div>` : "";
+  return `<blockquote lang="es">${esc(q)}</blockquote>${tr}`;
+}
+function claimHtml(c) {
+  return `<li><span class="mark" style="color:var(--muted)" title="${esc(T[lang][c.rank])}">${RANK_MARK[c.rank]}</span><div class="body"><p>${esc(c.t[lang])}</p>${quoteHtml(c.q, c.qen)}${c.n ? `<p class="note">${esc(c.n[lang])}</p>` : ""}${srcHtml(c.s, c.where)}</div></li>`;
+}
+function renderCard() {
+  const card = document.getElementById("card"); const t = T[lang];
+  if (selected.startsWith("edge:")) {
+    const [f, to] = selected.slice(5).split(">"); const e = E.find(x => x.f === f && x.t === to); const nt = e.note;
+    card.innerHTML = `<div class="kicker"><span>${esc(byId[f].yr)} → ${esc(byId[to].yr)}</span><span class="chip" style="color:var(--muted)">${rankLine(e.r)}</span></div><h2>${esc(nt.title[lang])}</h2><p>${esc(nt[lang])}</p>${nt.q ? `<ul class="claims"><li><span class="mark" style="color:var(--muted)">${RANK_MARK[e.r]}</span><div class="body">${quoteHtml(nt.q, nt.qen)}${srcHtml(nt.s)}</div></li></ul>` : ""}`;
+    return;
+  }
+  if (selected.startsWith("today-")) {
+    const l = selected.slice(6), td = TODAY[l];
+    if (!td) {
+      card.innerHTML = `<div class="kicker"><span>2026 · ${esc(t.lanes[l])}</span><span class="chip" style="color:var(--gris)">${rankLine("pend")}</span></div><h2>${esc(t.pendTitle)}: ${esc(t.lanes[l])}</h2><p>${esc(PENDING[l][lang])}</p>`;
+      return;
+    }
+    const steps = td.steps.map(s => { const n = byId[s.id]; return `<li><button type="button" data-go="${s.id}"><span style="color:var(${INFL[n.infl].c})">${RANK_MARK[n.rank]}</span><span class="y">${esc(lang === "en" && n.yrEn ? n.yrEn : n.yr)}</span><span>${esc(s[lang])}</span></button></li>`; }).join("");
+    card.innerHTML = `<div class="kicker"><span>2026 · ${esc(t.lanes[l])}</span><span class="chip" style="color:var(${BANNER[l]})">${esc(t.pendTitle)}</span></div>
+      <h2>${esc(td.title[lang])}</h2><p>${esc(td.now[lang])}</p>
+      <h3>${esc(t.lineage)}</h3><ol class="steps">${steps}</ol>
+      <div class="whyd"><b>${esc(td.clashTitle ? td.clashTitle[lang] : t.clash)}.</b> ${esc(td.clash[lang])}</div>
+      <ul class="claims">${td.claims.map(claimHtml).join("")}</ul>
+      <p class="legendnote">${esc(t.meaningNote)}</p>`;
+    card.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => {
+      selected = b.dataset.go; renderCard(); markSel();
+      host.querySelector(`g.node[data-id="${selected}"]`)?.focus({ preventScroll: true });
+    }));
+    return;
+  }
+  const n = byId[selected]; const inf = INFL[n.infl];
+  card.innerHTML = `<div class="kicker"><span>${esc(lang === "en" && n.yrEn ? n.yrEn : n.yr)} · ${esc(t.lanes[n.lane])}</span><span class="chip" style="color:var(${inf.c})">${esc(inf[lang])}</span><span class="chip" style="color:var(--muted)">${rankLine(n.rank)}</span></div>
+    <h2>${esc(n.label[lang])}</h2><p>${esc(n.card[lang])}</p>
+    ${n.why ? `<div class="whyd"><b>${esc(t.why)}.</b> ${esc(n.why[lang])}</div>` : ""}
+    ${n.claims.length ? `<ul class="claims">${n.claims.map(claimHtml).join("")}</ul>` : ""}`;
+}
+
+// ---------- legend ----------
+function lineSample(r) {
+  const svg = `<svg width="34" height="12" aria-hidden="true"><line x1="2" y1="6" x2="32" y2="6" stroke="var(${r === "pend" ? "--gris" : "--ink"})" stroke-width="2.2" stroke-linecap="round" ${r === "stu" ? 'stroke-dasharray="7 5"' : r === "pop" || r === "disp" ? 'stroke-dasharray="1.5 5"' : r === "pend" ? 'stroke-dasharray="2 6"' : ""} ${r === "disp" ? 'opacity=".45"' : ""}/></svg>`;
+  return svg;
+}
+function renderLegend() {
+  const t = T[lang];
+  const ranks = ["doc", "stu", "pop", "disp", "pend"].map(r => `<span class="item" title="${esc(t[r + "L"])}">${lineSample(r)}${RANK_MARK[r]} ${esc(t[r])}</span>`).join("");
+  const infl = Object.values(INFL).map(i => `<span class="item"><span class="swatch" style="background:var(${i.c})"></span>${esc(i[lang])}</span>`).join("");
+  document.getElementById("legend").innerHTML = `<div class="group"><span class="gl">${esc(t.ranks)}</span>${ranks}</div><div class="group"><span class="gl">${esc(t.infl)}</span>${infl}</div>`;
+}
+
+// ---------- bibliography ----------
+function renderBib() {
+  const t = T[lang];
+  const html = LANES.map(l => {
+    const keys = [...new Set(N.filter(n => n.lane === l).flatMap(n => n.claims.map(c => c.s)).concat(E.filter(e => e.note && e.note.s && byId[e.t].lane === l).map(e => e.note.s)).concat(TODAY[l] ? TODAY[l].claims.map(c => c.s) : []))];
+    return `<div><h4>${esc(t.lanes[l])}</h4><ul>${keys.map(k => `<li><a href="${S[k].url}" target="_blank" rel="noopener">${esc(S[k].label)}</a></li>`).join("")}</ul></div>`;
+  }).join("");
+  document.getElementById("bib").innerHTML = html;
+}
+
+// ---------- i18n ----------
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(e => e.textContent = T[lang][e.dataset.i18n]);
+  document.querySelectorAll("[data-i18n-html]").forEach(e => e.innerHTML = T[lang][e.dataset.i18nHtml]);
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+  renderLegend(); draw(); renderCard(); renderBib();
+}
+document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => {
+  lang = b.dataset.lang; try { localStorage.setItem("ddm-lang", lang); } catch (e) {} applyLang();
+}));
+// bring the details card into view when it sits below the fold
+function revealCard() {
+  const c = document.getElementById("card"), r = c.getBoundingClientRect();
+  if (r.top > innerHeight - 80 || r.bottom < 0) {
+    const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    c.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "nearest" });
+  }
+}
+// redraw when the available width changes
+let lastW = 0, raf = 0;
+new ResizeObserver(() => {
+  const w = Math.floor(host.clientWidth);
+  if (w === lastW) return; lastW = w;
+  cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { hideTip(); draw(); });
+}).observe(host);
+applyLang();
+})();
+</script>
