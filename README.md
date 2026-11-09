@@ -2,7 +2,7 @@
 
 **[Open the page](https://luispsalas.github.io/dia-de-muertos-lineage/)** · Spanish by default, with an English toggle.
 
-Most of what people repeat about Día de Muertos symbols mixes documented history, scholarly interpretation and stories nobody can trace. This page pulls the three apart. It follows ten symbols as celebrated in Mexico City today (the ofrenda, cempasúchil, pan de muerto, sugar skulls, the Xoloitzcuintle, La Catrina, calavera verses, papel picado, alebrijes and the Gran Desfile) back through every step a source can support.
+Most of what people repeat about Día de Muertos symbols mixes documented history, scholarly interpretation and stories nobody can trace. This page pulls the three apart. It follows thirteen symbols as celebrated in Mexico City today (the ofrenda, cempasúchil, the water, salt and copal set on the ofrenda, pan de muerto, sugar skulls, the Xoloitzcuintle, La Catrina, calavera verses, papel picado, alebrijes and the Gran Desfile) back through every step a source can support.
 
 ## How to read it
 
@@ -17,8 +17,8 @@ Dotted stretches are gaps where no source was found. The papel-picado banners at
 
 ## What it does not do
 
-- **It is not complete.** Ten symbols, Mexico City only. Regional traditions (Oaxaca, Michoacán, Puebla) appear only where they feed the capital's version.
-- **Some lanes are thin.** Papel picado rests almost entirely on popular sources that disagree with each other on dates. The colonial stretches of the sugar skull (1560 to 1855) and pan de muerto (16th century to 1878) have few sources.
+- **It is not complete.** Thirteen symbols, Mexico City only. Regional traditions (Oaxaca, Michoacán, Puebla) appear only where they feed the capital's version.
+- **Some lanes are thin.** Papel picado rests almost entirely on popular sources that disagree with each other on dates. Salt has no source before recent fieldwork, apart from the Catholic rite it seems to come from. The colonial stretches of the sugar skull (1560 to 1855) and pan de muerto (16th century to 1878) have few sources.
 - **It stops at the 2026 celebrations.**
 - **Some quotations come from scanned 19th-century newspapers.** Those were read by eye on the page images in the Hemeroteca Nacional Digital de México, because machine-read text of those pages is too garbled to quote.
 - **It has not been tested on a phone.** It should scroll sideways on narrow screens.

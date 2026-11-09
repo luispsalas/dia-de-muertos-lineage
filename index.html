@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Linaje del Día de Muertos</title>
-<meta name="description" content="De dónde viene cada uno de diez símbolos del Día de Muertos en la Ciudad de México, con el grado de evidencia de cada afirmación.">
+<meta name="description" content="De dónde viene cada uno de trece símbolos del Día de Muertos en la Ciudad de México, con el grado de evidencia de cada afirmación.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital@1&display=swap">
@@ -25,6 +25,9 @@
   --trigo: #8f5b1e;   /* pan de muerto */
   --lima: #4f7a0c;    /* crafts and fairs */
   --tinta: #46536a;   /* calaveritas literarias */
+  --rio: #23708f;     /* agua */
+  --salg: #5d6470;    /* sal */
+  --resina: #806414;  /* copal */
   --gris: #9a8ca0;
   --font-display: "Alfa Slab One", "Rockwell", Georgia, serif;
   --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -34,13 +37,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #150e1d; --panel: #211730; --ink: #f2e9f3; --muted: #b6a6bb; --line: #3b2e47;
-    --rosa: #ff5aab; --naranja: #ff9d42; --morado: #b391ff; --verde: #3fcca8; --azul: #6aa8ff; --ambar: #ffc04d; --cielo: #4fd0f0; --trigo: #e3ad6b; --lima: #b5d65a; --tinta: #a9b8cf; --gris: #7d6f86;
+    --rosa: #ff5aab; --naranja: #ff9d42; --morado: #b391ff; --verde: #3fcca8; --azul: #6aa8ff; --ambar: #ffc04d; --cielo: #4fd0f0; --trigo: #e3ad6b; --lima: #b5d65a; --tinta: #a9b8cf; --rio: #7fcde8; --salg: #c9ced6; --resina: #e3c460; --gris: #7d6f86;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #150e1d; --panel: #211730; --ink: #f2e9f3; --muted: #b6a6bb; --line: #3b2e47;
-  --rosa: #ff5aab; --naranja: #ff9d42; --morado: #b391ff; --verde: #3fcca8; --azul: #6aa8ff; --ambar: #ffc04d; --cielo: #4fd0f0; --trigo: #e3ad6b; --lima: #b5d65a; --tinta: #a9b8cf; --gris: #7d6f86;
+  --rosa: #ff5aab; --naranja: #ff9d42; --morado: #b391ff; --verde: #3fcca8; --azul: #6aa8ff; --ambar: #ffc04d; --cielo: #4fd0f0; --trigo: #e3ad6b; --lima: #b5d65a; --tinta: #a9b8cf; --rio: #7fcde8; --salg: #c9ced6; --resina: #e3c460; --gris: #7d6f86;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -187,7 +190,7 @@ footer h3 { font-family: var(--font-display); font-weight: 400; font-size: 18px;
 // ---------- strings ----------
 const T = {
   es: {
-    eyebrow: "Prototipo · 10 símbolos · fuentes revisadas al 8 nov 2026",
+    eyebrow: "Prototipo · 13 símbolos · fuentes revisadas al 8 nov 2026",
     title: 'Linaje del <span class="acc">Día de Muertos</span>',
     intro: "De dónde viene cada símbolo de la celebración de hoy en la Ciudad de México, y qué tan bien está documentado cada paso. Pasa el cursor por un punto para un resumen; tócalo o haz clic para ver las fuentes.",
     hint: "Desliza el diagrama hacia los lados →",
@@ -198,14 +201,14 @@ const T = {
     source: "Fuente", today: "Hoy · CDMX",
     bibTitle: "Fuentes por símbolo",
     fine: "Las citas están en su idioma original y se verificaron palabra por palabra contra la fuente (las de periódicos del siglo XIX, a ojo sobre el escaneo). Las fechas «c. 1500» marcan prácticas mexicas descritas por cronistas del siglo XVI. Los huecos sin fuentes se dibujan con línea punteada y se explican al hacer clic.",
-    lanes: { ofrenda: "Ofrenda", cempa: "Cempasúchil", pan: "Pan de muerto", azucar: "Calaverita de azúcar", xolo: "Xoloitzcuintle", catrina: "Catrina", calav: "Calaveritas literarias", papel: "Papel picado", alebrije: "Alebrijes", desfile: "Gran Desfile" },
+    lanes: { ofrenda: "Ofrenda", agua: "Agua", sal: "Sal", copal: "Copal", cempa: "Cempasúchil", pan: "Pan de muerto", azucar: "Calaverita de azúcar", xolo: "Xoloitzcuintle", catrina: "Catrina", calav: "Calaveritas literarias", papel: "Papel picado", alebrije: "Alebrijes", desfile: "Gran Desfile" },
     pendTitle: "Hoy en la CDMX",
     lineage: "Lo que dice el linaje", clash: "Donde el significado y la historia no coinciden",
     meaningNote: "En esta tarjeta, ● quiere decir que en 2026 alguien lo afirma así, no que el origen esté probado.",
     cap: "hoy · 2026", seeToday: "Clic o toque para ver qué significa hoy.",
   },
   en: {
-    eyebrow: "Prototype · 10 symbols · sources checked to 8 Nov 2026",
+    eyebrow: "Prototype · 13 symbols · sources checked to 8 Nov 2026",
     title: 'Day of the Dead <span class="acc">Lineage</span>',
     intro: "Where each symbol of today's Mexico City celebration comes from, and how well each step is documented. Hover a point for a summary; tap or click it to see the sources.",
     hint: "Swipe the diagram sideways →",
@@ -216,7 +219,7 @@ const T = {
     source: "Source", today: "Today · CDMX",
     bibTitle: "Sources by symbol",
     fine: "Quotations stay in their original language and were checked word for word against the source (19th-century newspapers by eye on the scan). Dates marked “c. 1500” are Mexica practices described by 16th-century chroniclers. Gaps with no sources are drawn dotted and explained when clicked.",
-    lanes: { ofrenda: "Ofrenda", cempa: "Marigold", pan: "Pan de muerto", azucar: "Sugar skull", xolo: "Xoloitzcuintle", catrina: "Catrina", calav: "Calavera verses", papel: "Papel picado", alebrije: "Alebrijes", desfile: "Parade" },
+    lanes: { ofrenda: "Ofrenda", agua: "Water", sal: "Salt", copal: "Copal", cempa: "Marigold", pan: "Pan de muerto", azucar: "Sugar skull", xolo: "Xoloitzcuintle", catrina: "Catrina", calav: "Calavera verses", papel: "Papel picado", alebrije: "Alebrijes", desfile: "Parade" },
     pendTitle: "Today in Mexico City",
     lineage: "What the lineage shows", clash: "Where meaning and history disagree",
     meaningNote: "On this card, ● means someone says this in 2026, not that the origin is proven.",
@@ -240,6 +243,13 @@ const S = {
   sah1: { label: "Sahagún, Historia general de las cosas de Nueva España, t. 1 (ed. Bustamante, 1829)", url: "https://archive.org/details/historiagenerald01saha" },
   sah2: { label: "Sahagún, Historia general de las cosas de Nueva España, t. 2 (ed. Bustamante, 1829)", url: "https://archive.org/details/historiagenerald02saha" },
   duranmk: { label: "Durán, Historia de las Indias de Nueva España, t. 2 (ed. Ramírez, 1880), cap. XCVIII, pp. 218–219", url: "https://archive.org/details/historiadelasind02dur" },
+  duranag: { label: "Durán, Historia de las Indias de Nueva España, t. 2 (ed. Ramírez, 1880), capítulo sobre el agua y las fuentes", url: "https://archive.org/details/historiadelasind02dur" },
+  montufar: { label: "Aurora Montúfar López, «El copal: producción, circulación y usos», en Humo aromático para los dioses (INAH, 2012), cap. 9, pp. 109–120", url: "https://www.mesoweb.com/es/articulos/sub/Humo.pdf" },
+  faro86: { label: "El Faro (CDMX), 1 nov 1886, p. 6 (Hemeroteca Nacional Digital)", url: "https://hndm.iib.unam.mx/consulta/pagina/visualizar/558a35987d1ed64f16ba15a1" },
+  patria93: { label: "La Patria (CDMX), 2 nov 1893, p. 2 (Hemeroteca Nacional Digital)", url: "https://hndm.iib.unam.mx/consulta/pagina/visualizar/558a35137d1ed64f16b0af38" },
+  cesalt: { label: "Francis Mershman, «Salt», The Catholic Encyclopedia, vol. 13 (1912)", url: "https://www.newadvent.org/cathen/13403b.htm" },
+  mdsal: { label: "Arturo Cuevas, «Significado de la sal en la ofrenda de Día de Muertos», México Desconocido, 17 oct 2025", url: "https://www.mexicodesconocido.com.mx/sal-ofrenda-dia-de-muertos.html" },
+  nmasagua: { label: "Redacción N+, «Día de Muertos 2026: ¿Por qué se pone un vaso de agua en la ofrenda?», N+, 30 oct 2026", url: "https://www.nmas.com.mx/sociedad/que-significa-agua-ofrenda-muertos-este-motivo-pone-elemento-vital/" },
   sah3: { label: "Sahagún, Historia general de las cosas de Nueva España, t. 3 (ed. Bustamante, 1829)", url: "https://archive.org/details/historiagenerald03saha" },
   duran: { label: "Durán, Historia de las Indias de Nueva España, t. 2 (ed. Ramírez, 1880), Calendario, mes noveno, pp. 288–289", url: "https://archive.org/details/historiadelasind02dur" },
   hern: { label: "Hernández, Historia de las plantas de Nueva España, t. 2 (UNAM, 1942), cap. CLXXIX", url: "https://archive.org/details/historiadelaspliihern" },
@@ -388,6 +398,93 @@ const N = [
       q: "El Zempoaxochil (flor de muerto) viste las campiñas, se reproduce por todas partes",
       qen: "The zempoaxochil (flower of the dead) clothes the fields and grows everywhere",
       n: { es: "Otro diario reimprimió casi el mismo texto el 2 de noviembre de 1906.", en: "Another paper reprinted almost the same text on 2 November 1906." }, s: "patria" }] },
+
+  // AGUA
+  { id: "w1", lane: "agua", year: 1500, dy: -26, rank: "doc", infl: "mexica", yr: "c. 1500",
+    label: { es: "Agua para el camino", en: "Water for the road" },
+    card: { es: "En un funeral mexica, los viejos echaban agua en la cabeza del muerto y le daban un jarrito lleno para el viaje al otro mundo.", en: "At a Mexica funeral, the elders poured water on the dead person's head and gave them a full jar for the journey to the other world." },
+    claims: [
+      { rank: "doc", t: { es: "Lo que le decían al echarle el agua.", en: "What they said as they poured it." },
+        q: "esta es la agua de que gozasteis viviendo en el mundo", qen: "this is the water you enjoyed while living in the world", s: "sah1", where: { es: "libro III, apéndice, cap. 1", en: "book III, appendix, ch. 1" } },
+      { rank: "doc", t: { es: "Y al darle el jarrito.", en: "And as they gave the jar." },
+        q: "Veis aquí con que habéis de caminar", qen: "Here is what you will travel with", s: "sah1" }] },
+  { id: "w2", lane: "agua", year: 1575, dy: 30, rank: "doc", infl: "mexica", yr: "c. 1575", yrEn: "c. 1575",
+    label: { es: "Lavar a los muertos", en: "Washing the dead" },
+    card: { es: "Durán cuenta que a todo difunto, rico o pobre, lo lavaban antes de enterrarlo o quemarlo, y que por eso el agua se tenía por algo que servía en la muerte.", en: "Durán says every dead person, rich or poor, was washed before burial or cremation, and that this is why water was held to serve people in death." },
+    claims: [{ rank: "doc", t: { es: "Lo que enseñaban los sacerdotes.", en: "What the priests taught." },
+      q: "á esta causa decían que el agua les servía para sus muertes", qen: "for this reason they said that water served them for their deaths", s: "duranag" }] },
+  { id: "w3", lane: "agua", year: 1886, dy: 0, rank: "doc", infl: "prensa", yr: "1886",
+    label: { es: "Jícaras de agua en Puebla", en: "Gourds of water in Puebla" },
+    card: { es: "La carta de Puebla de 1886 describe las ofrendas: agua en jícaras y, si el difunto bebía, su vaso de aguardiente.", en: "The 1886 letter from Puebla describes the ofrendas: water in gourds and, if the dead person drank, a glass of aguardiente." },
+    claims: [{ rank: "doc", t: { es: "La línea, leída en el escaneo.", en: "The line, read on the scan." },
+      q: "En jícaras ponen agua, y si alguno de los difuntos era inclinado á la bebida, no falta el vaso de aguardiente", qen: "In gourds they put water, and if one of the dead was given to drink, the glass of aguardiente is not missing",
+      n: { es: "El reconocimiento automático leyó «iguz»; la palabra se leyó a ojo.", en: "The automatic text reading gave “iguz”; the word was read by eye." }, s: "hogar" }] },
+  { id: "w4", lane: "agua", year: 2020, dy: 0, rank: "stu", infl: "mexica", yr: "2020",
+    label: { es: "La sed tras el viaje", en: "Thirst after the journey" },
+    card: { es: "Un antropólogo registra en la sierra de Texcoco vasos de agua en la ofrenda, puestos para la sed del viaje de regreso.", en: "An anthropologist records glasses of water on ofrendas in the Texcoco highlands, set out for the thirst of the journey back." },
+    claims: [{ rank: "stu", t: { es: "Las palabras de sus informantes.", en: "His informants' words." },
+      q: "para que los difuntos calmen la sed tras su viaje", qen: "so the dead can quench their thirst after their journey", s: "lorente", where: { es: "p. 167", en: "p. 167" } }] },
+
+  // SAL
+  { id: "sm", lane: "sal", year: 1500, dy: -30, rank: "disp", infl: "mexica", yr: "c. 1500", myth: true,
+    label: { es: "«Sal sagrada en los funerales mexicas»", en: "“Sacred salt at Mexica funerals”" },
+    card: { es: "Se dice que los mexicas ya usaban la sal en ritos funerarios. Ninguna fuente lo traza.", en: "It is said the Mexica already used salt in funeral rites. No source traces it." },
+    why: { es: "En los textos en español de Sahagún y Durán la sal aparece como mercancía y en la fiesta de la diosa de la sal, Huixtocíhuatl, nunca junto a los muertos. La nota que lo afirma no cita fuentes.", en: "In Sahagún's and Durán's Spanish texts, salt appears as a trade good and at the feast of the salt goddess Huixtocíhuatl, never alongside the dead. The article that claims it cites no sources." },
+    claims: [{ rank: "pop", t: { es: "Un ejemplo de la versión popular.", en: "An example of the popular version." },
+      q: "También era utilizada en rituales de purificación y en ceremonias funerarias.", qen: "It was also used in purification rituals and in funeral ceremonies.", s: "mdsal" }] },
+  { id: "s1", lane: "sal", year: 1560, dy: 26, rank: "doc", infl: "espana", yr: "s. XVI", yrEn: "16th c.",
+    label: { es: "La sal del bautismo y del agua bendita", en: "The salt of baptism and holy water" },
+    card: { es: "El rito romano usa dos sales: la que se da en el bautismo y la que se bendice para el agua bendita. Llega con la evangelización, aunque no rastreamos cuándo pasó a las ofrendas.", en: "The Roman rite uses two salts: one given at baptism and one blessed for holy water. It came with evangelization, though we have not traced when it reached the ofrendas." },
+    claims: [{ rank: "doc", t: { es: "Las dos sales, según la Enciclopedia Católica (1912).", en: "The two salts, per the Catholic Encyclopedia (1912)." },
+      q: "the baptismal salt and the blessed salt", qen: "the baptismal salt and the blessed salt", s: "cesalt" }] },
+  { id: "s2", lane: "sal", year: 1700, dy: -32, rank: "pop", infl: "espana", yr: "¿colonial?", yrEn: "colonial?",
+    label: { es: "Sal en el pecho del difunto", en: "Salt on the dead person's chest" },
+    card: { es: "Se cuenta que en la Colonia se ponía sal sobre el pecho del muerto contra los malos espíritus. No encontramos de dónde viene el dato.", en: "It is said that in colonial times salt was placed on the dead person's chest against evil spirits. We did not find where this comes from." },
+    claims: [{ rank: "pop", t: { es: "La afirmación, sin fuente.", en: "The claim, unsourced." },
+      q: "En las tradiciones coloniales, se colocaba sal sobre el pecho de los difuntos", qen: "In colonial traditions, salt was placed on the chest of the dead", s: "mdsal" }] },
+  { id: "s3", lane: "sal", year: 2020, dy: 0, rank: "stu", infl: "espana", yr: "2020",
+    label: { es: "Sal para los «limbitos»", en: "Salt for the “limbitos”" },
+    card: { es: "En la sierra de Texcoco se ponen jarritos de sal para los niños muertos sin bautizar. Los informantes lo explican como un bautismo.", en: "In the Texcoco highlands, little jars of salt are set out for children who died unbaptized. Informants explain it as a baptism." },
+    claims: [{ rank: "stu", t: { es: "La explicación de los informantes.", en: "The informants' explanation." },
+      q: "equivalente al bautismo, como bendición", qen: "equivalent to baptism, as a blessing", s: "lorente", where: { es: "p. 167", en: "p. 167" } }] },
+
+  // COPAL
+  { id: "q1", lane: "copal", year: 1500, dy: -30, rank: "doc", infl: "mexica", yr: "c. 1500",
+    label: { es: "Copal en el Templo Mayor", en: "Copal at the Templo Mayor" },
+    card: { es: "Las ofrendas del Templo Mayor guardan copal. Por las hojitas atrapadas en la resina se sabe de qué árbol viene: el copal chino o de penca, Bursera bipinnata.", en: "The Templo Mayor offerings hold copal. Tiny leaves caught in the resin show which tree it came from: copal chino or de penca, Bursera bipinnata." },
+    claims: [{ rank: "doc", t: { es: "La identificación, comparada con ejemplares de herbario.", en: "The identification, checked against herbarium specimens." },
+      q: "correspondían con las del árbol de copal chino o de penca", qen: "matched those of the copal chino or de penca tree", s: "montufar", where: { es: "p. 109", en: "p. 109" } }] },
+  { id: "q2", lane: "copal", year: 1500, dy: 34, rank: "doc", infl: "mexica", yr: "c. 1500",
+    label: { es: "Incienso por los difuntos", en: "Incense for the dead" },
+    card: { es: "En la fiesta de los montes se hacían imágenes en memoria de los ahogados y otros muertos; se les ofrecía comida y se las incensaba.", en: "At the feast of the mountains, images were made in memory of the drowned and other dead; they were offered food and incensed." },
+    claims: [
+      { rank: "doc", t: { es: "El incensario de barro.", en: "The clay censer." },
+        q: "luego los incensaban echando incienso en una mano de barro cocido", qen: "then they incensed them, putting incense in a hand of fired clay", s: "sah1", where: { es: "libro II", en: "book II" },
+        n: { es: "«Incienso» es la palabra de los frailes para el copal.", en: "“Incienso” is the friars' word for copal." } },
+      { rank: "doc", t: { es: "A quién se honraba.", en: "Whom they honoured." },
+        q: "á honra de estos dioses y de sus difuntos", qen: "in honour of these gods and of their dead", s: "sah1" }] },
+  { id: "q3", lane: "copal", year: 1886, dy: -22, rank: "doc", infl: "prensa", yr: "1886",
+    label: { es: "Humo de cera y copal", en: "Smoke of wax and copal" },
+    card: { es: "Un periódico de la capital, en tono burlón, dice que las ánimas vuelven cada año por su ración de humo. Ese mismo noviembre, en Puebla, la ofrenda se perfuma con copal.", en: "A Mexico City paper says, mockingly, that the souls come back each year for their ration of smoke. That same November, in Puebla, the ofrenda is perfumed with copal." },
+    claims: [
+      { rank: "doc", t: { es: "El Faro, 1 de noviembre, leído en el escaneo.", en: "El Faro, 1 November, read on the scan." },
+        q: "para recibir su regular ración de humo de cera y copal", qen: "to receive their regular ration of smoke of wax and copal",
+        n: { es: "El Faro era un periódico protestante; el tono es satírico.", en: "El Faro was a Protestant paper; the tone is satirical." }, s: "faro86" },
+      { rank: "doc", t: { es: "La carta de Puebla.", en: "The letter from Puebla." },
+        q: "perfumándolo con el copalli", qen: "perfuming it with copal", s: "hogar" }] },
+  { id: "q4", lane: "copal", year: 1893, dy: 34, rank: "doc", infl: "prensa", yr: "1893",
+    label: { es: "«Para dar al acto más carácter»", en: "“To give the act more character”" },
+    card: { es: "La Patria describe el 2 de noviembre en las casas de la capital: velas por cada muerto, comida, rezos y, en algunas, copal.", en: "La Patria describes 2 November in Mexico City homes: a candle for each dead person, food, prayers and, in some, copal." },
+    claims: [{ rank: "doc", t: { es: "Leído en el escaneo.", en: "Read on the scan." },
+      q: "se quema copal ó incienso para dar al acto más carácter", qen: "copal or incense is burned to give the act more character", s: "patria93" }] },
+  { id: "q5", lane: "copal", year: 2012, dy: 0, rank: "stu", infl: "oficios", yr: "2012",
+    label: { es: "El mismo árbol, cinco siglos", en: "The same tree, five centuries" },
+    card: { es: "En el Alto Balsas se sigue sacando copal del mismo árbol que el del Templo Mayor. Se vende en una feria de octubre y se quema sobre todo en Todos Santos.", en: "In the Alto Balsas region, copal is still taken from the same tree as at the Templo Mayor. It is sold at an October fair and burned above all at Todos Santos." },
+    claims: [
+      { rank: "stu", t: { es: "La conclusión de la arqueobotánica.", en: "The archaeobotanist's conclusion." },
+        q: "exactamente del mismo árbol (Bursera bipinnata)", qen: "exactly the same tree (Bursera bipinnata)", s: "montufar", where: { es: "p. 118", en: "p. 118" } },
+      { rank: "stu", t: { es: "Para qué se vende hoy.", en: "What it is sold for today." },
+        q: "Este copal se consume principalmente en la fiesta de Todos Santos (Días de Muertos)", qen: "This copal is used mainly at the feast of All Saints (Days of the Dead)", s: "montufar", where: { es: "p. 114", en: "p. 114" } }] },
 
   // XOLO
   { id: "x1", lane: "xolo", year: 1500, dy: -24, rank: "doc", infl: "mexica", yr: "c. 1500",
@@ -685,6 +782,17 @@ const E = [
   { f: "x3", t: "x4", r: "doc", note: { title: { es: "El mercado sigue", en: "The market goes on" }, es: "Durán vio el mismo comercio de perros unos cincuenta años después de la conquista.", en: "Durán saw the same trade in dogs some fifty years after the conquest." } },
   { f: "x2", t: "xf", r: "disp" },
   { f: "x4", t: "xf", r: "disp" },
+  { f: "w1", t: "w2", r: "doc" },
+  { f: "w2", t: "w3", r: "pop", note: { title: { es: "Un hueco: 1575–1886", en: "A gap: 1575–1886" }, es: "No encontramos fuentes sobre el agua en las ofrendas entre Durán y la carta de Puebla.", en: "We found no sources on water on the ofrendas between Durán and the letter from Puebla." } },
+  { f: "w3", t: "w4", r: "doc" },
+  { f: "c4", t: "w3", r: "doc", note: { title: { es: "La misma carta", en: "The same letter" }, es: "La carta de Puebla de 1886 describe la flor en las ofrendas y también el agua.", en: "The 1886 letter from Puebla describes the flower on the ofrendas, and the water too." } },
+  { f: "sm", t: "s1", r: "disp" },
+  { f: "s1", t: "s3", r: "stu", note: { title: { es: "Del bautismo a la ofrenda", en: "From baptism to the ofrenda" }, es: "El único vínculo que encontramos entre la sal del altar y la del rito es lo que dicen los informantes de Texcoco. No hay fuentes en medio.", en: "The only link we found between the altar's salt and the rite's is what the Texcoco informants say. There are no sources in between." } },
+  { f: "s2", t: "s3", r: "pop" },
+  { f: "q1", t: "q2", r: "doc" },
+  { f: "q2", t: "q3", r: "pop", note: { title: { es: "Un hueco: siglo XVI–1886", en: "A gap: 16th century–1886" }, es: "Entre las crónicas y la prensa de 1886 aún no tenemos fuentes sobre el copal en las ofrendas.", en: "Between the chronicles and the 1886 press we have no sources yet on copal on the ofrendas." } },
+  { f: "q3", t: "q4", r: "doc" },
+  { f: "q4", t: "q5", r: "doc" },
   { f: "k1", t: "k2", r: "doc" },
   { f: "k2", t: "k3", r: "doc", note: { title: { es: "Rivera, dos veces", en: "Rivera, twice" }, es: "Rivera escribió la introducción del libro de 1930 y pintó el mural en 1947.", en: "Rivera wrote the introduction to the 1930 book and painted the mural in 1947." } },
   { f: "k3", t: "km", r: "disp" },
@@ -716,7 +824,7 @@ const E = [
   { f: "y2", t: "y3", r: "pop" },
   { f: "y3", t: "y4", r: "stu" },
 ];
-const LAST = { ofrenda: "o4", cempa: "c5", pan: "p4", azucar: "z4", xolo: "xm", catrina: "k4", calav: "l4", papel: "y4", alebrije: "a7", desfile: "d3" };
+const LAST = { ofrenda: "o4", agua: "w4", sal: "s3", copal: "q5", cempa: "c5", pan: "p4", azucar: "z4", xolo: "xm", catrina: "k4", calav: "l4", papel: "y4", alebrije: "a7", desfile: "d3" };
 const PENDING = {
   ofrenda: { es: "Las megaofrendas del Zócalo y de la UNAM, y la ofrenda doméstica de hoy, aún no tienen fuentes.", en: "The giant Zócalo and UNAM offerings, and today's home altar, have no sources yet." },
   cempa: { es: "Falta documentar el siglo XX, los cultivos actuales y el puente de pétalos de Coco (2017).", en: "Still to document: the 20th century, today's growers, and Coco's petal bridge (2017)." },
@@ -860,6 +968,58 @@ const TODAY = {
         q: "la exposición de 208 alebrijes monumentales", qen: "the exhibition of 208 monumental alebrijes", s: "infoact" },
     ],
   },
+  agua: {
+    title: { es: "El agua, hoy", en: "Water, today" },
+    tip: { es: "Un vaso de agua en la ofrenda, para la sed de las almas que llegan.", en: "A glass of water on the ofrenda, for the thirst of arriving souls." },
+    now: { es: "Casi no hay ofrenda sin su vaso de agua. La explicación de 2026 es que las almas llegan con sed tras su viaje desde el Mictlán.", en: "There is hardly an ofrenda without its glass of water. The 2026 explanation is that the souls arrive thirsty after their journey from Mictlán." },
+    steps: [
+      { id: "w1", es: "Un jarrito de agua para el viaje del muerto", en: "A jar of water for the dead person's journey" },
+      { id: "w2", es: "El agua lava a los muertos", en: "Water washes the dead" },
+      { id: "w3", es: "1886: jícaras de agua en las ofrendas de Puebla", en: "1886: gourds of water on Puebla's ofrendas" },
+      { id: "w4", es: "En Texcoco, para la sed del regreso", en: "In Texcoco, for the thirst of the way back" },
+    ],
+    clashTitle: { es: "Aquí el significado y la historia coinciden", en: "Here meaning and history agree" },
+    clash: { es: "La sed tras el viaje es de las pocas explicaciones de hoy que tienen un eco documentado en el siglo XVI: Sahagún describe el jarrito de agua que se le daba al muerto para el camino. Lo que no tenemos es el tramo entre Durán y 1886.", en: "Thirst after the journey is one of the few present-day explanations with a documented 16th-century echo: Sahagún describes the jar of water given to the dead for the road. What we lack is the stretch between Durán and 1886." },
+    claims: [
+      { rank: "doc", t: { es: "La explicación en 2026.", en: "The explanation in 2026." },
+        q: "se ayuda a que el difunto pueda saciar su sed después de su recorrido desde el Mictlán hasta el plano terrenal", qen: "it helps the dead quench their thirst after their journey from Mictlán to the earthly plane", s: "nmasagua" },
+    ],
+  },
+  sal: {
+    title: { es: "La sal, hoy", en: "Salt, today" },
+    tip: { es: "Un platito de sal en la ofrenda, que se explica como purificación.", en: "A small dish of salt on the ofrenda, explained as purification." },
+    now: { es: "Suele ponerse junto al vaso de agua. En 2026 la prensa la explica como un purificador que evita que el alma se corrompa en su viaje de regreso.", en: "It usually sits beside the glass of water. In 2026 the press explains it as a purifier that keeps the soul from being corrupted on its way back." },
+    steps: [
+      { id: "sm", es: "La sal mexica de los funerales: sin fuente", en: "Mexica funeral salt: no source" },
+      { id: "s1", es: "La sal del bautismo y del agua bendita", en: "The salt of baptism and holy water" },
+      { id: "s2", es: "Sal en el pecho del difunto: sin fuente", en: "Salt on the dead person's chest: no source" },
+      { id: "s3", es: "En Texcoco, sal «como bautismo» para los niños", en: "In Texcoco, salt “as baptism” for the children" },
+    ],
+    clash: { es: "La prensa la presenta como herencia prehispánica, pero no encontramos ninguna fuente que lo sostenga. Lo único documentado apunta al rito católico: en Texcoco, la sal para los niños muertos sin bautizar se explica como un bautismo. Es el símbolo con menos fuentes del proyecto, junto al papel picado.", en: "The press presents it as a pre-Hispanic legacy, but we found no source to support that. The only documented thread points to the Catholic rite: in Texcoco, the salt for children who died unbaptized is explained as a baptism. Along with papel picado, it is the least sourced symbol in the project." },
+    claims: [
+      { rank: "doc", t: { es: "La explicación en 2026.", en: "The explanation in 2026." },
+        q: "Considerado como un elemento purificador del cuerpo, la sal evita que", qen: "Considered a purifying element for the body, salt prevents",
+        n: { es: "La frase sigue: «el alma de las personas sea corrompida en su traslado».", en: "The sentence goes on: the soul being “corrupted on its way”." }, s: "cronofr" },
+    ],
+  },
+  copal: {
+    title: { es: "El copal, hoy", en: "Copal, today" },
+    tip: { es: "Resina que se quema en el sahumador de la ofrenda.", en: "A resin burned in the ofrenda's censer." },
+    now: { es: "Se quema en un sahumador de barro junto a la ofrenda. En 2026 se explica como un purificador del ambiente que aleja a los malos espíritus. Sigue saliendo del mismo árbol que el copal del Templo Mayor.", en: "It is burned in a clay censer by the ofrenda. In 2026 it is explained as purifying the air and keeping evil spirits away. It still comes from the same tree as the Templo Mayor's copal." },
+    steps: [
+      { id: "q1", es: "Copal de Bursera en el Templo Mayor", en: "Bursera copal at the Templo Mayor" },
+      { id: "q2", es: "Incienso ante las imágenes de los muertos", en: "Incense before images of the dead" },
+      { id: "q3", es: "1886: la ración de humo de las ánimas", en: "1886: the souls' ration of smoke" },
+      { id: "q4", es: "1893: copal en las casas de la capital", en: "1893: copal in Mexico City homes" },
+      { id: "q5", es: "El mismo árbol, cinco siglos después", en: "The same tree, five centuries on" },
+    ],
+    clashTitle: { es: "Donde coinciden, y donde no", en: "Where they agree, and where they don't" },
+    clash: { es: "El copal es el elemento con la línea más larga y mejor documentada: el mismo árbol desde el Templo Mayor hasta hoy. Lo que cambia es la explicación. En 1893 se quemaba «para dar al acto más carácter»; en 2026, para purificar y alejar a los malos espíritus.", en: "Copal has the longest, best-documented line: the same tree from the Templo Mayor to today. What changes is the explanation. In 1893 it was burned “to give the act more character”; in 2026, to purify and keep evil spirits away." },
+    claims: [
+      { rank: "doc", t: { es: "La explicación en 2026.", en: "The explanation in 2026." },
+        q: "es clave el copal o incienso porque se usa para purificar al ambiente y alejar a los malos espíritus", qen: "copal or incense is key because it is used to purify the air and drive away evil spirits", s: "nmasagua" },
+    ],
+  },
   pan: {
     title: { es: "El pan de muerto, hoy", en: "Pan de muerto, today" },
     tip: { es: "Pan de trigo con «huesitos» de masa, para la ofrenda y para la mesa.", en: "Wheat bread with dough “bones”, for the ofrenda and the table." },
@@ -984,8 +1144,8 @@ const TODAY = {
 };
 
 // ---------- geometry ----------
-const LANES = ["ofrenda", "cempa", "pan", "azucar", "xolo", "catrina", "calav", "papel", "alebrije", "desfile"];
-const BANNER = { ofrenda: "--morado", cempa: "--naranja", pan: "--trigo", azucar: "--cielo", xolo: "--verde", catrina: "--rosa", calav: "--tinta", papel: "--lima", alebrije: "--ambar", desfile: "--azul" };
+const LANES = ["ofrenda", "cempa", "agua", "sal", "copal", "pan", "azucar", "xolo", "catrina", "calav", "papel", "alebrije", "desfile"];
+const BANNER = { ofrenda: "--morado", agua: "--rio", sal: "--salg", copal: "--resina", cempa: "--naranja", pan: "--trigo", azucar: "--cielo", xolo: "--verde", catrina: "--rosa", calav: "--tinta", papel: "--lima", alebrije: "--ambar", desfile: "--azul" };
 // The drawing width follows its container; below MIN_W (phones) it stays at MIN_W and the diagram scrolls sideways.
 const MIN_W = 900, TOP = 54, LANE_H = 170, LEFT = 130;
 let W = 1240, X_END = W - 210;
@@ -1076,6 +1236,27 @@ function banner(g, lane, x, y) {
     el("circle", { cx, cy: cy - 4, r: 7, fill: W_ }, m);                         // pan de muerto
     el("path", { d: `M${cx - 6},${cy - 4} h12 M${cx},${cy - 10} v12`, stroke: B, "stroke-width": 1.5 }, m);
     for (let i = 0; i < 5; i++) el("rect", { x: cx - 22 + i * 10, y: cy + 25, width: 4, height: 2.5, fill: B }, m);
+  } else if (lane === "agua") {
+    // a glass of water: tapered tumbler, a wavy waterline, drops falling in
+    el("path", { d: `M${cx - 22},${cy - 26} L${cx + 22},${cy - 26} L${cx + 16},${cy + 30} L${cx - 16},${cy + 30} Z`, fill: W_ }, m);
+    el("path", { d: `M${cx - 18},${cy - 18} L${cx + 18},${cy - 18} L${cx + 17},${cy - 8} q-6,-5 -12,0 q-6,5 -12,0 q-6,-5 -11,0 Z`, fill: B }, m);
+    for (let i = 0; i < 3; i++) el("path", { d: `M${cx - 9 + i * 9},${cy + 2 + (i % 2) * 8} q4,4 0,7 q-4,-3 0,-7 Z`, fill: B }, m);
+    el("rect", { x: cx - 14, y: cy + 24, width: 28, height: 2.5, fill: B }, m);
+  } else if (lane === "sal") {
+    // a small dish heaped with salt, a cross traced on top
+    el("ellipse", { cx, cy: cy + 18, rx: 36, ry: 11, fill: W_ }, m);
+    el("path", { d: `M${cx - 30},${cy + 14} Q${cx},${cy - 40} ${cx + 30},${cy + 14} Z`, fill: W_ }, m);
+    el("path", { d: `M${cx},${cy - 14} v26 M${cx - 9},${cy - 3} h18`, stroke: B, "stroke-width": 2.6, "stroke-linecap": "round" }, m);
+    el("path", { d: `M${cx - 32},${cy + 20} q32,10 64,0`, stroke: B, "stroke-width": 1.6, fill: "none" }, m);
+    for (const [dx, dy] of [[-18, 4], [16, 2], [-10, -8], [11, -10], [-22, 11], [22, 10]]) el("circle", { cx: cx + dx, cy: cy + dy, r: 1.3, fill: B }, m);
+  } else if (lane === "copal") {
+    // a clay censer (sahumador) on a foot, with curls of smoke
+    el("path", { d: `M${cx - 24},${cy + 2} h48 q-4,18 -24,20 q-20,-2 -24,-20 Z`, fill: W_ }, m);
+    el("rect", { x: cx - 5, y: cy + 20, width: 10, height: 8, fill: W_ }, m);
+    el("ellipse", { cx, cy: cy + 30, rx: 14, ry: 4, fill: W_ }, m);
+    el("rect", { x: cx + 22, y: cy + 4, width: 18, height: 4, rx: 2, fill: W_ }, m);
+    for (let i = 0; i < 4; i++) el("path", { d: `M${cx - 22 + i * 12},${cy + 8} l3,6 l3,-6`, stroke: B, "stroke-width": 1.3, fill: "none" }, m);
+    for (const k of [-10, 2, 13]) el("path", { d: `M${cx + k},${cy - 2} q-7,-8 0,-15 q7,-7 0,-15`, stroke: W_, "stroke-width": 3, fill: "none", "stroke-linecap": "round" }, m);
   } else if (lane === "pan") {
     // round loaf: a cross of dough bones and a knob on top, sugar dots
     el("circle", { cx, cy: cy + 4, r: 30, fill: W_ }, m);
